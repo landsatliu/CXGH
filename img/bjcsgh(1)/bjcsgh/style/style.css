@@ -1,0 +1,69 @@
+/* CSS Document */
+body{font-size:12px; font-family:"微软雅黑",Tahoma,Arial,"宋体",sans-serif; margin:0; padding:0; background:#fff;}
+ul,li,ol{ list-style:none;}
+div,p,ul,li,ol,dl,h1,h2,h3,h4,h5,img,pre{margin:0; padding:0;}
+em,i{font-style:normal;}
+strong{font-weight:normal;}
+img{border:none; vertical-align:middle;}
+.clear{float:none;!important; clear:both;!important; margin:0; padding:0;}
+a{color:#2C2319;text-decoration:none;}
+.fleft{float:left;}
+.fright{float:right;}
+
+.indexbg{background:url(../images/1.jpg); width:100%; height:1080px;}
+.indexbg .header{width:100%; height:97px; border-bottom:#086680 1px solid;}
+.indexbg .header .logo{width:755px; height:97px; float:left;}
+.indexbg .header .header_r{width:350px; height:47px; float:right;  margin-top:25px;}
+.indexbg .header .header_r .user_icon{width:47px; height:47px; background:url(../images/user_icon.png) no-repeat; float:right;}
+.indexbg .header .header_r .user_info{width:35%; height:47px; padding:0 10px; float:right;}
+.indexbg .header .header_r .user_info p{width:120px; color:#fff; padding:0 10px; float:left; font-size:16px; line-height:23px;}
+.indexbg .header .header_r .anjiu_icon{width:47px; height:47px; background:url(../images/anniu_icon.png) no-repeat; float:right; cursor:pointer;}
+
+.index{width:100%;}
+.index .index_layer{width:100%; height:38px; overflow:hidden;}
+.index .index_layer .tab{width:248px; height:38px; overflow:hidden; position:relative;  margin:2px 0 0 4px; color:#fff; font-size:18px; background-color:#313133; line-height:38px; padding-left:50px; float:left;}
+.index .index_layer .tab .tab_icon01{background:url(../images/index_icon01.png) no-repeat; width:27px; height:22px; position:absolute; left:10px; top:8px; display:block;}
+.index .index_layer .tab .tab_icon02{background:url(../images/index_icon02.png) no-repeat; width:27px; height:22px; position:absolute; left:10px; top:8px; display:block;}
+.index .index_layer .tab .tab_icon03{background:url(../images/index_icon03.png) no-repeat; width:27px; height:22px; position:absolute; left:10px; top:8px; display:block;}
+.index .index_layer .tab .tab_icon04{background:url(../images/index_icon04.png) no-repeat; width:27px; height:22px; position:absolute; left:10px; top:8px; display:block;}
+.index .index_layer .tab em{background:url(../images/close_icon.png) no-repeat; width:16px; height:16px; position:absolute; right:10px; top:11px; display:block; cursor:pointer;}
+.index .index_layer .cur{background-color:#2488a8;}
+.index .index_layer .cur em{background:url(../images/index_icon06.png) no-repeat;}
+
+.indexbg .index .sub_box{width:300px;} 
+.indexbg .index .sub_box .b_tit{width:300px; height:30px; border-radius:2px; margin:10px 0 0 4px; border-top:#fff965 1px solid; position:relative; color:#000; font-size:16px; line-height:30px; text-align:center; margin-bottom:7px;
+    background: -moz-linear-gradient(top, #fa7b0a 0%, #f29c09 100%);
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#fa7b0a), color-stop(100%,#f29c09));
+    background: -webkit-linear-gradient(top, #fa7b0a 0%,#f29c09 100%);
+    background: -o-linear-gradient(top, #fa7b0a 0%,#f29c09 100%);
+    background: -ms-linear-gradient(top, #fa7b0a 0%,#f29c09 100%);
+    background: linear-gradient(to bottom, #fa7b0a 0%,#f29c09 100%); 
+}
+.indexbg .index .sub_box .b_tit i{background:url(../images/index_icon07.png) no-repeat; width:22px; height:22px; position:absolute; left:10px; top:4px;}
+.indexbg .index .sub_box .b_info{width:290px; margin-left:2px;}
+.indexbg .index .sub_box .b_info .i_title{width:237px; height:39px; border-bottom:#000 1px solid; border-right:#47a9b2 1px solid; position:relative; padding-left:53px; color:#fff; font-size:14px; line-height:39px;
+    background: -moz-linear-gradient(left, #07405d 0%, #277299 100%);
+    background: -webkit-gradient(linear, left top, left center, color-stop(0%,#07405d), color-stop(100%,#277299));
+    background: -webkit-linear-gradient(left, #07405d 0%,#277299 100%);
+    background: -o-linear-gradient(left, #07405d 0%,#277299 100%);
+    background: -ms-linear-gradient(left, #07405d 0%,#277299 100%);
+    background: linear-gradient(to right, #07405d 0%,#277299 100%);}
+.indexbg .index .sub_box .b_info .i_title i{background:url(../images/index_icon08.png) no-repeat; width:14px; height:14px; display:block; position:absolute; left:18px; top:13px;}
+.indexbg .index .sub_box .b_info .i_title em{background:url(../images/index_icon09.png) no-repeat; width:13px; height:8px; display:block; position:absolute; right:14px; top:16px;}
+.indexbg .index .sub_box .b_cur .i_title i{background:url(../images/index_icon10.png) no-repeat; width:21px; height:21px; display:block; position:absolute; left:14px; top:9px;}
+.indexbg .index .sub_box .b_cur .cur_popup{width:280px; margin-top:3px;}
+.indexbg .index .sub_box .b_cur .cur_popup .p_box{width:280px; margin-bottom:15px;}
+.indexbg .index .sub_box .b_cur .cur_popup .p_box .p_title{width:200px; height:32px; background-color:#2e3336; position:relative; padding-left:80px; color:#c2c6c9; font-size:14px; line-height:32px;}
+.indexbg .index .sub_box .b_cur .cur_popup .p_box .p_title i{background:url(../images/index_icon11.png) no-repeat; width:15px; height:15px; display:block; position:absolute; left:38px; top:9px;}
+.indexbg .index .sub_box .b_cur .cur_popup .p_box .p_title span{background:url(../images/index_icon12.png) no-repeat; width:10px; height:11px; display:block; position:absolute; left:62px; top:11px;}
+.indexbg .index .sub_box .b_cur .cur_popup .p_box .p_title em{background:url(../images/index_icon14.png) no-repeat; width:10px; height:5px; display:block; position:absolute; right:12px; top:15px;}
+.indexbg .index .sub_box .b_cur .cur_popup .p_box .popup_info{width:150px; margin-left:67px;}
+.indexbg .index .sub_box .b_cur .cur_popup .p_box .popup_info .p_info_item{width:98px; height:30px; position:relative; padding-left:52px; color:#c2c6c9; font-size:14px; line-height:30px;}
+.indexbg .index .sub_box .b_cur .cur_popup .p_box .popup_info .p_info_item i{background:url(../images/index_icon11.png) no-repeat; width:15px; height:15px; display:block; position:absolute; left:12px; top:8px;}
+.indexbg .index .sub_box .b_cur .cur_popup .p_box .popup_info .p_info_item span{background:url(../images/index_icon12.png) no-repeat; width:10px; height:11px; display:block; position:absolute; left:37px; top:10px;}
+
+
+
+
+.indexbg .index .sub_box .b_cur .cur_popup .p_b_cur .p_title em{background:url(../images/index_icon13.png) no-repeat; width:8px; height:5px; display:block; position:absolute; right:12px; top:15px;}
+

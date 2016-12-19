@@ -1,0 +1,391 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title></title>
+    <link href="js/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="js/jstree/3.2.1/themes/default/style.min.css" rel="stylesheet" />
+    <link href="js/bootstrap/css/bootstrap-slider.css" rel="stylesheet" />
+    <link href="css/title.css" rel="stylesheet" />
+    <!--<link rel="stylesheet" href="https://js.arcgis.com/3.18/esri/css/esri.css" />-->
+    <link href="js/jquery/jquery.mCustomScrollbar.min.css" rel="stylesheet" />
+    <!--<link href="http://localhost/api317/lib/esri/css/esri.css" rel="stylesheet" />-->
+    <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=34s9PHa6Y0SabkSzWbVDxz28Ksk7KlvM	"></script>
+     <script type="text/javascript" src="http://api.map.baidu.com/library/Heatmap/2.0/src/Heatmap_min.js"></script>
+    <script src="js/jquery/jquery-1.11.3.min.js"></script>
+    <script src="js/bootstrap/bootstrap.min.js"></script>
+    <script src="js/jstree/3.2.1/jstree.js"></script>
+    <script src="js/bootstrap/bootstrap-slider.min.js"></script>
+    <script src="js/jquery/jquery.mCustomScrollbar.min.js"></script>
+    <script src="js/charts/echarts.js"></script>
+    <!--<script src="https://js.arcgis.com/3.18/"></script>-->
+    <!--<script src="http://localhost/api317/lib/init.js"></script>-->
+    <script src="CXGH.js"></script>
+</head>
+
+<body>
+    <div class="container">
+        <div class="main">
+            <div class="map" id="mainmap">
+            </div>
+            <div class="" id="main_header">
+                <img class="title_img" src="img/t_北京规划.png" alt="" />
+                <div class="t_title">
+                    <p class="title_ch">北京城乡规划实施动态监测及评估可视化平台</p>
+                    <p class="title_en">The dynamic monitoring and</p>
+                    <!-- The dynamic monitoring and assessment of the implementation of the Beijing urban and rural planning visualization platform -->
+                </div>
+                <div class="t_time">
+                    <p class="t_time_ch">当前时间</p>
+                    <p class="t_time_t">15:09:20 2016-03-15</p>
+                </div>
+                <div class="t_right">
+                    <div class="tlogin">
+                        <img class="login_img" src="img/t_user.jpg" alt="" />
+                        <div class="loginfo">
+                            <p class="log_name">Administrator</p>
+                            <p class="log_ch">管理员,您好!</p>
+                        </div>
+                    </div>
+                    <div class="tlogout">
+                        <img class="logout" src="img/t_powers.png" alt="" />
+                    </div>
+                </div>
+            </div>
+            <div class="panel-heading" id="body_header">
+                <div class="div_glass">&nbsp;</div>
+                <div class="h_social">
+                    <img class="header_img" src="img/h_社会.png" alt="" />
+                    <span>社会人文</span>
+                    <span class="h_close">&times;</span>
+                </div>
+                <div class="h_social">
+                    <img class="header_img" src="img/h_资源.png" alt="" />
+                    <span>资源</span>
+                    <span class="h_close">&times;</span>
+                </div>
+                <div class="h_social">
+                    <img class="header_img" src="img/h_环境.png" alt="" />
+                    <span>生态环境</span>
+                    <span class="h_close">&times;</span>
+                </div>
+                <div class="h_social">
+                    <img class="header_img" src="img/h_经济.png" alt="" />
+                    <span>经济</span>
+                    <span class="h_close">&times;</span>
+                </div>
+                <div class="h_social">
+                    <img class="header_img" src="img/h_经济.png" alt="" />
+                    <span>预留板块</span>
+                    <span class="h_close">&times;</span>
+                </div>
+                <div class="h_right">
+                    <span class="header_add glyphicon glyphicon-plus"></span>
+                    <span class="header_left glyphicon glyphicon-chevron-left"></span>
+                    <img class="header_img" src="img/目录.png" alt="" />
+                    <span class="header_right glyphicon glyphicon-chevron-right"></span>
+                    <img class="header_machine" src="img/电脑.png" alt="" />
+                </div>
+            </div>
+            <div class="" id="body_left">
+                <div class="div_glass">&nbsp;</div>
+                <div class="left_city">
+                    <div class="citydiv">
+                        <input type="checkbox" value="北京市" id="chkbj" name="check" />
+                        <label for="chkbj"></label>
+                    </div>
+                    <p class='regionBJ'>北京市</p>
+                </div>
+                <div class="left_region mCustomScrollbar" data-mcs-setleft="10px">
+                    <div class="region">
+                        <div class="chkdiv">
+                            <input type="checkbox" value="通州区" id="chktz" name="check" />
+                            <label for="chktz"></label>
+                        </div>
+                        <p class='regionName'>通州区</p>
+                        <span class='glyphicon glyphicon-chevron-down treespan'></span>
+                    </div>
+                    <div class="treeregion" id="tree_tz">
+                    </div>
+                    <div class="region ">
+                        <div class="chkdiv">
+                            <input type="checkbox" value="东城区" id="chzdc" name="check" />
+                            <label for="chzdc"></label>
+                        </div>
+                        <p class='regionName'>东城区</p>
+                        <span class='glyphicon glyphicon-chevron-down treespan'></span>
+                    </div>
+                    <div class="treeregion mCustomScrollbar" id="tree_dc">
+                    </div>
+                    <div class="region ">
+                        <div class="chkdiv">
+                            <input type="checkbox" value="西城区" id="chkxc" name="check" />
+                            <label for="chkxc"></label>
+                        </div>
+                        <p class='regionName'>西城区</p>
+                        <span class='glyphicon glyphicon-chevron-down treespan'></span>
+                    </div>
+                    <div class="treeregion mCustomScrollbar" id="tree_xc">
+                    </div>
+                    <div class="region ">
+                        <div class="chkdiv">
+                            <input type="checkbox" value="朝阳区" id="chkcy" name="check" />
+                            <label for="chkcy"></label>
+                        </div>
+                        <p class='regionName'>朝阳区</p>
+                        <span class='glyphicon glyphicon-chevron-down treespan'></span>
+                    </div>
+                    <div class="treeregion mCustomScrollbar" id="tree_cy">
+                    </div>
+                    <div class="region ">
+                        <div class="chkdiv">
+                            <input type="checkbox" value="丰台区" id="chkft" name="check" />
+                            <label for="chkft"></label>
+                        </div>
+                        <p class='regionName'>丰台区</p>
+                        <span class='glyphicon glyphicon-chevron-down treespan'></span>
+                    </div>
+                    <div class="treeregion mCustomScrollbar" id="tree_ft">
+                    </div>
+                    <div class="region ">
+                        <div class="chkdiv">
+                            <input type="checkbox" value="石景山区" id="chksjs" name="check" />
+                            <label for="chksjs"></label>
+                        </div>
+                        <p class='regionName'>石景山区</p>
+                        <span class='glyphicon glyphicon-chevron-down treespan'></span>
+                    </div>
+                    <div class="treeregion mCustomScrollbar" id="tree_sjs">
+                    </div>
+                    <div class="region ">
+                        <div class="chkdiv">
+                            <input type="checkbox" value="海淀区" id="chkhd" name="check" />
+                            <label for="chkhd"></label>
+                        </div>
+                        <p class='regionName'>海淀区</p>
+                        <span class='glyphicon glyphicon-chevron-down treespan'></span>
+                    </div>
+                    <div class="treeregion mCustomScrollbar" id="tree_hd">
+                    </div>
+                    <div class="region ">
+                        <div class="chkdiv">
+                            <input type="checkbox" value="门头沟区" id="chkmtg" name="check" />
+                            <label for="chkmtg"></label>
+                        </div>
+                        <p class='regionName'>门头沟区</p>
+                        <span class='glyphicon glyphicon-chevron-down treespan'></span>
+                    </div>
+                    <div class="treeregion mCustomScrollbar" id="tree_mtg">
+                    </div>
+                    <div class="region ">
+                        <div class="chkdiv">
+                            <input type="checkbox" value="房山区" id="chkfs" name="check" />
+                            <label for="chkfs"></label>
+                        </div>
+                        <p class='regionName'>房山区</p>
+                        <span class='glyphicon glyphicon-chevron-down treespan'></span>
+                    </div>
+                    <div class="treeregion mCustomScrollbar" id="tree_fs">
+                    </div>
+                    <div class="region ">
+                        <div class="chkdiv">
+                            <input type="checkbox" value="大兴区" id="chkdx" name="check" />
+                            <label for="chkdx"></label>
+                        </div>
+                        <p class='regionName'>大兴区</p>
+                        <span class='glyphicon glyphicon-chevron-down treespan'></span>
+                    </div>
+                    <div class="treeregion mCustomScrollbar" id="tree_dx">
+                    </div>
+                    <div class="region ">
+                        <div class="chkdiv">
+                            <input type="checkbox" value="昌平区" id="chkcp" name="check" />
+                            <label for="chkcp"></label>
+                        </div>
+                        <p class='regionName'>昌平区</p>
+                        <span class='glyphicon glyphicon-chevron-down treespan'></span>
+                    </div>
+                    <div class="treeregion mCustomScrollbar" id="tree_cp">
+                    </div>
+                    <div class="region ">
+                        <div class="chkdiv">
+                            <input type="checkbox" value="顺义区" id="chksy" name="check" />
+                            <label for="chksy"></label>
+                        </div>
+                        <p class='regionName'>顺义区</p>
+                        <span class='glyphicon glyphicon-chevron-down treespan'></span>
+                    </div>
+                    <div class="treeregion mCustomScrollbar" id="tree_sy">
+                    </div>
+                    <div class="region ">
+                        <div class="chkdiv">
+                            <input type="checkbox" value="延庆县" id="chkyq" name="check" />
+                            <label for="chkyq"></label>
+                        </div>
+                        <p class='regionName'>延庆县</p>
+                        <span class='glyphicon glyphicon-chevron-down treespan'></span>
+                    </div>
+                    <div class="treeregion mCustomScrollbar" id="tree_yq">
+                    </div>
+                    <div class="region ">
+                        <div class="chkdiv">
+                            <input type="checkbox" value="怀柔区" id="chkhr" name="check" />
+                            <label for="chkhr"></label>
+                        </div>
+                        <p class='regionName'>怀柔区</p>
+                        <span class='glyphicon glyphicon-chevron-down treespan'></span>
+                    </div>
+                    <div class="treeregion mCustomScrollbar" id="tree_hr">
+                    </div>
+                </div>
+            </div>
+            <div class="left_click">
+                <span class="leftclick_span glyphicon glyphicon-chevron-left"></span>
+            </div>
+            <div class="body_inner">
+                <div class="inner_glass"></div>
+                <div class="inner_title">
+                    <p class="title">资源</p>
+                    <span class="glyphicon glyphicon-minus"></span>
+                </div>
+                <div class="inner_body">
+                    <div class="inner_region">
+                        <img class="inner_img" src="img/i_water.png" alt="" />
+                        <p class='innerName'>水资源</p>
+                        <span class='innertreespan glyphicon glyphicon-chevron-down'></span>
+                    </div>
+                    <div class="innertree" id="tree_water"></div>
+                    <div class="inner_region">
+                        <img class="inner_img" src="img/i_earth.png" alt="" />
+                        <p class='innerName'>土地资源</p>
+                        <span class='innertreespan glyphicon glyphicon-chevron-down'></span>
+                    </div>
+                    <div class="innertree" id="tree_land"></div>
+                    <div class="inner_region">
+                        <img class="inner_img" src="img/i_radiation.png" alt="" />
+                        <p class='innerName'>能源</p>
+                        <span class='innertreespan glyphicon glyphicon-chevron-down'></span>
+                    </div>
+                    <div class="innertree mCustomScrollbar" id="tree_energy"></div>
+                    <div class="inner_region">
+                        <img class="inner_img" src="img/i_lightning.png" alt="" />
+                        <p class='innerName'>---</p>
+                        <span class='innertreespan glyphicon glyphicon-chevron-down'></span>
+                    </div>
+                    <div class="innertree mCustomScrollbar" id="tree_empty"></div>
+                </div>
+            </div>
+            <div class="body_legend">
+                <!--<div class="legend_glass"></div>-->
+                <p class="legend_title">图例</p>
+                <table >
+                    <tr>
+                        <td>
+                            <div class="legend_color" style="background-color:#01C5FF">&nbsp;</div>
+                        </td>
+                        <td class="legend_name">图例1</td>
+                    </tr>
+                     <tr>
+                        <td>
+                            <div class="legend_color" style="background-color:#ED4880"></div>
+                        </td>
+                        <td class="legend_name">图例2</td>
+                    </tr>
+                     <tr>
+                        <td>
+                            <div class="legend_color" style="background-color:#F7BC00"></div>
+                        </td>
+                        <td class="legend_name">图例3</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="legend_color" style="background-color:#12E76B"></div>
+                        </td>
+                        <td class="legend_name">图例4</td>
+                    </tr>
+                </table>
+            </div>
+            <div class="" id="body_right">
+                <table>
+                    <tr>
+                        <td class='td_body'>
+                            <div class="div_echart">
+                                <div class="echart_title">
+                                    <span>市现状用地规模占比</span>
+                                    <img src="img/echart-1.png" />
+                                    <img src="img/echart-2.png" />
+                                </div>
+                                <div id="echart1"></div>
+                            </div>
+                            <div class="div_echart">
+                                <div class="echart_title">
+                                    <span>市现状用地规模占比</span>
+                                    <img src="img/echart-1.png" />
+                                    <img src="img/echart-2.png" />
+                                </div>
+                                <div id="echart2"></div>
+                            </div>
+                            <div class="div_echart">
+                                <div class="echart_title">
+                                    <span>AQI - 雷达图</span>
+                                    <img src="img/echart-1.png" />
+                                    <img src="img/echart-2.png" />
+                                </div>
+                                <div id="echart3"></div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <!--<div class="div_echart">
+                            <div class="echart_title"></div>
+                            <div id="echart4"></div>
+                        </div>
+                        <div class="div_echart">
+                            <div class="echart_title"></div>
+                            <div id="echart5"></div>
+                        </div>
+                        <div class="div_echart">
+                            <div class="echart_title"></div>
+                            <div id="echart6"></div>
+                        </div>-->
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="div_echart_lg">
+                                <div class="echart_title">
+                                    <span>折线图堆叠</span>
+                                    <img src="img/echart-1.png" />
+                                    <img src="img/echart-2.png" />
+                                </div>
+                                <div id="echart7"></div>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div id="main_footer">
+                <div class="body_footer">
+                    <div class="footview">
+                        <img class="view_img" src="img/f_view.png" alt="" />
+                        <span>视图选择</span>
+                    </div>
+                    <div class="footquota">
+                        <img class="quota_img" src="img/f_quota.png" alt="" />
+                        <span>指标维度筛选</span>
+                    </div>
+                    <div class="foottime">
+                        <img class="time_img" src="img/f_time.png" alt="" />
+                        <span>时间轴控制</span>
+                    </div>
+                    <div class="footslider">
+                        <input id='sliderbar' type='text' />
+                    </div>
+                </div>
+                <span class="copyright">Copyright © 2014 San Meditech Inc. All Rights Reserved</span>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
