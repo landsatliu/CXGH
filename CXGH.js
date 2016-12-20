@@ -1110,6 +1110,10 @@ var App = {
         };
         myChart7.setOption(option7);
 
+        $(".img_resize").on("click",function(){
+            $(this).parent().next().toggle();
+            $(this).parent().parent().height($(this).prev().outerHeight(true));
+        });
     },
     addEvent: function () {
         $(".left_click").on("click", this.hideLeftTree);
