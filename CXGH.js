@@ -699,7 +699,8 @@ var App = {
         var option1 = {
             backgroundColor: 'rgba(1, 6, 10,0.6)',
             textStyle: {
-                color: "#FFFFFF"
+                color: "#FFFFFF",
+                fontSize:5
             },
             title: {
                 text: '',
@@ -719,7 +720,8 @@ var App = {
                 top: 'top',
                 data: ['直接访问', '邮件营销', '联盟广告', '视频广告', '搜索引擎'],
                 textStyle: {
-                    color: "#fff"
+                    color: "#fff",
+                    fontSize:6
                 }
             },
             series: [
@@ -751,11 +753,13 @@ var App = {
         var option2 = {
             backgroundColor: 'rgba(1, 6, 10,0.6)',
             textStyle: {
-                color: "#FFFFFF"
+                color: "#FFFFFF",
+                fontSize:5
             },
             legend: {
                 textStyle: {
-                    color: "#fff"
+                    color: "#fff",
+                    fontSize:6
                 },
                 data: ['直接访问']
             },
@@ -926,7 +930,8 @@ var App = {
                 text: '',
                 left: 'center',
                 textStyle: {
-                    color: '#eee'
+                    color: '#eee',
+                    fontSize:6
                 }
             },
             legend: {
@@ -935,7 +940,7 @@ var App = {
                 itemGap: 20,
                 textStyle: {
                     color: '#fff',
-                    fontSize: 14
+                    fontSize: 6
                 },
                 selectedMode: 'single'
             },
