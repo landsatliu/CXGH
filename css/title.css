@@ -305,16 +305,16 @@
 }
 
 .div_echart {
-    height: 270px;
-    width: 350px;
+    height: 200px;
+    width: 250px;
     display: inline-table;
     border: 2px solid #0A82A4;
 }
 
 .div_echart_lg {
     margin-top: 5px;
-    height: 270px;
-    width: 1059px;
+    height: 200px;
+    width: 758px;
     display: inline-table;
     border: 2px solid #0A82A4;
 }
@@ -331,7 +331,7 @@
         }
 
 #echart1, #echart2, #echart3, #echart7 {
-    height: 234px;
+    height: 150px;
     background-color: #01060A;
 }
 

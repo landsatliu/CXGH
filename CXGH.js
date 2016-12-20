@@ -452,7 +452,7 @@ var App = {
         $(".region").css("width", $(".region").width());
         $("#body_left").css("height", $(".main").height() - $("#main_header").outerHeight(true) - $("#body_header").outerHeight(true) - $("#main_footer").outerHeight(true));
         $(".left_region").css("height", $("#body_left").height() - $(".left_city").outerHeight(true));
-        $("#body_right").css({ "height": $("#body_left").height() - 10, "left": $(".main").width() - 1059 });
+        $("#body_right").css({ "height": $("#body_left").height() - 10, "left": $(".main").width() - 760 });
         $(".left_click").css({ "left": $("#body_left").outerWidth(true), "top": $("#body_left").height() / 2 + $("#body_left").offset().top });
         $(".body_legend").css({ "left": $("#body_left").outerWidth(true) + 14, "bottom": $("#main_footer").outerHeight(true) + 14 });
     },
