@@ -6,6 +6,7 @@
     overflow: hidden;
     background-color: transparent;
     font-family: 'Microsoft YaHei';
+    font-size: 6px;
 }
 
 .main {
@@ -26,7 +27,7 @@
     position: absolute;
     left: 0px;
     top: 0px;
-    height: 45px;
+    height: 25px;
     width: 100%;
     border-bottom: 1px solid;
     border-bottom-color: #20818A;
@@ -37,32 +38,32 @@
     background: -o-linear-gradient(top,#00090B, transparent);
     background: linear-gradient(top,#00090B, transparent);
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00090B', endColorstr='transparent',GradientType=0 );
-    font-size: 6px;
+    /*font-size: 6px;*/
 }
 
 #body_header {
     position: absolute;
     left: 0px;
-    top: 45px;
+    top: 25px;
     width: 100%;
     height: 21px;
     line-height: 100%;
     padding: 0px;
     z-index: 101;
-    font-size: 6px;
+    /*font-size: 6px;*/
 }
 
 #body_left {
     position: absolute;
     left: 0px;
-    top: 65px;
+    top: 45px;
     width: 150px;
 }
 
 #body_right {
     position: absolute;
     width: 770px;
-    top: 140px;
+    top: 50px;
 }
 
 #main_footer {
@@ -70,8 +71,8 @@
     left: 0px;
     bottom: 0px;
     width: 100%;
-    height: 59px;
-    font-size: 6px;
+    height: 43px;
+    /*font-size: 6px;*/
 }
 
 .div_glass {
@@ -86,8 +87,8 @@
 }
 
 .title_img, .login_img, .logout {
-    height: 30px;
-    width: 30px;
+    height: 15px;
+    width: 15px;
     margin: 0px;
     padding: 0px;
 }
@@ -110,7 +111,7 @@
 
 .t_time_t {
     color: #68CBF4 !important;
-    font-size: 16px;
+    /*font-size: 10px;*/
     margin-bottom: 0px;
 }
 
@@ -128,7 +129,7 @@
 #body_header .h_social {
     position: relative;
     display: inline-block;
-    width: 200px;
+    width: 80px;
     height: 14px;
     margin: 2px 0px 0px 3px;
     padding: 1px;
@@ -155,7 +156,7 @@
 
     .body_footer .foottime, .footview, .footquota {
         display: inline-block;
-        width: 120px;
+        width: 70px;
         margin-left: 5px;
         background-color: #474C52;
     }
@@ -163,6 +164,7 @@
         .footview > span, .footquota > span, .foottime > span {
             float: right;
             padding-right: 10px;
+            padding-top: 3px;
         }
 
 .footslider {
@@ -211,6 +213,9 @@
 .treeSelect {
     background-color: #FF9600 !important;
 }
+#mCSB_1_container{
+    left: 0px !important;
+}
 
 .left_region {
     position: relative;
@@ -219,13 +224,13 @@
     overflow-y: auto;
     color: white;
     display: inline-block;
-    font-size: 5px !important;
+    /*font-size: 6px !important;*/
 }
 
     .left_region .region {
         margin: 1px 0px;
         /*background-color: #155B7D;*/
-        height: 27px;
+        height: 15px;
         background: -webkit-linear-gradient(left,#034464, #28739A);
         background: -moz-linear-gradient(left,#034464, #28739A);
         background: -o-linear-gradient(left,#034464, #28739A);
@@ -245,8 +250,7 @@
 
 .regionName {
     display: inline-block;
-    margin: 6px 20px;
-    /*font-size: 12px;*/
+    margin: 1px 20px;
 }
 
 .regionBJ {
@@ -263,6 +267,11 @@
 .jstree-default .jstree-hovered {
     background: #99ccff;
 }
+.jstree-default .jstree-node{
+    margin-left: 15px;
+    min-height: 15px;
+}
+
 
 .chk_region, .chk_city {
     margin-left: 5px !important;
@@ -271,7 +280,7 @@
 .treeregion {
     overflow-y: auto;
     max-height: 150px;
-    width: 220px;
+    /*width: 220px;*/
     /*width: 100%;*/
     margin: 1px 0px;
     display: none;
@@ -279,10 +288,6 @@
 
 .treeregion_show {
     display: block !important;
-}
-
-.jstree-default a {
-    font-size: 11px;
 }
 
 .h_social .h_close {
@@ -309,29 +314,29 @@
     text-align: center;
     width: 100%;
     display: block;
-    font-size: 6px;
+    /*font-size: 6px;*/
     opacity: 0.95;
     filter: alpha(opacity=95);
 }
 
 .div_echart {
-    height: 200px;
-    width: 250px;
+    height: 150px;
+    width: 200px;
     display: inline-table;
-    border: 2px solid #0A82A4;
+    border: 1px solid #0A82A4;
 }
 
 .div_echart_lg {
     margin-top: 5px;
-    height: 200px;
-    width: 758px;
+    height: 150px;
+    width: 608px;
     display: inline-table;
-    border: 2px solid #0A82A4;
+    border: 1px solid #0A82A4;
 }
 
     .div_echart .echart_title, .div_echart_lg .echart_title {
         background-color: #151A1E;
-        height: 20px;
+        height: 15px;
         padding: 1px;
         font-size: 7px;
         color: white;
@@ -345,7 +350,7 @@
 
 
 #echart1, #echart2, #echart3, #echart7 {
-    height: 180px;
+    height: 136px;
     background-color: #01060A;
 }
 
@@ -355,16 +360,16 @@
 
 .chkdiv {
     position: relative;
-    width: 15px;
-    height: 15px;
+    width: 10px;
+    height: 10px;
     left: 10px;
-    top: 4px;
+    top: 2px;
     display: inline-block;
 }
 
     .chkdiv label {
-        width: 15px;
-        height: 15px;
+        width: 10px;
+        height: 10px;
         cursor: pointer;
         position: absolute;
         top: 0px;
@@ -379,12 +384,12 @@
 
         .chkdiv label:before {
             content: '';
-            width: 9px;
-            height: 5px;
+            width: 6px;
+            height: 3px;
             position: absolute;
             top: 2px;
             left: 2px;
-            border: 3px solid #f0ffff;
+            border: 1px solid #f0ffff;
             border-top: none;
             border-right: none;
             background: transparent;
@@ -408,16 +413,16 @@
 
 .citydiv {
     position: relative;
-    width: 20px;
-    height: 20px;
+    width: 15px;
+    height: 15px;
     left: 10px;
     top: 2px;
     display: inline-block;
 }
 
     .citydiv label {
-        width: 20px;
-        height: 20px;
+        width: 15px;
+        height: 15px;
         cursor: pointer;
         position: absolute;
         top: 0px;
@@ -476,10 +481,10 @@
 
 .body_inner {
     position: absolute;
-    left: 320px;
-    top: 150px;
-    width: 200px;
-    height: 400px;
+    left: 200px;
+    top: 80px;
+    width: 130px;
+    height: 300px;
     border: 1px solid #394750;
     color: white;
     background-color: transparent;
@@ -504,13 +509,13 @@
     position: absolute;
     left: 0px;
     top: 0px;
-    height: 27px;
+    height: 15px;
     width: 100%;
     display: inline-block;
 }
 
     .inner_title .title {
-        font-size: 20px;
+        font-size: 7px;
         margin-left: 5px;
         cursor: pointer;
         display: inline-block;
@@ -521,15 +526,15 @@
         margin-right: 10px;
         top: 6px;
         display: inline-block;
+        cursor: default;
     }
 
 .inner_body {
     position: absolute;
-    top: 27px;
+    top: 15px;
     width: 100%;
     height: 100%;
     display: inline-block;
-    font-size: 12px;
 }
 
 .inner_region {
@@ -537,13 +542,13 @@
     margin: 1px 0px;
     background-color: #155B7D;
     width: 100%;
-    height: 27px;
+    height: 15px;
     display: inline-block;
 }
 
     .inner_region img {
-        width: 16px;
-        height: 16px;
+        width: 8px;
+        height: 8px;
         margin-left: 5px;
         display: inline-block;
     }
@@ -565,7 +570,7 @@
 
 .body_legend {
     position: absolute;
-    width: 167px;
+    width: 80px;
     background-color: #010C10;
     color: white;
     -webkit-opacity: 0.9;
@@ -577,7 +582,7 @@
     left: 0px;
     top: 0px;
     margin: 3px 0 3px 15px;
-    font-size: 14px;
+    font-size: 7px;
 }
 
 .body_legend table {
@@ -589,14 +594,14 @@
 
 .legend_name {
     padding-left: 15px;
-    font-size: 12px;
+    /*font-size: 12px;*/
 }
 
 .legend_color {
     margin-left: 15px;
-    width: 12px;
-    height: 12px;
-    border-radius:3px;
+    width: 7px;
+    height: 7px;
+    border-radius:1px;
 }
 
 .legend_glass {

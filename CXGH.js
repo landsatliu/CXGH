@@ -452,9 +452,11 @@ var App = {
         $(".region").css("width", $(".region").width());
         $("#body_left").css("height", $(".main").height() - $("#main_header").outerHeight(true) - $("#body_header").outerHeight(true) - $("#main_footer").outerHeight(true));
         $(".left_region").css("height", $("#body_left").height() - $(".left_city").outerHeight(true));
-        $("#body_right").css({ "height": $("#body_left").height() - 10, "left": $(".main").width() - 760 });
+        $("#body_right").css({ "height": $("#body_left").height() - 10, "left": $(".main").width() - 615 });
         $(".left_click").css({ "left": $("#body_left").outerWidth(true), "top": $("#body_left").height() / 2 + $("#body_left").offset().top });
         $(".body_legend").css({ "left": $("#body_left").outerWidth(true) + 14, "bottom": $("#main_footer").outerHeight(true) + 14 });
+        _self.$bodyinnerHeight = $(".body_inner").outerHeight(true);
+
     },
     initJSTree: function () {
         var check = true;
@@ -700,7 +702,7 @@ var App = {
             backgroundColor: 'rgba(1, 6, 10,0.6)',
             textStyle: {
                 color: "#FFFFFF",
-                fontSize:5
+                fontSize: 6
             },
             title: {
                 text: '',
@@ -721,7 +723,7 @@ var App = {
                 data: ['直接访问', '邮件营销', '联盟广告', '视频广告', '搜索引擎'],
                 textStyle: {
                     color: "#fff",
-                    fontSize:6
+                    fontSize: 6
                 }
             },
             series: [
@@ -754,12 +756,12 @@ var App = {
             backgroundColor: 'rgba(1, 6, 10,0.6)',
             textStyle: {
                 color: "#FFFFFF",
-                fontSize:5
+                fontSize: 6
             },
             legend: {
                 textStyle: {
                     color: "#fff",
-                    fontSize:6
+                    fontSize: 6
                 },
                 data: ['直接访问']
             },
@@ -931,7 +933,7 @@ var App = {
                 left: 'center',
                 textStyle: {
                     color: '#eee',
-                    fontSize:6
+                    fontSize: 6
                 }
             },
             legend: {
@@ -1038,7 +1040,8 @@ var App = {
         var option7 = {
             backgroundColor: 'rgba(1, 6, 10,0.6)',
             textStyle: {
-                color: "#FFFFFF"
+                color: "#FFFFFF",
+                fontSize: 6
             },
             title: {
                 text: ''
@@ -1048,7 +1051,8 @@ var App = {
             },
             legend: {
                 textStyle: {
-                    color: "#fff"
+                    color: "#fff",
+                    fontSize: 6
                 },
                 data: ['邮件营销', '联盟广告', '视频广告', '直接访问', '搜索引擎']
             },
@@ -1115,7 +1119,7 @@ var App = {
         };
         myChart7.setOption(option7);
 
-        $(".img_resize").on("click",function(){
+        $(".img_resize").on("click", function () {
             $(this).parent().next().toggle();
             $(this).parent().parent().height($(this).prev().outerHeight(true));
         });
@@ -1142,6 +1146,15 @@ var App = {
                 $(".left_city").addClass("treeSelect");
                 $(this).parent().parent().next().find(".chkdiv").find("input:checkbox").prop("checked", false);
                 $(this).parent().parent().next().find(".chkdiv").find("input:checkbox").click();
+            }
+        });
+        $(".inner_title").find("span").on("click", function () {
+            $(".inner_body").toggle();
+            var show = $(".inner_body").is(":visible");
+            if (show) {
+                $(".body_inner").height(_self.$bodyinnerHeight);
+            } else {
+                $(".body_inner").height($(".inner_title").outerHeight());
             }
         });
     },
