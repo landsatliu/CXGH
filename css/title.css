@@ -271,7 +271,30 @@
     margin-left: 15px;
     min-height: 15px;
 }
+.jstree-default .jstree-icon:empty {
+    width: 20px;
+    height: 20px;
+    line-height: 20px;
+}
+.jstree-default .jstree-checkbox {
+    background-position: -168px -4px;
+}
 
+.jstree-default .jstree-open > .jstree-ocl {
+    background-position: -132px -5px;
+}
+.jstree-default .jstree-anchor > .jstree-undetermined {
+    background-position: -202px -4px;
+}
+.jstree-default .jstree-anchor > .jstree-undetermined:hover {
+    background-position: -202px -35px;
+}
+.jstree-default.jstree-checkbox-selection .jstree-clicked > .jstree-checkbox, .jstree-default .jstree-checked > .jstree-checkbox {
+    background-position: -233px -4px !important;
+}
+.jstree-default .jstree-hovered > .jstree-checkbox {
+    background-position: -168px -35px;
+}
 
 .chk_region, .chk_city {
     margin-left: 5px !important;
