@@ -63,6 +63,7 @@
 #body_right {
     position: absolute;
     width: 770px;
+    height: 490px !important;
     top: 50px;
 }
 
@@ -345,10 +346,13 @@
 .div_echart {
     height: 150px;
     width: 200px;
+    margin-top: 5px;    
     display: inline-table;
     border: 1px solid #0A82A4;
 }
-
+.div_echart canvas{
+    font-size: 6px;
+}
 .div_echart_lg {
     margin-top: 5px;
     height: 150px;
@@ -372,7 +376,7 @@
         }
 
 
-#echart1, #echart2, #echart3, #echart7 {
+#echart1, #echart2, #echart3,#echart4, #echart5, #echart6,  #echart7 {
     height: 136px;
     background-color: #01060A;
 }
