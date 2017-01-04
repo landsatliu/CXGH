@@ -17,7 +17,7 @@ var App = {
         //    //    showAttribution: false
         //    //});
         //});
-
+        console.log(CurrentAreaScale);
         this.initMap();
         this.initSilderBar();
         this.initJSTree();
