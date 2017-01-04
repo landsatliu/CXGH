@@ -9,3 +9,13 @@ remotes/origin/release
 6. git checkout -b dev origin/dev，作用是checkout远程的dev分支，在本地起名为dev分支，并切换到本地的dev分支
 7. git checkout -b release origin/release，作用参见上一步解释
 8. git checkout dev，切换回dev分支，并开始开发。
+
+//merge
+2、在本地新建一个与远程的0.2版本相同(被合并的版本)的0.2分支
+git checkout -b 0.2 origin/0.2
+3、返回到master版本
+git checkout master
+4、把本地的0.2合并到master
+git merge 0.2
+5、把本地的master同步到远程
+git push origin master
