@@ -5838,7 +5838,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	                // FIXME in node-canvas fontWeight is before fontStyle
 	                this.getShallow('fontStyle') || getShallow(gTextStyleModel, 'fontStyle'),
 	                this.getShallow('fontWeight') || getShallow(gTextStyleModel, 'fontWeight'),
-	                (this.getShallow('fontSize') || getShallow(gTextStyleModel, 'fontSize') || 12) + 'px',
+	                (this.getShallow('fontSize') || getShallow(gTextStyleModel, 'fontSize') || 6) + 'px',
 	                this.getShallow('fontFamily') || getShallow(gTextStyleModel, 'fontFamily') || 'sans-serif'
 	            ].join(' ');
 	        },
@@ -6780,7 +6780,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	            // PENDING
 	            fontFamily: platform.match(/^Win/) ? 'Microsoft YaHei' : 'sans-serif',
 	            // fontFamily: 'Arial, Verdana, sans-serif',
-	            fontSize: 12,
+	            fontSize: 6,
 	            fontStyle: 'normal',
 	            fontWeight: 'normal'
 	        },
@@ -27751,7 +27751,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	            // formatter: null,
 	            // 其余属性默认使用全局文本样式，详见TEXTSTYLE
 	            textStyle: {
-	                fontSize: 12
+					color:"#fff",
+	                fontSize: 6
 	            }
 	        },
 	        // 分隔线
@@ -40866,7 +40867,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	                // 其余属性默认使用全局文本样式，详见TEXTSTYLE
 	                textStyle: {
 	                    color: '#333',
-	                    fontSize: 15
+	                    fontSize: 7
 	                }
 	            },
 	            detail: {
@@ -40882,7 +40883,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	                // 其余属性默认使用全局文本样式，详见TEXTSTYLE
 	                textStyle: {
 	                    color: 'auto',
-	                    fontSize: 30
+	                    fontSize: 12
 	                }
 	            }
 	        }
@@ -44564,7 +44565,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	                    position: 'right',
 	                    textStyle: {
 	                        color: '#000',
-	                        fontSize: 12
+	                        fontSize: 6
 	                    }
 	                },
 	                emphasis: {
@@ -48764,16 +48765,16 @@ return /******/ (function(modules) { // webpackBootstrap
 	            // 横向布局时为水平间隔，纵向布局时为纵向间隔
 	            itemGap: 10,
 	            // 图例图形宽度
-	            itemWidth: 25,
+	            itemWidth: 15,
 	            // 图例图形高度
-	            itemHeight: 14,
+	            itemHeight: 7,
 
 	            // 图例关闭时候的颜色
 	            inactiveColor: '#ccc',
 
 	            textStyle: {
 	                // 图例文字颜色
-	                color: '#333'
+	                color: '#fff'
 	            },
 	            // formatter: '',
 	            // 选择模式，默认开启图例开关
@@ -49391,7 +49392,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	            },
 	            textStyle: {
 	                color: '#fff',
-	                fontSize: 14
+	                fontSize: 7
 	            }
 	        }
 	    });
@@ -54346,7 +54347,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	            // 主副标题纵向间隔，单位px，默认为10，
 	            itemGap: 10,
 	            textStyle: {
-	                fontSize: 18,
+	                fontSize: 12,
 	                fontWeight: 'bolder',
 	                color: '#333'
 	            },
@@ -65311,7 +65312,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	                style: style.fontStyle || DEFAULT_STYLE_NORMAL,
 	                variant: style.fontVariant || DEFAULT_STYLE_NORMAL,
 	                weight: style.fontWeight || DEFAULT_STYLE_NORMAL,
-	                size: parseFloat(style.fontSize || 12) | 0,
+	                size: parseFloat(style.fontSize || 6) | 0,
 	                family: fontFamily || 'Microsoft YaHei'
 	            };
 
