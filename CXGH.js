@@ -8,6 +8,7 @@ var App = {
         _self = this;
         _self.count = 0;
         this.initSize();
+        console.log("this is fix2Big");
         //require(["esri/map", "dojo/dom", "dojo/domReady!"], function (Map, dom) {
         //    //var map = new Map("mainmap", {
         //    //    basemap: "dark-gray",
