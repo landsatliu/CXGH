@@ -10,6 +10,11 @@ remotes/origin/release
 7. git checkout -b release origin/release，作用参见上一步解释
 8. git checkout dev，切换回dev分支，并开始开发。
 
+//删除分支
+远程分支 git push origin –delete 分支名
+本地分支（已合并） git branch -d 分支名
+本地分支（未合并） git branch -D 分支名
+
 //merge
 2、在本地新建一个与远程的0.2版本相同(被合并的版本)的0.2分支
 git checkout -b 0.2 origin/0.2
