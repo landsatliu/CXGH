@@ -17,7 +17,6 @@ var App = {
         //    //    showAttribution: false
         //    //});
         //});
-        console.log(CurrentAreaScale);
         this.initMap();
         this.initSilderBar();
         this.initJSTree();
@@ -587,27 +586,7 @@ var App = {
                             }]
                     }, {
                         "id": "",
-                        "text": "北苑街道",
-                        "children": [{
-                            "id": "",
-                            "text": "杨庄村",
-                            "children": []
-                        }, {
-                                "id": "",
-                                "text": "229街坊"
-                            }, {
-                                "id": "",
-                                "text": "235街坊"
-                            }, {
-                                "id": "",
-                                "text": "西总屯村"
-                            }, {
-                                "id": "",
-                                "text": "236街坊"
-                            }]
-                    }, {
-                        "id": "",
-                        "text": "梨园地区",
+                        "text": "梨园镇",
                         "children": [{
                             "id": "",
                             "text": "大马庄村",
@@ -685,27 +664,7 @@ var App = {
                                 "id": "",
                                 "text": "岳上村"
                             }]
-                    }, {
-                        "id": "",
-                        "text": "新华街道",
-                        "children": [{
-                            "id": "",
-                            "text": "225街坊",
-                            "children": []
-                        }, {
-                                "id": "",
-                                "text": "永顺村"
-                            }, {
-                                "id": "",
-                                "text": "228街坊"
-                            }, {
-                                "id": "",
-                                "text": "新建村"
-                            }, {
-                                "id": "",
-                                "text": "226街坊"
-                            }]
-                    }, {
+                    },  {
                         "id": "",
                         "text": "永乐店镇",
                         "children": [{
@@ -747,27 +706,7 @@ var App = {
                             }]
                     }, {
                         "id": "",
-                        "text": "于家务回族乡",
-                        "children": [{
-                            "id": "",
-                            "text": "225街坊",
-                            "children": []
-                        }, {
-                                "id": "",
-                                "text": "永顺村"
-                            }, {
-                                "id": "",
-                                "text": "228街坊"
-                            }, {
-                                "id": "",
-                                "text": "新建村"
-                            }, {
-                                "id": "",
-                                "text": "226街坊"
-                            }]
-                    }, {
-                        "id": "",
-                        "text": "玉桥街道",
+                        "text": "于家务",
                         "children": [{
                             "id": "",
                             "text": "225街坊",
@@ -788,26 +727,6 @@ var App = {
                     }, {
                         "id": "",
                         "text": "张家湾镇",
-                        "children": [{
-                            "id": "",
-                            "text": "225街坊",
-                            "children": []
-                        }, {
-                                "id": "",
-                                "text": "永顺村"
-                            }, {
-                                "id": "",
-                                "text": "228街坊"
-                            }, {
-                                "id": "",
-                                "text": "新建村"
-                            }, {
-                                "id": "",
-                                "text": "226街坊"
-                            }]
-                    }, {
-                        "id": "",
-                        "text": "中仓街道",
                         "children": [{
                             "id": "",
                             "text": "225街坊",
@@ -847,8 +766,8 @@ var App = {
         }).on("loaded.jstree", function (e, data) {
             $("#tree_tz").mCustomScrollbar();
         }).on("changed.jstree", function (e, data) {
-            if (data.node.text=="通州新城") {
-                
+            if (data.node.text == "通州新城") {
+
             }
 
         });
@@ -971,6 +890,7 @@ var App = {
         var myChart1 = echarts.init(document.getElementById('echart1'));
         var option1 = {
             backgroundColor: 'rgba(1, 6, 10,0.6)',
+            color: echartColor,
             title: {
                 text: '',
                 subtext: '',
@@ -1018,6 +938,7 @@ var App = {
         var myChart2 = echarts.init(document.getElementById('echart2'));
         var option2 = {
             backgroundColor: 'rgba(1, 6, 10,0.6)',
+            color: echartColor,
             tooltip: {
                 trigger: 'axis',
                 axisPointer: {
@@ -1026,33 +947,36 @@ var App = {
             },
             legend: {
                 data: ['2011年', '2012年'],
-                itemWidth: 15,
-                itemHeight: 7
             },
             grid: {
-                left: '3%',
-                right: '4%',
+                left: '2%',
+                right: '5%',
                 bottom: '3%',
                 top: 25,
                 containLabel: true
             },
             xAxis: {
-                // axisLabel: { //调整x轴的lable  
-                //     textStyle: {
-                //         fontSize: 12 
-                //     }
-                // },
+                name: "Xzhou",
+                nameGap: 5,
+                nameTextStyle: {
+                    color: "#fff"
+                },
                 type: 'value',
-                boundaryGap: [0, 0.01]
+                boundaryGap: [0, 0.01],
+                splitLine: {
+                    show: false
+                }
             },
             yAxis: {
-                // axisLabel: { //调整x轴的lable  
-                //     textStyle: {
-                //         fontSize: 6 
-                //     }
-                // },
                 type: 'category',
-                data: ['巴西', '印尼', '美国', '印度', '中国', '世界人口(万)']
+                data: ['巴西', '印尼', '美国', '印度', '中国', '世界人口(万)'],
+                splitLine: {
+                    show: true,
+                    lineStyle: {
+                        color: "#272C30",
+                        type: "doted"
+                    }
+                }
             },
             series: [
                 {
@@ -1184,6 +1108,7 @@ var App = {
 
         var option3 = {
             backgroundColor: 'rgba(1, 6, 10,0.6)',
+            color: echartColor,
             textStyle: {
                 color: '#fff',
                 fontSize: 6
@@ -1299,13 +1224,12 @@ var App = {
         var myChart4 = echarts.init(document.getElementById('echart4'));
         var option4 = {
             backgroundColor: 'rgba(1, 6, 10,0.6)',
+            color: echartColor,
             tooltip: {
                 trigger: 'axis'
             },
 
             legend: {
-                itemWidth: 15,
-                itemHeight: 7,
                 data: ['蒸发量', '降水量']
             },
             grid: {
@@ -1315,11 +1239,11 @@ var App = {
             },
             xAxis: [
                 {
-                    axisLabel: {
-                        textStyle: {
-                            fontSize: 6
-                        }
+                    name: "日期",
+                    nameTextStyle: {
+                        color: "#fff"
                     },
+                    nameGap: 5,
                     type: 'category',
                     data: ['1月', '2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '10月', '11月', '12月']
                 }
@@ -1328,13 +1252,22 @@ var App = {
                 {
                     type: 'value',
                     name: '水量',
+                    nameTextStyle: {
+                        color: "#fff"
+                    },
+                    nameGap: 5,
+                    splitLine: {
+                        show: true,
+                        lineStyle: {
+                            color: "#272C30",
+                            type: "doted"
+                        }
+                    },
                     min: 0,
                     max: 250,
                     interval: 50,
                     axisLabel: {
-                        textStyle: {
-                            fontSize: 6
-                        },
+
                         formatter: '{value} ml'
                     }
                 }
@@ -1359,6 +1292,7 @@ var App = {
         var myChart5 = echarts.init(document.getElementById('echart5'));
         var option5 = {
             backgroundColor: 'rgba(1, 6, 10,0.6)',
+            color: echartColor,
             tooltip: {
                 trigger: 'axis',
                 axisPointer: {            // 坐标轴指示器，坐标轴触发有效
@@ -1428,8 +1362,20 @@ var App = {
         myChart5.setOption(option5);
 
         var myChart7 = echarts.init(document.getElementById('echart7'));
+        var data7 = CurrentAreaScale;
+        var xdata7 = [];
+        var cityData = [], villageData = [], otherData = [];
+
+        for (var i = 0; i < data7.length; i++) {
+            xdata7.push(data7[i].year);
+            cityData.push(data7[i].city);
+            villageData.push(data7[i].village);
+            otherData.push(data7[i].other);
+        }
+
         var option7 = {
             backgroundColor: 'rgba(1, 6, 10,0.6)',
+            color: echartColor,
             title: {
                 text: ''
             },
@@ -1437,11 +1383,7 @@ var App = {
                 trigger: 'axis'
             },
             legend: {
-                textStyle: {
-                    color: "#fff",
-                    fontSize: 6
-                },
-                data: ['邮件营销', '联盟广告', '视频广告', '直接访问', '搜索引擎']
+                data: ['城镇建设用地', '村庄建设用地', '非建设用地']
             },
             grid: {
                 left: '3%',
@@ -1451,10 +1393,14 @@ var App = {
                 containLabel: true
             },
             xAxis: {
-                name: "星期",
+                name: "时间",
                 type: 'category',
                 boundaryGap: false,
-                data: ['周一', '周二', '周三', '周四', '周五', '周六', '周日'],
+                data: xdata7,
+                nameGap: 5,
+                nameTextStyle: {
+                    color: "#fff"
+                },
                 splitLine: {
                     show: true,
                     lineStyle: {
@@ -1464,51 +1410,33 @@ var App = {
                 }
             },
             yAxis: {
-                name: "访问量",
-                type: 'value',
+                name: "用地规模",
                 splitLine: {
+                    show: true,
                     lineStyle: {
                         color: "#272C30"
                     }
                 },
                 nameTextStyle: {
-                    textStyle: {
-                        // color:"#fff",
-                        // fontSize:12
-                    }
-                }
-
+                    color: "#fff"
+                },
+                nameGap: 5
             },
             series: [
                 {
-                    name: '邮件营销',
+                    name: '城镇建设用地',
                     type: 'line',
-                    stack: '总量',
-                    data: [120, 132, 101, 134, 90, 230, 210]
+                    data: cityData
                 },
                 {
-                    name: '联盟广告',
+                    name: '村庄建设用地',
                     type: 'line',
-                    stack: '总量',
-                    data: [220, 182, 191, 234, 290, 330, 310]
+                    data: villageData
                 },
                 {
-                    name: '视频广告',
+                    name: '非建设用地',
                     type: 'line',
-                    stack: '总量',
-                    data: [150, 232, 201, 154, 190, 330, 410]
-                },
-                {
-                    name: '直接访问',
-                    type: 'line',
-                    stack: '总量',
-                    data: [320, 332, 301, 334, 390, 330, 320]
-                },
-                {
-                    name: '搜索引擎',
-                    type: 'line',
-                    stack: '总量',
-                    data: [820, 932, 901, 934, 1290, 1330, 1320]
+                    data: otherData
                 }
             ]
         };
@@ -1567,9 +1495,73 @@ var App = {
         }
 
     },
-    silderbar_stop: function () {
+    silderbar_stop: function (event) {
         _self.count++;
-        _self.loadChart();
-        _self.refreshHeatMapData();
+        _self.slider_change_Echarts(event.value);
+
+        // _self.loadChart();
+        // _self.refreshHeatMapData();
+    },
+    //
+    slider_change_Echarts: function (year) {
+        var data1 = Enumerable.From(CurrentAreaScale).Where("x=>x.year==" + year).ToArray()[0];
+        var seriesData = [{ value: data1.city, name: "城镇建设用地" }, { value: data1.village, name: "村庄建设用地" }, { value: data1.other, name: "其他建设用地" }];
+        var myChart1 = echarts.init(document.getElementById('echart1'));
+        var option=this.getEchartOption1(seriesData);
+        myChart1.setOption(option);
+    },
+
+    //更改第一个echarts的数据
+    getEchartOption1: function (data) {
+        var option1 = {
+            backgroundColor: 'rgba(1, 6, 10,0.6)',
+            color: echartColor,
+            title: {
+                text: '',
+                subtext: '',
+                x: 'center'
+            },
+            grid: {
+                left: "5px"
+            },
+            tooltip: {
+                trigger: 'item',
+                formatter: "{c} 公顷"
+            },
+            legend: {
+                orient: 'vertical',
+                right: 'right',
+                top: 'middle',
+                data: ['城镇建设用地', '村庄建设用地', '其他建设用地'],
+                formatter: function (name) {
+                    var oa = option1.series[0].data;
+                    for (var i = 0; i < oa.length; i++) {
+                        if (name == oa[i].name) {
+                            return oa[i].value + "    " + name;
+                        }
+                    }
+                }
+            },
+
+            series: [
+                {
+                    name: '公顷',
+                    type: 'pie',
+                    center: ['30%', '50%'],
+                    label: {
+                        normal: {
+                            show: true,
+                            position: 'inside',
+                            formatter: "{d}%"
+                        }
+                    },
+                    data: data
+                }
+            ]
+        };
+        return option1;
     }
+
+
+
 }

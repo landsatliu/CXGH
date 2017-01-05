@@ -48765,7 +48765,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	            // 横向布局时为水平间隔，纵向布局时为纵向间隔
 	            itemGap: 10,
 	            // 图例图形宽度
-	            itemWidth: 15,
+	            itemWidth: 3,
 	            // 图例图形高度
 	            itemHeight: 7,
 
@@ -52849,7 +52849,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	            show: true,
 	            lineStyle: {
 	                width: 2,
-	                type: 'solid'
+	                type: 'solid',
+					color:'#fff'
 	            }
 	        },
 
