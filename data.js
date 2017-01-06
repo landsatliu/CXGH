@@ -1,5 +1,5 @@
 //区县现状用地规模及历年数据
-var CurrentAreaScale=[{"name":"通州区","year":2005,"city":7149,"village":16031,"other":67416,"cscale":7.89,"vscale":17.70,"oscale":74.41},
+var DistrictCurrentLandUseSize=[{"name":"通州区","year":2005,"city":7149,"village":16031,"other":67416,"cscale":7.89,"vscale":17.70,"oscale":74.41},
 {"name":"通州区","year":2006,"city":7250,"village":16000,"other":67346,"cscale":8.00,"vscale":17.66,"oscale":74.34},
 {"name":"通州区","year":2007,"city":7351,"village":15969,"other":67276,"cscale":8.11,"vscale":17.63,"oscale":74.26},
 {"name":"通州区","year":2008,"city":7452,"village":15938,"other":67206,"cscale":8.23,"vscale":17.59,"oscale":74.18},
@@ -8,7 +8,7 @@ var CurrentAreaScale=[{"name":"通州区","year":2005,"city":7149,"village":1603
 {"name":"通州区","year":2011,"city":7755,"village":15845,"other":66996,"cscale":8.56,"vscale":17.49,"oscale":73.95},
 {"name":"通州区","year":2012,"city":7856,"village":15812,"other":66926,"cscale":8.67,"vscale":17.45,"oscale":73.87}];
 //区县现状城市建设用地结构
-var AreaLandUse=[{"name":"通州区","year":2005,"jzyd":2148.97,"cyyd":457.18,"ptyd":457.18,"ld":418.91,"dlyd":4061.81,"syyd":584.18,"jzbl":26.44,"cybl":5.62,"ptbl":5.62,"ldbl":5.15,"dlbl":49.97,"sybl":7.19},
+var DistrictCurrentLandUseStruc=[{"name":"通州区","year":2005,"jzyd":2148.97,"cyyd":457.18,"ptyd":457.18,"ld":418.91,"dlyd":4061.81,"syyd":584.18,"jzbl":26.44,"cybl":5.62,"ptbl":5.62,"ldbl":5.15,"dlbl":49.97,"sybl":7.19},
 {"name":"通州区","year":2006,"jzyd":2284.20,"cyyd":787.25,"ptyd":433.18,"ld":466.72,"dlyd":4355.66,"syyd":583.57,"jzbl":25.63,"cybl":8.84,"ptbl":4.86,"ldbl":5.24,"dlbl":48.88,"sybl":6.55},
 {"name":"通州区","year":2007,"jzyd":2419.43,"cyyd":1117.33,"ptyd":409.17,"ld":514.53,"dlyd":4649.52,"syyd":582.96,"jzbl":24.96,"cybl":11.53,"ptbl":4.22,"ldbl":5.31,"dlbl":47.97,"sybl":6.01},
 {"name":"通州区","year":2008,"jzyd":2554.66,"cyyd":1447.40,"ptyd":385.17,"ld":562.34,"dlyd":4943.37,"syyd":582.35,"jzbl":24.39,"cybl":13.82,"ptbl":3.68,"ldbl":5.37,"dlbl":47.19,"sybl":5.56},
@@ -17,8 +17,8 @@ var AreaLandUse=[{"name":"通州区","year":2005,"jzyd":2148.97,"cyyd":457.18,"p
 {"name":"通州区","year":2011,"jzyd":2960.35,"cyyd":2437.63,"ptyd":313.15,"ld":705.76,"dlyd":5824.93,"syyd":580.51,"jzbl":23.09,"cybl":19.01,"ptbl":2.44,"ldbl":5.50,"dlbl":45.43,"sybl":4.53},
 {"name":"通州区","year":2012,"jzyd":3095.58,"cyyd":2767.70,"ptyd":289.15,"ld":753.57,"dlyd":6118.78,"syyd":579.90,"jzbl":22.75,"cybl":20.34,"ptbl":2.13,"ldbl":5.54,"dlbl":44.98,"sybl":4.26}];
 var echartColor=['#42B5F8', '#CD6860', '#F0CD31', '#AF65FF', '#5AE777', '#6CFAFB'];
-
-var aa=[{"name": "通州新城","year": 2005 ,"city": 4500 ,"village": 5500 ,"other":6500},
+//乡镇现状用地规模
+var VillageCurrentLandUseSize=[{"name": "通州新城","year": 2005 ,"city": 4500 ,"village": 5500 ,"other":6500},
 {"name": "潞城镇","year": 2005 ,"city": 1500 ,"village": 2500 ,"other":2200},
 {"name": "台湖镇","year": 2005 ,"city": 1300 ,"village": 3500 ,"other":2100},
 {"name": "漷县镇","year": 2005 ,"city": 1600 ,"village": 2800 ,"other":2300},

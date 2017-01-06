@@ -21,7 +21,7 @@ var App = {
         this.initSilderBar();
         this.initJSTree();
         this.initInnerJStree();
-        this.loadChart();
+        // this.loadChart();
         this.addEvent();
     },
     initMap: function () {
@@ -664,7 +664,7 @@ var App = {
                                 "id": "",
                                 "text": "岳上村"
                             }]
-                    },  {
+                    }, {
                         "id": "",
                         "text": "永乐店镇",
                         "children": [{
@@ -765,10 +765,11 @@ var App = {
             },
         }).on("loaded.jstree", function (e, data) {
             $("#tree_tz").mCustomScrollbar();
-        }).on("changed.jstree", function (e, data) {
-            if (data.node.text == "通州新城") {
 
-            }
+            //选中第一个区县
+            $(".region").find("input:checkbox")[0].click();
+        }).on("changed.jstree", function (e, data) {
+
 
         });
     },
@@ -798,6 +799,7 @@ var App = {
                     {
                         "id": "",
                         "text": "现状用地规模",
+                        // "state": { "selected": true },
                         "children": []
                     },
                     {
@@ -861,6 +863,14 @@ var App = {
             },
         }).on("loaded.jstree", function (e, data) {
             $("#tree_land").mCustomScrollbar();
+            var inst = data.instance;
+            var obj = inst.get_node(e.target.firstChild.firstChild.firstChild.firstChild);
+            inst.select_node(obj.children[0]);
+        }).on("changed.jstree", function (e, data) {
+            if (data.node) {
+                _self.currentMenuname = data.node.text;
+                _self.changeEcharts(data.node.text);
+            }
         });
     },
     initSilderBar: function () {
@@ -875,7 +885,7 @@ var App = {
             id: "slider_bar",
             min: 1991,
             max: 2017,
-            value: "2013",
+            value: "2005",
             step: 1,
             ticks: year,
             ticks_labels: year,
@@ -883,7 +893,8 @@ var App = {
             ticks_snap_bounds: 0,
             handle: "custom"
         });
-        $("#sliderbar").on("slideStop", this.silderbar_stop);
+        $silderbar = $("#sliderbar");
+        $silderbar.on("slideStop", this.silderbar_stop);
     },
     //加载echart
     loadChart: function () {
@@ -1496,72 +1507,19 @@ var App = {
 
     },
     silderbar_stop: function (event) {
+        _self.changeEcharts(_self.currentMenuname);
         _self.count++;
-        _self.slider_change_Echarts(event.value);
-
-        // _self.loadChart();
-        // _self.refreshHeatMapData();
+        _self.refreshHeatMapData();
     },
-    //
-    slider_change_Echarts: function (year) {
-        var data1 = Enumerable.From(CurrentAreaScale).Where("x=>x.year==" + year).ToArray()[0];
-        var seriesData = [{ value: data1.city, name: "城镇建设用地" }, { value: data1.village, name: "村庄建设用地" }, { value: data1.other, name: "其他建设用地" }];
-        var myChart1 = echarts.init(document.getElementById('echart1'));
-        var option=this.getEchartOption1(seriesData);
-        myChart1.setOption(option);
-    },
-
-    //更改第一个echarts的数据
-    getEchartOption1: function (data) {
-        var option1 = {
-            backgroundColor: 'rgba(1, 6, 10,0.6)',
-            color: echartColor,
-            title: {
-                text: '',
-                subtext: '',
-                x: 'center'
-            },
-            grid: {
-                left: "5px"
-            },
-            tooltip: {
-                trigger: 'item',
-                formatter: "{c} 公顷"
-            },
-            legend: {
-                orient: 'vertical',
-                right: 'right',
-                top: 'middle',
-                data: ['城镇建设用地', '村庄建设用地', '其他建设用地'],
-                formatter: function (name) {
-                    var oa = option1.series[0].data;
-                    for (var i = 0; i < oa.length; i++) {
-                        if (name == oa[i].name) {
-                            return oa[i].value + "    " + name;
-                        }
-                    }
-                }
-            },
-
-            series: [
-                {
-                    name: '公顷',
-                    type: 'pie',
-                    center: ['30%', '50%'],
-                    label: {
-                        normal: {
-                            show: true,
-                            position: 'inside',
-                            formatter: "{d}%"
-                        }
-                    },
-                    data: data
-                }
-            ]
-        };
-        return option1;
+    changeEcharts: function (menuname) {
+        var year = $silderbar.slider("getValue");
+        switch (menuname) {
+            case "现状用地规模":
+                currentLandUse(year);
+                break;
+            default:
+                break;
+        }
     }
-
-
 
 }
