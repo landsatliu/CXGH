@@ -21,7 +21,6 @@ var App = {
         this.initSilderBar();
         this.initJSTree();
         this.initInnerJStree();
-        // this.loadChart();
         this.addEvent();
     },
     initMap: function () {
@@ -821,14 +820,7 @@ var App = {
             }, {
                 "id": "",
                 "text": "平原地区开发强度",
-                "children":
-                [
-                    {
-                        "id": "",
-                        "text": "现状用地规模",
-                        "children": []
-                    }
-                ]
+                "children": []
             }, {
                 "id": "",
                 "text": "现状存量建设用地",
@@ -896,568 +888,6 @@ var App = {
         $silderbar = $("#sliderbar");
         $silderbar.on("slideStop", this.silderbar_stop);
     },
-    //加载echart
-    loadChart: function () {
-        var myChart1 = echarts.init(document.getElementById('echart1'));
-        var option1 = {
-            backgroundColor: 'rgba(1, 6, 10,0.6)',
-            color: echartColor,
-            title: {
-                text: '',
-                subtext: '',
-                x: 'center'
-            },
-            grid: {
-                left: "5px"
-            },
-            tooltip: {
-                trigger: 'item',
-                formatter: "{a} <br/>{b} : {c} ({d}%)"
-            },
-            legend: {
-                // orient: 'vertical',
-                left: 'left',
-                top: 'top',
-                data: ['直接访问', '邮件营销', '联盟广告'],
-                // textStyle: {
-                //     color: "#fff"
-                // }
-            },
-            series: [
-                {
-                    name: '访问来源',
-                    type: 'pie',
-                    radius: '55%',
-                    center: ['50%', '60%'],
-                    data: [
-                        { value: 335, name: '直接访问' },
-                        { value: 310, name: '邮件营销' },
-                        { value: 234, name: '联盟广告' }
-                    ],
-                    itemStyle: {
-                        emphasis: {
-                            shadowBlur: 10,
-                            shadowOffsetX: 0,
-                            shadowColor: 'rgba(0, 0, 0, 0.5)'
-                        }
-                    }
-                }
-            ]
-        };
-        myChart1.setOption(option1);
-
-        var myChart2 = echarts.init(document.getElementById('echart2'));
-        var option2 = {
-            backgroundColor: 'rgba(1, 6, 10,0.6)',
-            color: echartColor,
-            tooltip: {
-                trigger: 'axis',
-                axisPointer: {
-                    type: 'shadow'
-                }
-            },
-            legend: {
-                data: ['2011年', '2012年'],
-            },
-            grid: {
-                left: '2%',
-                right: '5%',
-                bottom: '3%',
-                top: 25,
-                containLabel: true
-            },
-            xAxis: {
-                name: "Xzhou",
-                nameGap: 5,
-                nameTextStyle: {
-                    color: "#fff"
-                },
-                type: 'value',
-                boundaryGap: [0, 0.01],
-                splitLine: {
-                    show: false
-                }
-            },
-            yAxis: {
-                type: 'category',
-                data: ['巴西', '印尼', '美国', '印度', '中国', '世界人口(万)'],
-                splitLine: {
-                    show: true,
-                    lineStyle: {
-                        color: "#272C30",
-                        type: "doted"
-                    }
-                }
-            },
-            series: [
-                {
-                    name: '2011年',
-                    type: 'bar',
-                    data: [18203, 23489, 29034, 104970, 131744, 630230]
-                },
-                {
-                    name: '2012年',
-                    type: 'bar',
-                    data: [19325, 23438, 31000, 121594, 134141, 681807]
-                }
-            ]
-        };
-
-        myChart2.setOption(option2);
-
-        // Schema:
-        // date,AQIindex,PM2.5,PM10,CO,NO2,SO2
-        var myChart3 = echarts.init(document.getElementById('echart3'));
-        var dataBJ = [
-            [55, 9, 56, 0.46, 18, 6, 1],
-            [25, 11, 21, 0.65, 34, 9, 2],
-            [56, 7, 63, 0.3, 14, 5, 3],
-            [33, 7, 29, 0.33, 16, 6, 4],
-            [42, 24, 44, 0.76, 40, 16, 5],
-            [82, 58, 90, 1.77, 68, 33, 6],
-            [74, 49, 77, 1.46, 48, 27, 7],
-            [78, 55, 80, 1.29, 59, 29, 8],
-            [267, 216, 280, 4.8, 108, 64, 9],
-            [185, 127, 216, 2.52, 61, 27, 10],
-            [39, 19, 38, 0.57, 31, 15, 11],
-            [41, 11, 40, 0.43, 21, 7, 12],
-            [64, 38, 74, 1.04, 46, 22, 13],
-            [108, 79, 120, 1.7, 75, 41, 14],
-            [108, 63, 116, 1.48, 44, 26, 15],
-            [33, 6, 29, 0.34, 13, 5, 16],
-            [94, 66, 110, 1.54, 62, 31, 17],
-            [186, 142, 192, 3.88, 93, 79, 18],
-            [57, 31, 54, 0.96, 32, 14, 19],
-            [22, 8, 17, 0.48, 23, 10, 20],
-            [39, 15, 36, 0.61, 29, 13, 21],
-            [94, 69, 114, 2.08, 73, 39, 22],
-            [99, 73, 110, 2.43, 76, 48, 23],
-            [31, 12, 30, 0.5, 32, 16, 24],
-            [42, 27, 43, 1, 53, 22, 25],
-            [154, 117, 157, 3.05, 92, 58, 26],
-            [234, 185, 230, 4.09, 123, 69, 27],
-            [160, 120, 186, 2.77, 91, 50, 28],
-            [134, 96, 165, 2.76, 83, 41, 29],
-            [52, 24, 60, 1.03, 50, 21, 30],
-            [46, 5, 49, 0.28, 10, 6, 31]
-        ];
-
-        var dataGZ = [
-            [26, 37, 27, 1.163, 27, 13, 1],
-            [85, 62, 71, 1.195, 60, 8, 2],
-            [78, 38, 74, 1.363, 37, 7, 3],
-            [21, 21, 36, 0.634, 40, 9, 4],
-            [41, 42, 46, 0.915, 81, 13, 5],
-            [56, 52, 69, 1.067, 92, 16, 6],
-            [64, 30, 28, 0.924, 51, 2, 7],
-            [55, 48, 74, 1.236, 75, 26, 8],
-            [76, 85, 113, 1.237, 114, 27, 9],
-            [91, 81, 104, 1.041, 56, 40, 10],
-            [84, 39, 60, 0.964, 25, 11, 11],
-            [64, 51, 101, 0.862, 58, 23, 12],
-            [70, 69, 120, 1.198, 65, 36, 13],
-            [77, 105, 178, 2.549, 64, 16, 14],
-            [109, 68, 87, 0.996, 74, 29, 15],
-            [73, 68, 97, 0.905, 51, 34, 16],
-            [54, 27, 47, 0.592, 53, 12, 17],
-            [51, 61, 97, 0.811, 65, 19, 18],
-            [91, 71, 121, 1.374, 43, 18, 19],
-            [73, 102, 182, 2.787, 44, 19, 20],
-            [73, 50, 76, 0.717, 31, 20, 21],
-            [84, 94, 140, 2.238, 68, 18, 22],
-            [93, 77, 104, 1.165, 53, 7, 23],
-            [99, 130, 227, 3.97, 55, 15, 24],
-            [146, 84, 139, 1.094, 40, 17, 25],
-            [113, 108, 137, 1.481, 48, 15, 26],
-            [81, 48, 62, 1.619, 26, 3, 27],
-            [56, 48, 68, 1.336, 37, 9, 28],
-            [82, 92, 174, 3.29, 0, 13, 29],
-            [106, 116, 188, 3.628, 101, 16, 30],
-            [118, 50, 0, 1.383, 76, 11, 31]
-        ];
-
-        var dataSH = [
-            [91, 45, 125, 0.82, 34, 23, 1],
-            [65, 27, 78, 0.86, 45, 29, 2],
-            [83, 60, 84, 1.09, 73, 27, 3],
-            [109, 81, 121, 1.28, 68, 51, 4],
-            [106, 77, 114, 1.07, 55, 51, 5],
-            [109, 81, 121, 1.28, 68, 51, 6],
-            [106, 77, 114, 1.07, 55, 51, 7],
-            [89, 65, 78, 0.86, 51, 26, 8],
-            [53, 33, 47, 0.64, 50, 17, 9],
-            [80, 55, 80, 1.01, 75, 24, 10],
-            [117, 81, 124, 1.03, 45, 24, 11],
-            [99, 71, 142, 1.1, 62, 42, 12],
-            [95, 69, 130, 1.28, 74, 50, 13],
-            [116, 87, 131, 1.47, 84, 40, 14],
-            [108, 80, 121, 1.3, 85, 37, 15],
-            [134, 83, 167, 1.16, 57, 43, 16],
-            [79, 43, 107, 1.05, 59, 37, 17],
-            [71, 46, 89, 0.86, 64, 25, 18],
-            [97, 71, 113, 1.17, 88, 31, 19],
-            [84, 57, 91, 0.85, 55, 31, 20],
-            [87, 63, 101, 0.9, 56, 41, 21],
-            [104, 77, 119, 1.09, 73, 48, 22],
-            [87, 62, 100, 1, 72, 28, 23],
-            [168, 128, 172, 1.49, 97, 56, 24],
-            [65, 45, 51, 0.74, 39, 17, 25],
-            [39, 24, 38, 0.61, 47, 17, 26],
-            [39, 24, 39, 0.59, 50, 19, 27],
-            [93, 68, 96, 1.05, 79, 29, 28],
-            [188, 143, 197, 1.66, 99, 51, 29],
-            [174, 131, 174, 1.55, 108, 50, 30],
-            [187, 143, 201, 1.39, 89, 53, 31]
-        ];
-
-        var lineStyle = {
-            normal: {
-                width: 1,
-                opacity: 0.5
-            }
-        };
-
-        var option3 = {
-            backgroundColor: 'rgba(1, 6, 10,0.6)',
-            color: echartColor,
-            textStyle: {
-                color: '#fff',
-                fontSize: 6
-            },
-            title: {
-                text: '',
-                left: 'center',
-                // textStyle: {
-                //     color: '#eee',
-                //     fontSize: 6
-                // }
-            },
-            legend: {
-                bottom: 5,
-                data: ['北京', '上海', '广州'],
-                itemGap: 20,
-                // textStyle: {
-                //     color: '#fff',
-                //     fontSize: 6
-                // },
-                selectedMode: 'single'
-            },
-            radar: {
-                indicator: [
-                    { name: 'AQI', max: 300 },
-                    { name: 'PM2.5', max: 250 },
-                    { name: 'PM10', max: 300 },
-                    { name: 'CO', max: 5 },
-                    { name: 'NO2', max: 200 },
-                    { name: 'SO2', max: 100 }
-                ],
-                shape: 'circle',
-                splitNumber: 5,
-                name: {
-                    textStyle: {
-                        color: 'rgb(238, 197, 102)'
-                    }
-                },
-                splitLine: {
-                    lineStyle: {
-                        color: [
-                            'rgba(238, 197, 102, 0.1)', 'rgba(238, 197, 102, 0.2)',
-                            'rgba(238, 197, 102, 0.4)', 'rgba(238, 197, 102, 0.6)',
-                            'rgba(238, 197, 102, 0.8)', 'rgba(238, 197, 102, 1)'
-                        ].reverse()
-                    }
-                },
-                splitArea: {
-                    show: false
-                },
-                axisLine: {
-                    lineStyle: {
-                        color: 'rgba(238, 197, 102, 0.5)'
-                    }
-                }
-            },
-            series: [
-                {
-                    name: '北京',
-                    type: 'radar',
-                    lineStyle: lineStyle,
-                    data: dataBJ,
-                    symbol: 'none',
-                    itemStyle: {
-                        normal: {
-                            color: '#F9713C'
-                        }
-                    },
-                    areaStyle: {
-                        normal: {
-                            opacity: 0.1
-                        }
-                    }
-                },
-                {
-                    name: '上海',
-                    type: 'radar',
-                    lineStyle: lineStyle,
-                    data: dataSH,
-                    symbol: 'none',
-                    itemStyle: {
-                        normal: {
-                            color: '#B3E4A1'
-                        }
-                    },
-                    areaStyle: {
-                        normal: {
-                            opacity: 0.05
-                        }
-                    }
-                },
-                {
-                    name: '广州',
-                    type: 'radar',
-                    lineStyle: lineStyle,
-                    data: dataGZ,
-                    symbol: 'none',
-                    itemStyle: {
-                        normal: {
-                            color: 'rgb(238, 197, 102)'
-                        }
-                    },
-                    areaStyle: {
-                        normal: {
-                            opacity: 0.05
-                        }
-                    }
-                }
-            ]
-        };
-        myChart3.setOption(option3);
-
-        var myChart4 = echarts.init(document.getElementById('echart4'));
-        var option4 = {
-            backgroundColor: 'rgba(1, 6, 10,0.6)',
-            color: echartColor,
-            tooltip: {
-                trigger: 'axis'
-            },
-
-            legend: {
-                data: ['蒸发量', '降水量']
-            },
-            grid: {
-                top: '15%',
-                left: '15%',
-                bottom: '13%'
-            },
-            xAxis: [
-                {
-                    name: "日期",
-                    nameTextStyle: {
-                        color: "#fff"
-                    },
-                    nameGap: 5,
-                    type: 'category',
-                    data: ['1月', '2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '10月', '11月', '12月']
-                }
-            ],
-            yAxis: [
-                {
-                    type: 'value',
-                    name: '水量',
-                    nameTextStyle: {
-                        color: "#fff"
-                    },
-                    nameGap: 5,
-                    splitLine: {
-                        show: true,
-                        lineStyle: {
-                            color: "#272C30",
-                            type: "doted"
-                        }
-                    },
-                    min: 0,
-                    max: 250,
-                    interval: 50,
-                    axisLabel: {
-
-                        formatter: '{value} ml'
-                    }
-                }
-            ],
-            series: [
-                {
-                    name: '蒸发量',
-                    type: 'bar',
-                    data: [2.0, 4.9, 7.0, 23.2, 25.6, 76.7, 135.6, 162.2, 32.6, 20.0, 6.4, 3.3]
-                },
-                {
-                    name: '降水量',
-                    type: 'bar',
-                    data: [2.6, 5.9, 9.0, 26.4, 28.7, 70.7, 175.6, 182.2, 48.7, 18.8, 6.0, 2.3]
-                },
-
-            ]
-        };
-        myChart4.setOption(option4);
-
-
-        var myChart5 = echarts.init(document.getElementById('echart5'));
-        var option5 = {
-            backgroundColor: 'rgba(1, 6, 10,0.6)',
-            color: echartColor,
-            tooltip: {
-                trigger: 'axis',
-                axisPointer: {            // 坐标轴指示器，坐标轴触发有效
-                    type: 'shadow'        // 默认为直线，可选为：'line' | 'shadow'
-                }
-            },
-            textStyle: {
-                color: "#FFFFFF",
-                fontSize: 6
-            },
-            legend: {
-                textStyle: {
-                    color: "#fff",
-                    fontSize: 6
-                },
-                data: ['直接访问', '邮件营销', '联盟广告']
-            },
-            grid: {
-                left: '3%',
-                right: '4%',
-                bottom: '3%',
-                top: 25,
-                containLabel: true
-            },
-            xAxis: [
-                {
-                    type: 'category',
-                    data: ['周一', '周二', '周三', '周四', '周五', '周六', '周日'],
-                    axisLabel: {
-                        textStyle: {
-                            fontSize: 6
-                        }
-                    }
-                }
-            ],
-            yAxis: [
-                {
-                    type: 'value',
-                    axisLabel: {
-                        textStyle: {
-                            fontSize: 6
-                        }
-                    }
-                }
-            ],
-            series: [
-                {
-                    name: '直接访问',
-                    type: 'bar',
-                    data: [320, 332, 301, 334, 390, 330, 320]
-                },
-                {
-                    name: '邮件营销',
-                    type: 'bar',
-                    stack: '广告',
-                    data: [120, 132, 101, 134, 90, 230, 210]
-                },
-                {
-                    name: '联盟广告',
-                    type: 'bar',
-                    stack: '广告',
-                    data: [220, 182, 191, 234, 290, 330, 310]
-                }
-            ]
-        };
-
-        myChart5.setOption(option5);
-
-        var myChart7 = echarts.init(document.getElementById('echart7'));
-        var data7 = CurrentAreaScale;
-        var xdata7 = [];
-        var cityData = [], villageData = [], otherData = [];
-
-        for (var i = 0; i < data7.length; i++) {
-            xdata7.push(data7[i].year);
-            cityData.push(data7[i].city);
-            villageData.push(data7[i].village);
-            otherData.push(data7[i].other);
-        }
-
-        var option7 = {
-            backgroundColor: 'rgba(1, 6, 10,0.6)',
-            color: echartColor,
-            title: {
-                text: ''
-            },
-            tooltip: {
-                trigger: 'axis'
-            },
-            legend: {
-                data: ['城镇建设用地', '村庄建设用地', '非建设用地']
-            },
-            grid: {
-                left: '3%',
-                right: '4%',
-                bottom: '3%',
-                top: 25,
-                containLabel: true
-            },
-            xAxis: {
-                name: "时间",
-                type: 'category',
-                boundaryGap: false,
-                data: xdata7,
-                nameGap: 5,
-                nameTextStyle: {
-                    color: "#fff"
-                },
-                splitLine: {
-                    show: true,
-                    lineStyle: {
-                        color: "#272C30",
-                        type: "dotted"
-                    }
-                }
-            },
-            yAxis: {
-                name: "用地规模",
-                splitLine: {
-                    show: true,
-                    lineStyle: {
-                        color: "#272C30"
-                    }
-                },
-                nameTextStyle: {
-                    color: "#fff"
-                },
-                nameGap: 5
-            },
-            series: [
-                {
-                    name: '城镇建设用地',
-                    type: 'line',
-                    data: cityData
-                },
-                {
-                    name: '村庄建设用地',
-                    type: 'line',
-                    data: villageData
-                },
-                {
-                    name: '非建设用地',
-                    type: 'line',
-                    data: otherData
-                }
-            ]
-        };
-        myChart7.setOption(option7);
-
-        $(".img_resize").on("click", function () {
-            $(this).parent().next().toggle();
-            $(this).parent().parent().height($(this).prev().outerHeight(true));
-        });
-    },
     addEvent: function () {
         $(".left_click").on("click", this.hideLeftTree);
         $(".region").find("input:checkbox").on("click", function () {
@@ -1491,6 +921,10 @@ var App = {
                 $(".body_inner").height($(".inner_title").outerHeight());
             }
         });
+        $(".img_resize").on("click", function () {
+            $(this).parent().next().toggle();
+            $(this).parent().parent().height($(this).prev().outerHeight(true));
+        });
     },
     hideLeftTree: function () {
         if ($(".left_click").find(".leftclick_span").hasClass("glyphicon-chevron-left")) {
@@ -1515,11 +949,35 @@ var App = {
         var year = $silderbar.slider("getValue");
         switch (menuname) {
             case "现状用地规模":
+                _self.setEchartsVisble(['区县现状用地规模占比', '区县现状城市建设用地结构', '区县现状建设用地扩张雷达分析', '乡镇现状用地规模', '乡镇现状用地结构', '乡镇居住产业用地分布', '区县历年现状用地规模变化趋势',], ['inline-table', 'inline-table', 'inline-table', 'inline-table', 'inline-table', 'inline-table', 'inline-table']);
                 currentLandUse(year);
+                break;
+            case "规划用地规模":
+                _self.setEchartsVisble(['土地使用规划平衡表', '建设用地规划平衡表', '新城规划建设用地平衡表'], ['inline-table', 'inline-table', 'inline-table', 'none', 'none', 'none', 'none']);
+                planLandUse(year);
+                break;
+            case "土地用途分区":
+                _self.setEchartsVisble(['土地使用规划平衡表', '建设用地规划平衡表', '新城规划建设用地平衡表'], ['none', 'none', 'none', 'none', 'none', 'none', 'none']);
+                break;
+            case "用地资源变化":
+                _self.setEchartsVisble(['土地使用规划平衡表', '建设用地规划平衡表', '新城规划建设用地平衡表'], ['none', 'none', 'none', 'none', 'none', 'none', 'none']);
+                break;
+            case "平原地区开发强度":
+                _self.setEchartsVisble(['平原地区开发强度', '城乡建设用地', '行政区域用地面积', '建筑规模', '平均容积率', '新城内外建设用地分布', '历年平原地区开发强度变化趋势'], ['inline-table', 'inline-table', 'inline-table', 'inline-table', 'inline-table', 'inline-table', 'inline-table']);
+                PlainAreaDevstrength(year);
                 break;
             default:
                 break;
         }
+    },
+    //设置echarts的显隐及名称
+    setEchartsVisble: function (title, display) {
+        var $divEcharts = $(".div_echart");
+        for (var i = 0; i < 6; i++) {
+            $divEcharts[i].style.display = display[i];
+            $($divEcharts.find('span')[i]).text(title[i]);
+        }
+        $(".div_echart_lg")[0].style.display = display[6];
     }
 
 }
