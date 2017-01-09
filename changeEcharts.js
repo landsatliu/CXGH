@@ -231,11 +231,11 @@ function currentLandUse(year) {
         series: [{
             name: "城镇建设用地", type: 'bar', data: data41
         },
-            {
-                name: "村庄建设用地", type: 'bar', data: data42
-            }, {
-                name: "非建设用地", type: 'bar', data: data43
-            }
+        {
+            name: "村庄建设用地", type: 'bar', data: data42
+        }, {
+            name: "非建设用地", type: 'bar', data: data43
+        }
         ]
     };
     myChart4.setOption(option4);
@@ -685,6 +685,7 @@ function PlainAreaDevstrength(year) {
 
     var myChart1 = echarts.init(document.getElementById('echart1'));
     var option1 = {
+        backgroundColor: 'rgba(1, 6, 10,0.6)',        
         series: [{
             name: '业务指标',
             type: 'gauge',
@@ -728,49 +729,49 @@ function PlainAreaDevstrength(year) {
                 name: '通州新城'
             }]
         },
-            {
-                name: '业务指标',
-                type: 'gauge',
-                radius: '60%',
-                max: 1,
-                axisLine: {
-                    show: false,
-                    lineStyle: { // 属性lineStyle控制线条样式
-                        color: [
-                            [0.355, echartColor[1]],
-                            [1, 'rgba(1, 147, 207, 0.3)']
-                        ],
-                        width: 10
-                    }
-                },
-                axisLabel: {
-                    show: false
-                },
-                axisTick: {
-                    show: false
-                },
-                splitLine: {
-                    show: false
-                },
-                pointer: {
-                    width: 3
-                },
-                title: {
-                    "show": true,
-                    "offsetCenter": [0, "90%"],
-                    "textStyle": {
-                        "color": echartColor[1]
-                    }
-                },
-                center: ['75%', '50%'],
-                detail: {
-                    formatter: '{value}'
-                },
-                data: [{
-                    value: 0.355,
-                    name: '新城外'
-                }]
+        {
+            name: '业务指标',
+            type: 'gauge',
+            radius: '60%',
+            max: 1,
+            axisLine: {
+                show: false,
+                lineStyle: { // 属性lineStyle控制线条样式
+                    color: [
+                        [0.355, echartColor[1]],
+                        [1, 'rgba(1, 147, 207, 0.3)']
+                    ],
+                    width: 10
+                }
+            },
+            axisLabel: {
+                show: false
+            },
+            axisTick: {
+                show: false
+            },
+            splitLine: {
+                show: false
+            },
+            pointer: {
+                width: 3
+            },
+            title: {
+                "show": true,
+                "offsetCenter": [0, "90%"],
+                "textStyle": {
+                    "color": echartColor[1]
+                }
+            },
+            center: ['75%', '50%'],
+            detail: {
+                formatter: '{value}'
+            },
+            data: [{
+                value: 0.355,
+                name: '新城外'
             }]
+        }]
     };
     myChart1.setOption(option1);
 
@@ -838,16 +839,17 @@ function PlainAreaDevstrength(year) {
                     },
                     itemStyle: {
                         normal: {
-                            color: '#61A457',
-                            borderColor: '#61A457'
+                            color: '#60A158',
+                            borderWidth: 1,
+                            borderColor: '#60A158'
 
                         }
                     },
-                    // symbol: 'none',
-                    data: [
+                    data: [[
                         { name: 'Average', yAxis: 0 },
-                        { yAxis: 60 }
-                    ]
+                        { yAxis: 30 }
+                        // { type: 'average' }
+                    ]]
                 }
             }
         ]
@@ -898,26 +900,16 @@ function PlainAreaDevstrength(year) {
                     }
                 },
                 data: [{ value: 4000, name: "通州新城" },
-                    { value: 2000, name: "潞城镇" },
-                    { value: 2000, name: "漷县镇" },
-                    { value: 2000, name: "台湖镇" },
-                    { value: 2000, name: "宋庄镇" },
-                    { value: 2000, name: "于家务" },
+                { value: 2000, name: "潞城镇" },
+                { value: 2000, name: "漷县镇" },
+                { value: 2000, name: "台湖镇" },
+                { value: 2000, name: "宋庄镇" },
+                { value: 2000, name: "于家务" },
                 ]
             }
         ]
     };
     myChart3.setOption(option3);
-
-    var data4 = Enumerable.From(VillageCurrentLandUseSize).Where("x=>x.year==" + year).ToArray();
-    var xdata4 = [], seriesData4 = [];
-    var data41 = [], data42 = [], data43 = [];
-    for (var i = 0; i < data4.length; i++) {
-        xdata4.push(data4[i].name);
-        data41.push(data4[i].city);
-        data42.push(data4[i].village);
-        data43.push(data4[i].other);
-    }
 
     var myChart4 = echarts.init(document.getElementById('echart4'));
     var option4 = {
@@ -928,8 +920,9 @@ function PlainAreaDevstrength(year) {
         },
 
         legend: {
+            show: false,
             left: 'right',
-            data: ['城镇建设用地', '村庄建设用地', '非建设用地']
+            data: ['城镇建设用地']
         },
         grid: {
             top: '15%',
@@ -948,13 +941,13 @@ function PlainAreaDevstrength(year) {
                     "interval": 0,
                     "rotate": 45
                 },
-                data: xdata4
+                data: ['通州新城', '潞城镇', '漷县镇', '台湖镇', '于家务', '次渠镇', '宋庄镇', '永乐店', '甘棠镇']
             }
         ],
         yAxis: [
             {
                 type: 'value',
-                name: '公顷',
+                name: '万公顷',
                 nameTextStyle: {
                     color: "#fff"
                 },
@@ -969,30 +962,11 @@ function PlainAreaDevstrength(year) {
             }
         ],
         series: [{
-            name: "城镇建设用地", type: 'bar', data: data41
-        },
-            {
-                name: "村庄建设用地", type: 'bar', data: data42
-            }, {
-                name: "非建设用地", type: 'bar', data: data43
-            }
-        ]
+            name: "城镇建设用地", type: 'bar', data: [30, 65, 35, 41, 65, 38, 43, 38, 38]
+        }]
     };
     myChart4.setOption(option4);
 
-
-    var data5 = Enumerable.From(VillageCurrentLandUseStruc).Where("x=>x.year==" + year).ToArray();
-    var xdata5 = [], seriesData5 = [];
-    var data51 = [], data52 = [], data53 = [], data54 = [], data55 = [], data56 = [];
-    for (var i = 0; i < data4.length; i++) {
-        xdata4.push(data5[i].name);
-        data51.push(data5[i].jzyd);
-        data52.push(data5[i].cyyd);
-        data53.push(data5[i].ptyd);
-        data54.push(data5[i].ld);
-        data55.push(data5[i].dlyd);
-        data56.push(data5[i].syyd);
-    }
     var myChart5 = echarts.init(document.getElementById('echart5'));
     var option5 = {
         backgroundColor: 'rgba(1, 6, 10,0.6)',
@@ -1002,20 +976,19 @@ function PlainAreaDevstrength(year) {
         },
 
         legend: {
-            orient: 'vertical',
-            align: 'left',
+            show: false,
             left: 'right',
-            data: ['居住用地', '产业用地', '配套用地', '绿地', '道路用地', '商业用地']
+            data: ['居住用地']
         },
         grid: {
             top: '15%',
-            left: 30,
-            right: 40,
+            left: 20,
+            right: 20,
             bottom: 25
         },
         xAxis: [
             {
-                name: "乡镇",
+                name: "区域",
                 nameTextStyle: {
                     color: "#fff"
                 },
@@ -1025,13 +998,13 @@ function PlainAreaDevstrength(year) {
                     "interval": 0,
                     "rotate": 45
                 },
-                data: xdata4
+                data: ['通州新城', '潞城镇', '漷县镇', '台湖镇', '于家务', '次渠镇', '宋庄镇', '永乐店', '甘棠镇']
             }
         ],
         yAxis: [
             {
                 type: 'value',
-                name: '公顷',
+                name: 'VOL',
                 nameTextStyle: {
                     color: "#fff"
                 },
@@ -1047,22 +1020,19 @@ function PlainAreaDevstrength(year) {
         ],
         series: [
             {
-                name: "居住用地", type: 'bar', stack: '总量', data: data51
-            },
-            {
-                name: "产业用地", type: 'bar', stack: '总量', data: data52
-            },
-            {
-                name: "配套用地", type: 'bar', stack: '总量', data: data53
-            },
-            {
-                name: "绿地", type: 'bar', stack: '总量', data: data54
-            },
-            {
-                name: "道路用地", type: 'bar', stack: '总量', data: data55
-            },
-            {
-                name: "商业用地", type: 'bar', stack: '总量', data: data56
+                name: "居住用地", type: 'line', data: [0.2, 0.2, 0.2, 0.3, 0.7, 0.8, 0.4, 0.3, 0.2],
+                showSymbol: false, symbol: 'circle', symbolSize: 2,
+                areaStyle: {
+                    normal: {
+                        color: '#461E1C'
+                    }
+                },
+                lineStyle: {
+                    normal: {
+                        width: 1,
+                        color: '#C03F36'
+                    }
+                }
             }
         ]
     };
@@ -1089,7 +1059,7 @@ function PlainAreaDevstrength(year) {
             orient: 'vertical',
             right: 'right',
             top: 'middle',
-            data: ['城镇建设用地', '非建设用地'],
+            data: ['通州新城建设用地', '新城外建设用地'],
             formatter: function (name) {
                 var oa = option6.series[0].data;
                 for (var i = 0; i < oa.length; i++) {
@@ -1114,12 +1084,12 @@ function PlainAreaDevstrength(year) {
                 },
                 data: [
                     {
-                        name: '城镇建设用地',
-                        value: data6[0].city
+                        name: '通州新城建设用地',
+                        value: 2300
                     },
                     {
-                        name: '非建设用地',
-                        value: data6[0].other
+                        name: '新城外建设用地',
+                        value: 3000
                     }
                 ]
             }
@@ -1148,7 +1118,7 @@ function PlainAreaDevstrength(year) {
         legend: {
 
             left: 'right',
-            data: ['城镇建设用地', '村庄建设用地', '非建设用地']
+            data: ['通州新城', '新城外']
         },
         grid: {
             left: '3%',
@@ -1161,7 +1131,7 @@ function PlainAreaDevstrength(year) {
             name: "时间",
             type: 'category',
             boundaryGap: false,
-            data: xdata7,
+            data: [2002,2003,2004,2005,2006,2007,2008,2009,2010,2011,2012,2013,2014,2015],
             nameGap: 5,
             nameTextStyle: {
                 color: "#fff"
@@ -1175,7 +1145,7 @@ function PlainAreaDevstrength(year) {
             }
         },
         yAxis: {
-            name: "用地规模",
+            name: "VOL",
             splitLine: {
                 show: true,
                 lineStyle: {
@@ -1189,19 +1159,14 @@ function PlainAreaDevstrength(year) {
         },
         series: [
             {
-                name: '城镇建设用地',
+                name: '通州新城',
                 type: 'line',
-                data: data71
+                data: [0.18,0.3,0.18,0.4,0.19,0.5,0.6,0.5,0.4,0.33,0.6,0.4,0.5,0.34]
             },
             {
-                name: '村庄建设用地',
+                name: '新城外',
                 type: 'line',
-                data: data72
-            },
-            {
-                name: '非建设用地',
-                type: 'line',
-                data: data73
+                data: [0.2,0.34,0.1,0.34,0.29,0.3,0.3,0.6,0.4,0.33,0.3,0.4,0.34,0.45]
             }
         ]
     };
