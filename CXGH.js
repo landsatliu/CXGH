@@ -20,8 +20,27 @@ var App = {
         this.initMap();
         this.initSilderBar();
         this.initJSTree();
-        this.initInnerJStree();
+        //社会人文
+        this.initInnerJStree("tree_popu", populationData, false);
+        this.initInnerJStree("tree_public", puclicServiceData, false);
+        this.initInnerJStree("tree_traffic", trafficData, false);
+        this.initInnerJStree("tree_live", liveData, false);
+        this.initInnerJStree("tree_safe", safeData, false);
+
+        //资源
+        this.initInnerJStree("tree_land", landRes, true);
+        this.initInnerJStree('tree_water', waterRes, false);
+        this.initInnerJStree('tree_energy', energyRes, false);
+        //生态环境
+        this.initInnerJStree("tree_envi", enviData, false);
+        this.initInnerJStree('tree_space', spaceData, false);
+        this.initInnerJStree('tree_water_envi', waterEnviData, false);
+        this.initInnerJStree('tree_green', greenData, false);
+        this.initInnerJStree('tree_waste_water', wasteWaterData, false);
+        this.initInnerJStree('tree_garbage', garbageData, false);
+
         this.addEvent();
+        $(".h_social:eq(1)").click();
     },
     initMap: function () {
         var map = new BMap.Map("mainmap");
@@ -772,24 +791,8 @@ var App = {
 
         });
     },
-    initInnerJStree: function () {
-        var check = true;
-        $(".innertreespan").on("click", function () {
-            if (check) {
-                $(this).removeClass("glyphicon-chevron-up");
-                $(this).addClass("glyphicon-chevron-down");
-                $(this).parent().next().removeClass("treeregion_show");
-                $(this).parent().removeClass("treeSelect");
-                check = false;
-            } else {
-                $(this).removeClass("glyphicon-chevron-down");
-                $(this).addClass("glyphicon-chevron-up");
-                $(this).parent().next().addClass("treeregion_show");
-                $(this).parent().addClass("treeSelect");
-                check = true;
-            }
-        });
-        var data = [
+    initInnerJStree: function (id, data, show) {
+        var data1 = [
             {
                 "id": "",
                 "text": "城乡用地规模",
@@ -839,13 +842,13 @@ var App = {
                 ]
             }
         ];
-        $("#tree_land").prev().find(".innertreespan").removeClass("glyphicon-chevron-down");
-        $("#tree_land").prev().find(".innertreespan").addClass("glyphicon-chevron-up");
-        $('#tree_land').addClass("treeregion_show");
-        $('#tree_land').prev().addClass("treeSelect");
-        $('#tree_land').on("loaded.jstree", function (e, data) {
-            data.instance.open_all();
-        }).jstree({
+        if (show) {
+            $("#" + id).prev().find(".innertreespan").removeClass("glyphicon-chevron-down");
+            $("#" + id).prev().find(".innertreespan").addClass("glyphicon-chevron-up");
+            $('#' + id).addClass("treeregion_show");
+            $('#' + id).prev().addClass("treeSelect");
+        }
+        $('#' + id).jstree({
             "plugins": [""],
             "core": {
                 "animation": 0,
@@ -854,10 +857,14 @@ var App = {
                 'data': data,
             },
         }).on("loaded.jstree", function (e, data) {
-            $("#tree_land").mCustomScrollbar();
-            var inst = data.instance;
-            var obj = inst.get_node(e.target.firstChild.firstChild.firstChild.firstChild);
-            inst.select_node(obj.children[0]);
+            $("#" + id).mCustomScrollbar();
+            if (show) {
+                data.instance.open_all();
+                console.log(data.instance);
+                var inst = data.instance;
+                var obj = inst.get_node(e.target.firstChild.firstChild.firstChild.firstChild);
+                inst.select_node(obj.children[0]);
+            }
         }).on("changed.jstree", function (e, data) {
             if (data.node) {
                 _self.currentMenuname = data.node.text;
@@ -924,6 +931,68 @@ var App = {
         $(".img_resize").on("click", function () {
             $(this).parent().next().toggle();
             $(this).parent().parent().height($(this).prev().outerHeight(true));
+        });
+        var check = true;
+        $(".innertreespan").on("click", function () {
+            if ($(this).hasClass('glyphicon-chevron-up')) {
+                check = true;
+            } else {
+                check = false;
+            }
+            if (check) {
+                $(this).removeClass("glyphicon-chevron-up");
+                $(this).addClass("glyphicon-chevron-down");
+                $(this).parent().siblings().find('span').addClass("glyphicon-chevron-down");
+                $(this).parent().siblings().find('span').removeClass("glyphicon-chevron-up");
+                $(this).parent().next().removeClass("treeregion_show");
+                $(this).parent().removeClass("treeSelect");
+                check = false;
+            } else {
+                $(this).removeClass("glyphicon-chevron-down");
+                $(this).addClass("glyphicon-chevron-up");
+                $(this).parent().siblings().find('span').removeClass("glyphicon-chevron-up");
+                $(this).parent().siblings().find('span').addClass("glyphicon-chevron-down");
+                $(this).parent().next().siblings().removeClass("treeregion_show");
+                $(this).parent().next().addClass("treeregion_show");
+                $(this).parent().addClass("treeSelect");
+                $(this).parent().siblings().removeClass("treeSelect");
+                check = true;
+            }
+        });
+
+        //切换社会人文、资源、生态环境、经济等
+        $('.h_social').on('click', function () {
+            $(this).addClass('h_social_selectd');
+            $(this).siblings().removeClass('h_social_selectd');
+            $('.body_inner').show();
+            switch ($(this).find('span')[0].innerHTML) {
+                case "社会人文":
+                    changeVisible(['block', 'none', 'none', 'none', 'none']);
+                    break;
+                case "资源":
+                    changeVisible(['none', 'block', 'none', 'none', 'none']);
+                    break;
+                case "生态环境":
+                    changeVisible(['none', 'none', 'block', 'none', 'none']);
+                    break;
+                case "经济":
+                    changeVisible(['none', 'none', 'none', 'none', 'none']);
+                    $('.body_inner').hide();
+                    break;
+                case "预留板块":
+                    changeVisible(['none', 'none', 'none', 'none', 'none']);
+                    $('.body_inner').hide();
+                    break;
+                default:
+                    break;
+            }
+            function changeVisible(array) {
+                $(".inner_social")[0].style.display = array[0];
+                $(".inner_resourse")[0].style.display = array[1];
+                $(".inner_environment")[0].style.display = array[2];
+                $(".inner_economy")[0].style.display = array[3];
+                $(".inner_reserve")[0].style.display = array[4];
+            }
         });
     },
     hideLeftTree: function () {

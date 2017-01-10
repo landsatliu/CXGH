@@ -139,9 +139,15 @@
     z-index: 110;
     border-radius:2px;
 }
+ .h_social:first-child{
+    margin-left: 20px !important;
+}
 
     #body_header .h_social:hover {
         background-color: #155B7D;
+    }
+    .h_social_selectd{
+        background-color: #2285A4 !important;
     }
 
 .body_footer {
@@ -192,8 +198,10 @@
     position: relative;
     float: right;
     height: 14px;
-    /*margin-top: 4px;*/
+    margin-top: 3px;
     padding: 1px;
+    margin-right: 10px;
+    font-size: 10px;
 }
 
     .h_right span, .h_right img {
@@ -282,7 +290,7 @@
 }
 
 .jstree-default .jstree-open > .jstree-ocl {
-    background-position: -132px -5px;
+    background-position: -132px -7px;
 }
 .jstree-default .jstree-anchor {
     line-height: 18px;
@@ -302,6 +310,9 @@
 }
 .jstree-default .jstree-leaf > .jstree-ocl{
     background-position: -68px -8px;
+}
+.jstree-default .jstree-closed > .jstree-ocl {
+    background-position: -100px -7px;
 }
 .chk_region, .chk_city {
     margin-left: 5px !important;
@@ -323,6 +334,8 @@
 .h_social .h_close {
     float: right;
     padding-right: 3px;
+    font-size: 12px;
+    padding-top: 2px;
 }
 
 .chk_city {
@@ -458,7 +471,7 @@
         height: 15px;
         cursor: pointer;
         position: absolute;
-        top: 0px;
+        top: 5px;
         left: 0px;
         border: 1px solid #717274;
         background: #3E3F41;
@@ -537,6 +550,13 @@
     -moz-opacity: 0.9;
     filter: alpha(opacity=90);
 }
+.inner_social,.inner_resourse,.inner_environment,.inner_economy,.inner_warn{
+    position:absolute;
+    left: 0px;
+    top:0px;
+    width: 100%;
+    height: 100%;
+}
 
 .inner_title {
     position: absolute;
@@ -559,7 +579,7 @@
         margin-right: 10px;
         top: 6px;
         display: inline-block;
-        cursor: default;
+        cursor: pointer;
     }
 
 .inner_body {

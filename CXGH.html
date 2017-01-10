@@ -1,5 +1,6 @@
 ﻿<!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
+
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title></title>
@@ -11,7 +12,7 @@
     <!--<link rel="stylesheet" href="https://js.arcgis.com/3.18/esri/css/esri.css" />-->
     <!--<link href="http://localhost/api317/lib/esri/css/esri.css" rel="stylesheet" />-->
     <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=34s9PHa6Y0SabkSzWbVDxz28Ksk7KlvM	"></script>
-     <script type="text/javascript" src="http://api.map.baidu.com/library/Heatmap/2.0/src/Heatmap_min.js"></script>
+    <script type="text/javascript" src="http://api.map.baidu.com/library/Heatmap/2.0/src/Heatmap_min.js"></script>
     <script src="js/jquery/jquery-1.11.3.min.js"></script>
     <script src="js/bootstrap/bootstrap.min.js"></script>
     <script src="js/jstree/3.2.1/jstree.js"></script>
@@ -57,37 +58,39 @@
             </div>
             <div class="panel-heading" id="body_header">
                 <div class="div_glass">&nbsp;</div>
-                <div class="h_social">
-                    <img class="header_img" src="img/h_社会.png" alt="" />
-                    <span>社会人文</span>
-                    <span class="h_close">&times;</span>
-                </div>
-                <div class="h_social">
-                    <img class="header_img" src="img/h_资源.png" alt="" />
-                    <span>资源</span>
-                    <span class="h_close">&times;</span>
-                </div>
-                <div class="h_social">
-                    <img class="header_img" src="img/h_环境.png" alt="" />
-                    <span>生态环境</span>
-                    <span class="h_close">&times;</span>
-                </div>
-                <div class="h_social">
-                    <img class="header_img" src="img/h_经济.png" alt="" />
-                    <span>经济</span>
-                    <span class="h_close">&times;</span>
-                </div>
-                <div class="h_social">
-                    <img class="header_img" src="img/h_经济.png" alt="" />
-                    <span>预留板块</span>
-                    <span class="h_close">&times;</span>
-                </div>
-                <div class="h_right">
-                    <span class="header_add glyphicon glyphicon-plus"></span>
-                    <span class="header_left glyphicon glyphicon-chevron-left"></span>
-                    <img class="header_img" src="img/目录.png" alt="" />
-                    <span class="header_right glyphicon glyphicon-chevron-right"></span>
-                    <img class="header_machine" src="img/电脑.png" alt="" />
+                <div id="h_social_head">
+                    <div class="h_social">
+                        <img class="header_img" src="img/h_社会.png" alt="" />
+                        <span>社会人文</span>
+                        <span class="h_close">&times;</span>
+                    </div>
+                    <div class="h_social">
+                        <img class="header_img" src="img/h_资源.png" alt="" />
+                        <span>资源</span>
+                        <span class="h_close">&times;</span>
+                    </div>
+                    <div class="h_social">
+                        <img class="header_img" src="img/h_环境.png" alt="" />
+                        <span>生态环境</span>
+                        <span class="h_close">&times;</span>
+                    </div>
+                    <div class="h_social">
+                        <img class="header_img" src="img/h_经济.png" alt="" />
+                        <span>经济</span>
+                        <span class="h_close">&times;</span>
+                    </div>
+                    <div class="h_social">
+                        <img class="header_img" src="img/h_经济.png" alt="" />
+                        <span>预留板块</span>
+                        <span class="h_close">&times;</span>
+                    </div>
+                    <div class="h_right">
+                        <span class="header_add glyphicon glyphicon-plus"></span>
+                        <span class="header_left glyphicon glyphicon-chevron-left"></span>
+                        <img class="header_img" src="img/目录.png" alt="" />
+                        <span class="header_right glyphicon glyphicon-chevron-right"></span>
+                        <img class="header_machine" src="img/电脑.png" alt="" />
+                    </div>
                 </div>
             </div>
             <div class="" id="body_left">
@@ -247,54 +250,144 @@
             </div>
             <div class="body_inner">
                 <div class="inner_glass"></div>
-                <div class="inner_title">
-                    <p class="title">资源</p>
-                    <span class="glyphicon glyphicon-minus"></span>
+                <div class="inner_social">
+                    <div class="inner_title">
+                        <p class="title">社会人文</p>
+                        <span class="glyphicon glyphicon-minus"></span>
+                    </div>
+                    <div class="inner_body">
+                        <div class="inner_region">
+                            <img class="inner_img" src="img/i_water.png" alt="" />
+                            <p class='innerName'>人口</p>
+                            <span class='innertreespan glyphicon glyphicon-chevron-down'></span>
+                        </div>
+                        <div class="innertree" id="tree_popu"></div>
+                        <div class="inner_region">
+                            <img class="inner_img" src="img/i_earth.png" alt="" />
+                            <p class='innerName'>公共服务</p>
+                            <span class='innertreespan glyphicon glyphicon-chevron-down'></span>
+                        </div>
+                        <div class="innertree" id="tree_public"></div>
+                        <div class="inner_region">
+                            <img class="inner_img" src="img/i_radiation.png" alt="" />
+                            <p class='innerName'>交通</p>
+                            <span class='innertreespan glyphicon glyphicon-chevron-down'></span>
+                        </div>
+                        <div class="innertree mCustomScrollbar" id="tree_traffic"></div>
+                        <div class="inner_region">
+                            <img class="inner_img" src="img/i_radiation.png" alt="" />
+                            <p class='innerName'>住房</p>
+                            <span class='innertreespan glyphicon glyphicon-chevron-down'></span>
+                        </div>
+                        <div class="innertree mCustomScrollbar" id="tree_live"></div>
+                        <div class="inner_region">
+                            <img class="inner_img" src="img/i_radiation.png" alt="" />
+                            <p class='innerName'>安全</p>
+                            <span class='innertreespan glyphicon glyphicon-chevron-down'></span>
+                        </div>
+                        <div class="innertree mCustomScrollbar" id="tree_safe"></div>
+                    </div>
                 </div>
-                <div class="inner_body">
-                    <div class="inner_region">
-                        <img class="inner_img" src="img/i_water.png" alt="" />
-                        <p class='innerName'>水资源</p>
-                        <span class='innertreespan glyphicon glyphicon-chevron-down'></span>
+                <div class="inner_resourse">
+                    <div class="inner_title">
+                        <p class="title">资源</p>
+                        <span class="glyphicon glyphicon-minus"></span>
                     </div>
-                    <div class="innertree" id="tree_water"></div>
-                    <div class="inner_region">
-                        <img class="inner_img" src="img/i_earth.png" alt="" />
-                        <p class='innerName'>土地资源</p>
-                        <span class='innertreespan glyphicon glyphicon-chevron-down'></span>
+                    <div class="inner_body">
+                        <div class="inner_region">
+                            <img class="inner_img" src="img/i_water.png" alt="" />
+                            <p class='innerName'>水资源</p>
+                            <span class='innertreespan glyphicon glyphicon-chevron-down'></span>
+                        </div>
+                        <div class="innertree" id="tree_water"></div>
+                        <div class="inner_region">
+                            <img class="inner_img" src="img/i_earth.png" alt="" />
+                            <p class='innerName'>土地资源</p>
+                            <span class='innertreespan glyphicon glyphicon-chevron-down'></span>
+                        </div>
+                        <div class="innertree" id="tree_land"></div>
+                        <div class="inner_region">
+                            <img class="inner_img" src="img/i_radiation.png" alt="" />
+                            <p class='innerName'>能源</p>
+                            <span class='innertreespan glyphicon glyphicon-chevron-down'></span>
+                        </div>
+                        <div class="innertree mCustomScrollbar" id="tree_energy"></div>
+                        <div class="inner_region">
+                            <img class="inner_img" src="img/i_lightning.png" alt="" />
+                            <p class='innerName'>---</p>
+                            <span class='innertreespan glyphicon glyphicon-chevron-down'></span>
+                        </div>
+                        <div class="innertree mCustomScrollbar" id="tree_empty"></div>
                     </div>
-                    <div class="innertree" id="tree_land"></div>
-                    <div class="inner_region">
-                        <img class="inner_img" src="img/i_radiation.png" alt="" />
-                        <p class='innerName'>能源</p>
-                        <span class='innertreespan glyphicon glyphicon-chevron-down'></span>
+                </div>
+                <div class="inner_environment">
+                    <div class="inner_title">
+                        <p class="title">生态环境</p>
+                        <span class="glyphicon glyphicon-minus"></span>
                     </div>
-                    <div class="innertree mCustomScrollbar" id="tree_energy"></div>
-                    <div class="inner_region">
-                        <img class="inner_img" src="img/i_lightning.png" alt="" />
-                        <p class='innerName'>---</p>
-                        <span class='innertreespan glyphicon glyphicon-chevron-down'></span>
+                    <div class="inner_body">
+                        <div class="inner_region">
+                            <img class="inner_img" src="img/i_water.png" alt="" />
+                            <p class='innerName'>大气环境</p>
+                            <span class='innertreespan glyphicon glyphicon-chevron-down'></span>
+                        </div>
+                        <div class="innertree" id="tree_envi"></div>
+                        <div class="inner_region">
+                            <img class="inner_img" src="img/i_earth.png" alt="" />
+                            <p class='innerName'>生态空间</p>
+                            <span class='innertreespan glyphicon glyphicon-chevron-down'></span>
+                        </div>
+                        <div class="innertree" id="tree_space"></div>
+                        <div class="inner_region">
+                            <img class="inner_img" src="img/i_radiation.png" alt="" />
+                            <p class='innerName'>水环境</p>
+                            <span class='innertreespan glyphicon glyphicon-chevron-down'></span>
+                        </div>
+                        <div class="innertree mCustomScrollbar" id="tree_water_envi"></div>
+                        <div class="inner_region">
+                            <img class="inner_img" src="img/i_radiation.png" alt="" />
+                            <p class='innerName'>绿化环境</p>
+                            <span class='innertreespan glyphicon glyphicon-chevron-down'></span>
+                        </div>
+                        <div class="innertree mCustomScrollbar" id="tree_green"></div>
+                        <div class="inner_region">
+                            <img class="inner_img" src="img/i_radiation.png" alt="" />
+                            <p class='innerName'>城乡污水处理</p>
+                            <span class='innertreespan glyphicon glyphicon-chevron-down'></span>
+                        </div>
+                        <div class="innertree mCustomScrollbar" id="tree_waste_water"></div>
+                        <div class="inner_region">
+                            <img class="inner_img" src="img/i_radiation.png" alt="" />
+                            <p class='innerName'>城乡垃圾处理</p>
+                            <span class='innertreespan glyphicon glyphicon-chevron-down'></span>
+                        </div>
+                        <div class="innertree mCustomScrollbar" id="tree_garbage"></div>
                     </div>
-                    <div class="innertree mCustomScrollbar" id="tree_empty"></div>
+                </div>
+                <div class="inner_economy">
+
+                </div>
+                <div class="inner_reserve">
+
                 </div>
             </div>
             <div class="body_legend">
                 <!--<div class="legend_glass"></div>-->
                 <p class="legend_title">图例</p>
-                <table >
+                <table>
                     <tr>
                         <td>
                             <div class="legend_color" style="background-color:#01C5FF">&nbsp;</div>
                         </td>
                         <td class="legend_name">图例1</td>
                     </tr>
-                     <tr>
+                    <tr>
                         <td>
                             <div class="legend_color" style="background-color:#ED4880"></div>
                         </td>
                         <td class="legend_name">图例2</td>
                     </tr>
-                     <tr>
+                    <tr>
                         <td>
                             <div class="legend_color" style="background-color:#F7BC00"></div>
                         </td>
@@ -316,7 +409,7 @@
                                 <div class="echart_title">
                                     <span>区县现状用地规模占比</span>
                                     <img class="img_resize" src="img/echart-1.png" />
-                                    <img  src="img/echart-2.png" />
+                                    <img src="img/echart-2.png" />
                                 </div>
                                 <div id="echart1"></div>
                             </div>
@@ -324,7 +417,7 @@
                                 <div class="echart_title">
                                     <span>区县现状城市建设用地结构</span>
                                     <img class="img_resize" src="img/echart-1.png" />
-                                    <img  src="img/echart-2.png" />
+                                    <img src="img/echart-2.png" />
                                 </div>
                                 <div id="echart2"></div>
                             </div>
@@ -332,7 +425,7 @@
                                 <div class="echart_title">
                                     <span>区县现状建设用地扩张雷达分析</span>
                                     <img class="img_resize" src="img/echart-1.png" />
-                                    <img  src="img/echart-2.png" />
+                                    <img src="img/echart-2.png" />
                                 </div>
                                 <div id="echart3"></div>
                             </div>
@@ -344,7 +437,7 @@
                                 <div class="echart_title">
                                     <span>乡镇现状用地规模</span>
                                     <img class="img_resize" src="img/echart-1.png" />
-                                    <img  src="img/echart-2.png" />
+                                    <img src="img/echart-2.png" />
                                 </div>
                                 <div id="echart4"></div>
                             </div>
@@ -352,7 +445,7 @@
                                 <div class="echart_title">
                                     <span>乡镇现状用地结构</span>
                                     <img class="img_resize" src="img/echart-1.png" />
-                                    <img  src="img/echart-2.png" />
+                                    <img src="img/echart-2.png" />
                                 </div>
                                 <div id="echart5"></div>
                             </div>
@@ -360,7 +453,7 @@
                                 <div class="echart_title">
                                     <span>乡镇居住产业用地分析</span>
                                     <img class="img_resize" src="img/echart-1.png" />
-                                    <img  src="img/echart-2.png" />
+                                    <img src="img/echart-2.png" />
                                 </div>
                                 <div id="echart6"></div>
                             </div>
@@ -403,4 +496,5 @@
         </div>
     </div>
 </body>
+
 </html>
