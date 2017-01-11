@@ -8,15 +8,6 @@ var App = {
         _self = this;
         _self.count = 0;
         this.initSize();
-        //require(["esri/map", "dojo/dom", "dojo/domReady!"], function (Map, dom) {
-        //    //var map = new Map("mainmap", {
-        //    //    basemap: "dark-gray",
-        //    //    center: [105, 40],
-        //    //    zoom: 5,
-        //    //    logo: false,
-        //    //    showAttribution: false
-        //    //});
-        //});
         this.initMap();
         this.initSilderBar();
         this.initJSTree();
@@ -43,15 +34,26 @@ var App = {
         $(".h_social:eq(1)").click();
     },
     initMap: function () {
-        var map = new BMap.Map("mainmap");
-        window.map = map;
-        var point = new BMap.Point(118.9, 30.915);
-        map.enableScrollWheelZoom();                            //启用滚轮放大缩小
-        //map.addControl(new BMap.MapTypeControl());          //添加地图类型控件
-        map.disable3DBuilding();
-        map.centerAndZoom(point, 7);
-
-        map.setMapStyle({ style: 'midnight' });
+        require(["esri/map", "esri/geometry/Point", "esri/SpatialReference", "js/BaiduLayer.js","dojo/domReady!"],function (Map, Point, SpatialReference, BaiduLayer) {
+            var layer = new BaiduLayer();
+            var map = new Map("map", {
+                logo: false
+            });
+            map.addLayer(layer);
+            var pt = new Point(15472512.810510807, 5762089.7975553474, new SpatialReference({ wkid: 102100 }));
+            // var pt = new Point(140, 45, new SpatialReference({ wkid: 4326 }));
+            map.centerAndZoom(pt, 11);
+        });
+        // var map = new BMap.Map("mainmap");
+        // window.map = map;
+        // var point = new BMap.Point(118.9, 30.915);
+        // map.enableScrollWheelZoom();                            //启用滚轮放大缩小
+        // //map.addControl(new BMap.MapTypeControl());          //添加地图类型控件
+        // map.disable3DBuilding();
+        // map.centerAndZoom(point, 7);
+        // map.setMapStyle({ style: 'midnight' });
+    },
+    initHeatMap: function () {
         if (!isSupportCanvas()) {
             alert('热力图目前只支持有canvas支持的浏览器,您所使用的浏览器不能使用热力图功能~');
             return;
@@ -860,7 +862,6 @@ var App = {
             $("#" + id).mCustomScrollbar();
             if (show) {
                 data.instance.open_all();
-                console.log(data.instance);
                 var inst = data.instance;
                 var obj = inst.get_node(e.target.firstChild.firstChild.firstChild.firstChild);
                 inst.select_node(obj.children[0]);
@@ -1017,6 +1018,11 @@ var App = {
     changeEcharts: function (menuname) {
         var year = $silderbar.slider("getValue");
         switch (menuname) {
+            case "户籍人口":
+                _self.setEchartsVisble(['市户籍人口占比', '区县户籍人口占比', '区县新城户籍人口', '区县户籍人口增减情况', '区县户籍人口变化情况', '区县户籍人口密度分布', '历年户籍人口变化趋势'], ['inline-table', 'inline-table', 'inline-table', 'inline-table', 'inline-table', 'inline-table', 'inline-table']);
+                householdPopulation(year);
+                _self.initHeatMap();
+                break;
             case "现状用地规模":
                 _self.setEchartsVisble(['区县现状用地规模占比', '区县现状城市建设用地结构', '区县现状建设用地扩张雷达分析', '乡镇现状用地规模', '乡镇现状用地结构', '乡镇居住产业用地分布', '区县历年现状用地规模变化趋势',], ['inline-table', 'inline-table', 'inline-table', 'inline-table', 'inline-table', 'inline-table', 'inline-table']);
                 currentLandUse(year);
@@ -1035,6 +1041,7 @@ var App = {
                 _self.setEchartsVisble(['平原地区开发强度', '城乡建设用地', '行政区域用地面积', '建筑规模', '平均容积率', '新城内外建设用地分布', '历年平原地区开发强度变化趋势'], ['inline-table', 'inline-table', 'inline-table', 'inline-table', 'inline-table', 'inline-table', 'inline-table']);
                 PlainAreaDevstrength(year);
                 break;
+
             default:
                 break;
         }

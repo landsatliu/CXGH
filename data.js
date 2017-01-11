@@ -272,6 +272,7 @@ var garbageData=[
         "text":"垃圾处理工艺比例"
     }
 ];
+
 //区县现状用地规模及历年数据
 var DistrictCurrentLandUseSize = [{ "name": "通州区", "year": 2005, "city": 7149, "village": 16031, "other": 67416, "cscale": 7.89, "vscale": 17.70, "oscale": 74.41 },
     { "name": "通州区", "year": 2006, "city": 7250, "village": 16000, "other": 67346, "cscale": 8.00, "vscale": 17.66, "oscale": 74.34 },
