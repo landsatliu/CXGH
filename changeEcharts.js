@@ -30,7 +30,12 @@ function householdPopulation(year) {
                 }
             }
         },
-
+        // animationDelayUpdate: function (idx) {
+        //     // 越往后的数据延迟越大
+        //     return idx * 100;
+        // },
+        // animation: false,
+        animationDuration: 3000,
         series: [
             {
                 name: '万人',
@@ -43,6 +48,7 @@ function householdPopulation(year) {
                         formatter: "{d}%"
                     }
                 },
+
                 data: [{ value: 1500, name: "农业人口" },
                     { value: 1300, name: "非农业人口" }]
             }
@@ -53,6 +59,7 @@ function householdPopulation(year) {
     var myChart2 = echarts.init(document.getElementById('echart2'));
     var option2 = {
         backgroundColor: 'rgba(1, 6, 10,0.6)',
+        animationDuration: 10000,
         color: echartColor,
         title: {
             text: '',
@@ -305,7 +312,7 @@ function householdPopulation(year) {
         backgroundColor: 'rgba(1, 6, 10,0.6)',
         tooltip: {},
         legend: {
-            orient:'vertical',
+            orient: 'vertical',
             right: 'right',
             top: 'middle',
             data: ["通州区", "丰台区", "大兴区", "海淀区", "延庆区", "东城区"]

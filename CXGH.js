@@ -9,49 +9,57 @@ var App = {
         _self.count = 0;
         this.initSize();
         this.initMap();
-        this.initSilderBar();
-        this.initJSTree();
-        //社会人文
-        this.initInnerJStree("tree_popu", populationData, false);
-        this.initInnerJStree("tree_public", puclicServiceData, false);
-        this.initInnerJStree("tree_traffic", trafficData, false);
-        this.initInnerJStree("tree_live", liveData, false);
-        this.initInnerJStree("tree_safe", safeData, false);
 
-        //资源
-        this.initInnerJStree("tree_land", landRes, true);
-        this.initInnerJStree('tree_water', waterRes, false);
-        this.initInnerJStree('tree_energy', energyRes, false);
-        //生态环境
-        this.initInnerJStree("tree_envi", enviData, false);
-        this.initInnerJStree('tree_space', spaceData, false);
-        this.initInnerJStree('tree_water_envi', waterEnviData, false);
-        this.initInnerJStree('tree_green', greenData, false);
-        this.initInnerJStree('tree_waste_water', wasteWaterData, false);
-        this.initInnerJStree('tree_garbage', garbageData, false);
-
-        this.addEvent();
-        $(".h_social:eq(1)").click();
     },
     initMap: function () {
-        require(["esri/map", "esri/geometry/Point", "esri/SpatialReference", "js/BaiduLayer.js","dojo/domReady!"],function (Map, Point, SpatialReference, BaiduLayer) {
-            var layer = new BaiduLayer();
-            var map = new Map("map", {
-                logo: false
+        require(["esri/map", "esri/geometry/Point", "esri/SpatialReference", "js/GaoDeLayer.js", "esri/layers/FeatureLayer",
+            "dojo/domReady!"], function (Map, Point, SpatialReference, GaoDeLayer, FeatureLayer) {
+                var layer = new GaoDeLayer();
+                var map = new Map("mainmap", {
+                    center: [116, 28],
+                    zoom: 5,
+                    logo: false
+                });
+                map.addLayer(layer);
+                // var pt = new Point(15472512.810510807, 5762089.7975553474, new SpatialReference({ wkid: 102100 }));
+                // map.centerAndZoom(pt, 11);
+                var featureLayer = new FeatureLayer(featurelayerURL, {
+                    mode: FeatureLayer.MODE_ONDEMAND,
+                    outFields: ["*"]
+                });
+                map.addLayer(featureLayer);
+                // map.setExtent(featureLayer.fullExtent);
+                _self.initSilderBar();
+                _self.initJSTree();
+                //社会人文
+                _self.initInnerJStree("tree_popu", populationData, false);
+                _self.initInnerJStree("tree_public", puclicServiceData, false);
+                _self.initInnerJStree("tree_traffic", trafficData, false);
+                _self.initInnerJStree("tree_live", liveData, false);
+                _self.initInnerJStree("tree_safe", safeData, false);
+
+                //资源
+                _self.initInnerJStree("tree_land", landRes, true);
+                _self.initInnerJStree('tree_water', waterRes, false);
+                _self.initInnerJStree('tree_energy', energyRes, false);
+                //生态环境
+                _self.initInnerJStree("tree_envi", enviData, false);
+                _self.initInnerJStree('tree_space', spaceData, false);
+                _self.initInnerJStree('tree_water_envi', waterEnviData, false);
+                _self.initInnerJStree('tree_green', greenData, false);
+                _self.initInnerJStree('tree_waste_water', wasteWaterData, false);
+                _self.initInnerJStree('tree_garbage', garbageData, false);
+
+                _self.addEvent();
+                $(".h_social:eq(1)").click();
             });
-            map.addLayer(layer);
-            var pt = new Point(15472512.810510807, 5762089.7975553474, new SpatialReference({ wkid: 102100 }));
-            // var pt = new Point(140, 45, new SpatialReference({ wkid: 4326 }));
-            map.centerAndZoom(pt, 11);
-        });
-        // var map = new BMap.Map("mainmap");
-        // window.map = map;
-        // var point = new BMap.Point(118.9, 30.915);
-        // map.enableScrollWheelZoom();                            //启用滚轮放大缩小
-        // //map.addControl(new BMap.MapTypeControl());          //添加地图类型控件
-        // map.disable3DBuilding();
-        // map.centerAndZoom(point, 7);
-        // map.setMapStyle({ style: 'midnight' });
+        // var map = new AMap.Map('mainmap', {
+        //     resizeEnable: true,
+        //     zoom: 11,
+        //     center: [116.397428, 39.90923]
+        // });
+        // _self.map=map;
+        // map.setMapStyle('blue_night');
     },
     initHeatMap: function () {
         if (!isSupportCanvas()) {
@@ -979,6 +987,7 @@ var App = {
                 case "经济":
                     changeVisible(['none', 'none', 'none', 'none', 'none']);
                     $('.body_inner').hide();
+                    _self.map.setMapStyle('blue_night');
                     break;
                 case "预留板块":
                     changeVisible(['none', 'none', 'none', 'none', 'none']);

@@ -1,3 +1,5 @@
+var TileLayer="";
+var featurelayerURL="http://gis.a4.petrochina/arcgis/rest/services/EP/EP_KTQYS/MapServer/47";
 var echartColor = ['#42B5F8', '#CD6860', '#F0CD31', '#AF65FF', '#5AE777', '#6CFAFB'];
 var waterRes = [
     {
