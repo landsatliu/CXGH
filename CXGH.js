@@ -12,19 +12,14 @@ var App = {
 
     },
     initMap: function () {
-        require(["esri/map", "esri/geometry/Point", "esri/SpatialReference","esri/layers/FeatureLayer","esri/layers/ArcGISDynamicMapServiceLayer","js/GaoDeLayer.js", "dojo/domReady!"], function (Map, Point, SpatialReference,FeatureLayer,ArcGISDynamicMapServiceLayer, GaoDeLayer) {
-                //  var layer = new GaoDeLayer(); Proxy.ashx?
+        require(["esri/map", "esri/geometry/Point", "esri/SpatialReference", "esri/layers/FeatureLayer", "esri/layers/ArcGISDynamicMapServiceLayer", "esri/symbols/SimpleFillSymbol",
+            "esri/renderers/ClassBreaksRenderer", "esri/Color", "dojo/domReady!"], function (Map, Point, SpatialReference, FeatureLayer, ArcGISDynamicMapServiceLayer, SimpleFillSymbol, ClassBreaksRenderer, Color) {
                 var layer = new ArcGISDynamicMapServiceLayer("http://localhost:6080/arcgis/rest/services/CXGH/beijing/MapServer");
                 var map = new Map("mainmap", {
                     logo: false
                 });
                 map.addLayer(layer);
-                // var featureLayer = new FeatureLayer(featurelayerURL, {
-                //     mode: FeatureLayer.MODE_ONDEMAND,
-                //     outFields: ["*"]
-                // });
-                // map.addLayer(featureLayer);
-                // map.setExtent(featureLayer.fullExtent);
+                _self.map = map;
                 _self.initSilderBar();
                 _self.initJSTree();
                 //社会人文
@@ -49,13 +44,6 @@ var App = {
                 _self.addEvent();
                 $(".h_social:eq(1)").click();
             });
-        // var map = new AMap.Map('mainmap', {
-        //     resizeEnable: true,
-        //     zoom: 11,
-        //     center: [116.397428, 39.90923]
-        // });
-        // _self.map=map;
-        // map.setMapStyle('blue_night');
     },
     initHeatMap: function () {
         if (!isSupportCanvas()) {
@@ -1000,6 +988,52 @@ var App = {
                 $(".inner_reserve")[0].style.display = array[4];
             }
         });
+        var playCount = 0;
+        //自动播放
+        $(".footplay").on("click", function () {
+            var endyear = $("#sliderbar").slider("getAttribute", "max");
+            var featureLayer = new FeatureLayer("http://localhost:6080/arcgis/rest/services/CXGH/beijing/MapServer/1", {
+                mode: FeatureLayer.MODE_SNAPSHOT,
+                outFields: ["*"]
+            });
+            _self.map.addLayer(featureLayer);
+            var autoplay = setInterval(function () {
+                var startyear = parseFloat($("#sliderbar").slider("getAttribute", "value"));
+                console.log(startyear);
+                $("#sliderbar").slider('setAttribute', "value", startyear + 1);
+                $("#sliderbar").slider('refresh');
+                var renderer = _self.getClassBreak();
+                featureLayer.setRenderer(renderer);
+
+                if (startyear >= endyear) {
+                    clearInterval(autoplay);
+                    $(".footplay").find("span").removeClass("glyphicon-pause");
+                    $(".footplay").find("span").addClass("glyphicon-play");
+                    playCount = 0;
+                }
+            }, 500);
+
+            if (playCount) {
+                $(".footplay").find("span").removeClass("glyphicon-pause");
+                $(".footplay").find("span").addClass("glyphicon-play");
+                playCount = 0;
+            } else {
+                $(".footplay").find("span").removeClass("glyphicon-play");
+                $(".footplay").find("span").addClass("glyphicon-pause");
+                playCount = 1;
+            }
+        });
+    },
+    getClassBreak: function () {
+        var symbol = new SimpleFillSymbol();
+        symbol.setColor(new Color([150, 150, 150, 0.5]));
+
+        var renderer = new ClassBreaksRenderer(symbol, "value");
+        renderer.addBreak(0, 2000, new SimpleFillSymbol().setColor(new Color([56, 168, 0, 0.5])));
+        renderer.addBreak(2000, 2500, new SimpleFillSymbol().setColor(new Color([139, 209, 0, 0.5])));
+        renderer.addBreak(2500, 3000, new SimpleFillSymbol().setColor(new Color([255, 255, 0, 0.5])));
+        renderer.addBreak(3000, 3500, new SimpleFillSymbol().setColor(new Color([255, 128, 0, 0.5])));
+        renderer.addBreak(3500, Infinity, new SimpleFillSymbol().setColor(new Color([255, 0, 0, 0.5])));
     },
     hideLeftTree: function () {
         if ($(".left_click").find(".leftclick_span").hasClass("glyphicon-chevron-left")) {
@@ -1016,9 +1050,9 @@ var App = {
 
     },
     silderbar_stop: function (event) {
-        _self.changeEcharts(_self.currentMenuname);
-        _self.count++;
-        _self.refreshHeatMapData();
+        // _self.changeEcharts(_self.currentMenuname);
+        // _self.count++;
+        // _self.refreshHeatMapData();
     },
     changeEcharts: function (menuname) {
         var year = $silderbar.slider("getValue");

@@ -156,7 +156,7 @@
     opacity: 0.9;
 }
 
-    .body_footer .foottime:hover, .body_footer .footview:hover, .body_footer .footquota:hover {
+    .body_footer .foottime:hover, .body_footer .footview:hover, .body_footer .footquota:hover,.footplay:hover {
         background-color: #FE8301;
         cursor: pointer;
     }
@@ -173,7 +173,17 @@
             padding-right: 10px;
             padding-top: 3px;
         }
-
+.footplay{
+        font-size: 8px;
+        display: inline-block;
+        height: 14px;
+        width: 20px;
+        margin-left: 5px;
+        background-color: #474C52;
+}
+.footplay span{
+    margin-left: 5px;
+}
 .footslider {
     display: inline-block;
     margin-left: 20px;
