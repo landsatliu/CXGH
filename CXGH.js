@@ -12,22 +12,18 @@ var App = {
 
     },
     initMap: function () {
-        require(["esri/map", "esri/geometry/Point", "esri/SpatialReference", "js/GaoDeLayer.js", "esri/layers/FeatureLayer",
-            "dojo/domReady!"], function (Map, Point, SpatialReference, GaoDeLayer, FeatureLayer) {
-                var layer = new GaoDeLayer();
+        require(["esri/map", "esri/geometry/Point", "esri/SpatialReference","esri/layers/FeatureLayer","esri/layers/ArcGISDynamicMapServiceLayer","js/GaoDeLayer.js", "dojo/domReady!"], function (Map, Point, SpatialReference,FeatureLayer,ArcGISDynamicMapServiceLayer, GaoDeLayer) {
+                //  var layer = new GaoDeLayer(); Proxy.ashx?
+                var layer = new ArcGISDynamicMapServiceLayer("http://localhost:6080/arcgis/rest/services/CXGH/beijing/MapServer");
                 var map = new Map("mainmap", {
-                    center: [116, 28],
-                    zoom: 5,
                     logo: false
                 });
                 map.addLayer(layer);
-                // var pt = new Point(15472512.810510807, 5762089.7975553474, new SpatialReference({ wkid: 102100 }));
-                // map.centerAndZoom(pt, 11);
-                var featureLayer = new FeatureLayer(featurelayerURL, {
-                    mode: FeatureLayer.MODE_ONDEMAND,
-                    outFields: ["*"]
-                });
-                map.addLayer(featureLayer);
+                // var featureLayer = new FeatureLayer(featurelayerURL, {
+                //     mode: FeatureLayer.MODE_ONDEMAND,
+                //     outFields: ["*"]
+                // });
+                // map.addLayer(featureLayer);
                 // map.setExtent(featureLayer.fullExtent);
                 _self.initSilderBar();
                 _self.initJSTree();
