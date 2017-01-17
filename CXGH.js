@@ -14,7 +14,7 @@ var App = {
     initMap: function () {
         require(["esri/map", "esri/geometry/Point", "esri/SpatialReference", "esri/layers/FeatureLayer", "esri/layers/ArcGISDynamicMapServiceLayer", "esri/symbols/SimpleFillSymbol",
             "esri/renderers/ClassBreaksRenderer", "esri/Color", "dojo/domReady!"], function (Map, Point, SpatialReference, FeatureLayer, ArcGISDynamicMapServiceLayer, SimpleFillSymbol, ClassBreaksRenderer, Color) {
-                var layer = new ArcGISDynamicMapServiceLayer("http://localhost:6080/arcgis/rest/services/CXGH/beijing/MapServer");
+                var layer = new ArcGISDynamicMapServiceLayer(DynamicLayerURL);
                 var map = new Map("mainmap", {
                     logo: false
                 });
@@ -886,7 +886,7 @@ var App = {
             handle: "custom"
         });
         $silderbar = $("#sliderbar");
-        $silderbar.on("slideStop", this.silderbar_stop);
+        $silderbar.on("change", this.silderbar_stop);
     },
     addEvent: function () {
         $(".left_click").on("click", this.hideLeftTree);
@@ -991,49 +991,51 @@ var App = {
         var playCount = 0;
         //自动播放
         $(".footplay").on("click", function () {
-            var endyear = $("#sliderbar").slider("getAttribute", "max");
-            var featureLayer = new FeatureLayer("http://localhost:6080/arcgis/rest/services/CXGH/beijing/MapServer/1", {
-                mode: FeatureLayer.MODE_SNAPSHOT,
-                outFields: ["*"]
-            });
-            _self.map.addLayer(featureLayer);
-            var autoplay = setInterval(function () {
-                var startyear = parseFloat($("#sliderbar").slider("getAttribute", "value"));
-                console.log(startyear);
-                $("#sliderbar").slider('setAttribute', "value", startyear + 1);
-                $("#sliderbar").slider('refresh');
-                var renderer = _self.getClassBreak();
-                featureLayer.setRenderer(renderer);
+            require(["esri/layers/FeatureLayer", "esri/symbols/SimpleFillSymbol",
+                "esri/renderers/ClassBreaksRenderer", "esri/Color"], function (FeatureLayer, SimpleFillSymbol, ClassBreaksRenderer, Color) {
+                    var endyear = $("#sliderbar").slider("getAttribute", "max");
+                    var featureLayer = new FeatureLayer(featurelayerURL, {
+                        mode: FeatureLayer.MODE_SNAPSHOT,
+                        outFields: ["*"]
+                    });
+                    _self.map.addLayer(featureLayer);
+                    var symbol = new SimpleFillSymbol();
+                    symbol.setColor(new Color([150, 150, 150, 0.5]));
+                    var autoplay = setInterval(function () {
+                        var startyear = parseFloat($("#sliderbar").slider("getValue"));
+                        console.log(startyear);
 
-                if (startyear >= endyear) {
-                    clearInterval(autoplay);
-                    $(".footplay").find("span").removeClass("glyphicon-pause");
-                    $(".footplay").find("span").addClass("glyphicon-play");
-                    playCount = 0;
-                }
-            }, 500);
+                        var renderer = new ClassBreaksRenderer(symbol, "Y" + startyear);
+                        renderer.addBreak(0, 2300, new SimpleFillSymbol().setColor(new Color([56, 168, 0])));
+                        renderer.addBreak(2300, 4000, new SimpleFillSymbol().setColor(new Color([139, 209, 0])));
+                        renderer.addBreak(4000, 6000, new SimpleFillSymbol().setColor(new Color([255, 255, 0])));
+                        renderer.addBreak(6000, 10000, new SimpleFillSymbol().setColor(new Color([255, 128, 0])));
+                        renderer.addBreak(10000, Infinity, new SimpleFillSymbol().setColor(new Color([255, 0, 0])));
+                        featureLayer.setRenderer(renderer);
+                        featureLayer.refresh();
 
-            if (playCount) {
-                $(".footplay").find("span").removeClass("glyphicon-pause");
-                $(".footplay").find("span").addClass("glyphicon-play");
-                playCount = 0;
-            } else {
-                $(".footplay").find("span").removeClass("glyphicon-play");
-                $(".footplay").find("span").addClass("glyphicon-pause");
-                playCount = 1;
-            }
-        });
-    },
-    getClassBreak: function () {
-        var symbol = new SimpleFillSymbol();
-        symbol.setColor(new Color([150, 150, 150, 0.5]));
+                        if (startyear >= endyear) {
+                            clearInterval(autoplay);
+                            _self.map.removeLayer(featureLayer);
+                            console.log(startyear, endyear);
+                            $(".footplay").find("span").removeClass("glyphicon-pause");
+                            $(".footplay").find("span").addClass("glyphicon-play");
+                            playCount = 0;
+                        }
+                        $("#sliderbar").slider('setValue', startyear + 1, this.silderbar_stop);
+                    }, 2000);
 
-        var renderer = new ClassBreaksRenderer(symbol, "value");
-        renderer.addBreak(0, 2000, new SimpleFillSymbol().setColor(new Color([56, 168, 0, 0.5])));
-        renderer.addBreak(2000, 2500, new SimpleFillSymbol().setColor(new Color([139, 209, 0, 0.5])));
-        renderer.addBreak(2500, 3000, new SimpleFillSymbol().setColor(new Color([255, 255, 0, 0.5])));
-        renderer.addBreak(3000, 3500, new SimpleFillSymbol().setColor(new Color([255, 128, 0, 0.5])));
-        renderer.addBreak(3500, Infinity, new SimpleFillSymbol().setColor(new Color([255, 0, 0, 0.5])));
+                    if (playCount) {
+                        $(".footplay").find("span").removeClass("glyphicon-pause");
+                        $(".footplay").find("span").addClass("glyphicon-play");
+                        playCount = 0;
+                    } else {
+                        $(".footplay").find("span").removeClass("glyphicon-play");
+                        $(".footplay").find("span").addClass("glyphicon-pause");
+                        playCount = 1;
+                    }
+                });
+        })
     },
     hideLeftTree: function () {
         if ($(".left_click").find(".leftclick_span").hasClass("glyphicon-chevron-left")) {
@@ -1050,8 +1052,9 @@ var App = {
 
     },
     silderbar_stop: function (event) {
-        // _self.changeEcharts(_self.currentMenuname);
-        // _self.count++;
+        console.log(event.value);
+        _self.changeEcharts(_self.currentMenuname);
+        _self.count++;
         // _self.refreshHeatMapData();
     },
     changeEcharts: function (menuname) {
