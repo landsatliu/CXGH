@@ -1022,7 +1022,7 @@ var App = {
                             $(".footplay").find("span").addClass("glyphicon-play");
                             playCount = 0;
                         }
-                        $("#sliderbar").slider('setValue', startyear + 1, this.silderbar_stop);
+                        $("#sliderbar").slider('setValue', startyear + 1,true,true);
                     }, 2000);
 
                     if (playCount) {
