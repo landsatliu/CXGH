@@ -1,5 +1,5 @@
 var DynamicLayerURL="http://localhost:6080/arcgis/rest/services/CXGH/beijing/MapServer";
-var featurelayerURL="http://localhost:6080/arcgis/rest/services/CXGH/beijing/MapServer/1";
+var featurelayerURL="http://localhost:6080/arcgis/rest/services/CXGH/beijing/MapServer/1";//A13_镇街界 
 var echartColor = ['#42B5F8', '#CD6860', '#F0CD31', '#AF65FF', '#5AE777', '#6CFAFB'];
 var waterRes = [
     {
