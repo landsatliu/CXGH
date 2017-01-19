@@ -1022,7 +1022,7 @@ var App = {
                             $(".footplay").find("span").addClass("glyphicon-play");
                             playCount = 0;
                         }
-                        $("#sliderbar").slider('setValue', startyear + 1,false,true);
+                        $("#sliderbar").slider('setValue', startyear + 1, false, true);
                     }, 2000);
 
                     if (playCount) {
@@ -1063,7 +1063,8 @@ var App = {
             case "户籍人口":
                 _self.setEchartsVisble(['市户籍人口占比', '区县户籍人口占比', '区县新城户籍人口', '区县户籍人口增减情况', '区县户籍人口变化情况', '区县户籍人口密度分布', '历年户籍人口变化趋势'], ['inline-table', 'inline-table', 'inline-table', 'inline-table', 'inline-table', 'inline-table', 'inline-table']);
                 householdPopulation(year);
-                _self.initHeatMap();
+                // _self.initHeatMap();
+                _self.heatMap();
                 break;
             case "现状用地规模":
                 _self.setEchartsVisble(['区县现状用地规模占比', '区县现状城市建设用地结构', '区县现状建设用地扩张雷达分析', '乡镇现状用地规模', '乡镇现状用地结构', '乡镇居住产业用地分布', '区县历年现状用地规模变化趋势',], ['inline-table', 'inline-table', 'inline-table', 'inline-table', 'inline-table', 'inline-table', 'inline-table']);
@@ -1096,6 +1097,26 @@ var App = {
             $($divEcharts.find('span')[i]).text(title[i]);
         }
         $(".div_echart_lg")[0].style.display = display[6];
-    }
+    },
 
+    heatMap: function () {
+        require(["esri/layers/FeatureLayer", "esri/Color", "esri/renderers/HeatmapRenderer",], function (FeatureLayer, Color, HeatmapRenderer) {
+            var serviceURL = featurelayerURL;
+            var heatmapFeatureLayerOptions = {
+                mode: FeatureLayer.MODE_SNAPSHOT,
+                outFields: ["*"]
+            };
+
+            var heatmapFeatureLayer = new FeatureLayer(serviceURL, heatmapFeatureLayerOptions);
+            var heatmapRenderer = new HeatmapRenderer({
+                colors: ["rgba(0, 0, 255, 0)", "rgb(0, 0, 20)", "rgb(255, 0, 255)", "rgb(255, 0, 0)"],
+                blurRadius: 12,
+                field: "value"
+            });
+            heatmapFeatureLayer.setRenderer(heatmapRenderer);
+            _self.map.addLayer(heatmapFeatureLayer);
+            heatmapFeatureLayer.refresh();
+            console.log("heatmap");
+        });
+    }
 }
