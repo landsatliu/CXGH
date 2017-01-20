@@ -4,6 +4,7 @@ function householdPopulation(year) {
     var option1 = {
         backgroundColor: 'rgba(1, 6, 10,0.6)',
         color: echartColor,
+        // animation:false,
         title: {
             text: '',
             subtext: '',
