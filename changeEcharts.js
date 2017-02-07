@@ -1,10 +1,27 @@
+var myChart1,myChart2,myChart3,myChart4,myChart5,myChart6,myChart7;
+// var myChart2 = echarts.init(document.getElementById('echart2'));
+// var myChart3 = echarts.init(document.getElementById('echart3'));
+// var myChart4 = echarts.init(document.getElementById('echart4'));
+// var myChart5 = echarts.init(document.getElementById('echart5'));
+// var myChart6 = echarts.init(document.getElementById('echart6'));
+// var myChart7 = echarts.init(document.getElementById('echart7'));
+
+$(function () {
+    myChart1 = echarts.init(document.getElementById('echart1'));
+    myChart2 = echarts.init(document.getElementById('echart2'));
+    myChart3 = echarts.init(document.getElementById('echart3'));
+    myChart4 = echarts.init(document.getElementById('echart4'));
+    myChart5 = echarts.init(document.getElementById('echart5'));
+    myChart6 = echarts.init(document.getElementById('echart6'));
+    myChart7 = echarts.init(document.getElementById('echart7'));
+});
+
 //人口
 function householdPopulation(year) {
-    var myChart1 = echarts.init(document.getElementById('echart1'));
+    //  var myChart1 = echarts.init(document.getElementById('echart1'));
     var option1 = {
         backgroundColor: 'rgba(1, 6, 10,0.6)',
         color: echartColor,
-        // animation:false,
         title: {
             text: '',
             subtext: '',
@@ -51,7 +68,7 @@ function householdPopulation(year) {
     };
     myChart1.setOption(option1);
 
-    var myChart2 = echarts.init(document.getElementById('echart2'));
+    // var myChart2 = echarts.init(document.getElementById('echart2'));
     var option2 = {
         backgroundColor: 'rgba(1, 6, 10,0.6)',
         animationDuration: 1,
@@ -105,7 +122,7 @@ function householdPopulation(year) {
     };
     myChart2.setOption(option2);
 
-    var myChart3 = echarts.init(document.getElementById('echart3'));
+    // var myChart3 = echarts.init(document.getElementById('echart3'));
     var option3 = {
         backgroundColor: 'rgba(1, 6, 10,0.6)',
         color: echartColor,
@@ -154,7 +171,7 @@ function householdPopulation(year) {
     };
     myChart3.setOption(option3);
 
-    var myChart4 = echarts.init(document.getElementById('echart4'));
+    // var myChart4 = echarts.init(document.getElementById('echart4'));
     var option4 = {
         backgroundColor: 'rgba(1, 6, 10,0.6)',
         color: echartColor,
@@ -229,7 +246,7 @@ function householdPopulation(year) {
     };
     myChart4.setOption(option4);
 
-    var myChart5 = echarts.init(document.getElementById('echart5'));
+    // var myChart5 = echarts.init(document.getElementById('echart5'));
     var option5 = {
         backgroundColor: 'rgba(1, 6, 10,0.6)',
         color: echartColor,
@@ -302,7 +319,7 @@ function householdPopulation(year) {
     };
     myChart5.setOption(option5);
 
-    var myChart6 = echarts.init(document.getElementById('echart6'));
+    // var myChart6 = echarts.init(document.getElementById('echart6'));
     var option6 = {
         backgroundColor: 'rgba(1, 6, 10,0.6)',
         tooltip: {},
@@ -371,7 +388,7 @@ function householdPopulation(year) {
     };
     myChart6.setOption(option6);
 
-    var myChart7 = echarts.init(document.getElementById('echart7'));
+    // var myChart7 = echarts.init(document.getElementById('echart7'));
     var option7 = {
         backgroundColor: 'rgba(1, 6, 10,0.6)',
         color: echartColor,
@@ -445,7 +462,7 @@ function householdPopulation(year) {
 function currentLandUse(year) {
     var d_dataSize = Enumerable.From(DistrictCurrentLandUseSize).Where("x=>x.year==" + year).ToArray()[0];
     var d_seriesData = [{ value: d_dataSize.city, name: "城镇建设用地" }, { value: d_dataSize.village, name: "村庄建设用地" }, { value: d_dataSize.other, name: "其他建设用地" }];
-    var myChart1 = echarts.init(document.getElementById('echart1'));
+    // var myChart1 = echarts.init(document.getElementById('echart1'));
     var option1 = {
         backgroundColor: 'rgba(1, 6, 10,0.6)',
         color: echartColor,
@@ -496,7 +513,7 @@ function currentLandUse(year) {
 
     var v_dataSize = Enumerable.From(DistrictCurrentLandUseStruc).Where("x=>x.year==" + year).ToArray()[0];
     var seriesData2 = [{ value: v_dataSize.jzyd, name: "居住用地" }, { value: v_dataSize.cyyd, name: "产业用地" }, { value: v_dataSize.ptyd, name: "配套用地" }, { value: v_dataSize.ld, name: "绿地" }, { value: v_dataSize.dlyd, name: "道路用地" }, { value: v_dataSize.syyd, name: "商业用地" }];
-    var myChart2 = echarts.init(document.getElementById('echart2'));
+    // var myChart2 = echarts.init(document.getElementById('echart2'));
     var option2 = {
         backgroundColor: 'rgba(1, 6, 10,0.6)',
         color: echartColor,
@@ -574,7 +591,7 @@ function currentLandUse(year) {
     };
     myChart2.setOption(option2);
 
-    var myChart3 = echarts.init(document.getElementById('echart3'));
+    // var myChart3 = echarts.init(document.getElementById('echart3'));
     var option3 = {
         backgroundColor: 'rgba(1, 6, 10,0.6)',
         tooltip: {},
@@ -622,7 +639,7 @@ function currentLandUse(year) {
         data43.push(data4[i].other);
     }
 
-    var myChart4 = echarts.init(document.getElementById('echart4'));
+    // var myChart4 = echarts.init(document.getElementById('echart4'));
     var option4 = {
         backgroundColor: 'rgba(1, 6, 10,0.6)',
         color: echartColor,
@@ -696,7 +713,7 @@ function currentLandUse(year) {
         data55.push(data5[i].dlyd);
         data56.push(data5[i].syyd);
     }
-    var myChart5 = echarts.init(document.getElementById('echart5'));
+    // var myChart5 = echarts.init(document.getElementById('echart5'));
     var option5 = {
         backgroundColor: 'rgba(1, 6, 10,0.6)',
         color: echartColor,
@@ -772,7 +789,7 @@ function currentLandUse(year) {
     myChart5.setOption(option5);
 
     var data6 = Enumerable.From(DistrictCurrentLandUseSize).Where("x=>x.year==" + year).ToArray();
-    var myChart6 = echarts.init(document.getElementById('echart6'));
+    // var myChart6 = echarts.init(document.getElementById('echart6'));
     var option6 = {
         backgroundColor: 'rgba(1, 6, 10,0.6)',
         color: echartColor,
@@ -841,7 +858,7 @@ function currentLandUse(year) {
         data72.push(data7[i].village);
         data73.push(data7[i].other);
     }
-    var myChart7 = echarts.init(document.getElementById('echart7'));
+    // var myChart7 = echarts.init(document.getElementById('echart7'));
     var option7 = {
         backgroundColor: 'rgba(1, 6, 10,0.6)',
         color: echartColor,
@@ -915,7 +932,7 @@ function currentLandUse(year) {
 function planLandUse(year) {
     var d_dataSize = Enumerable.From(DistrictCurrentLandUseSize).Where("x=>x.year==" + year).ToArray()[0];
     var d_seriesData = [{ value: d_dataSize.city, name: "城镇建设用地" }, { value: d_dataSize.village, name: "村庄建设用地" }, { value: d_dataSize.other, name: "其他建设用地" }];
-    var myChart1 = echarts.init(document.getElementById('echart1'));
+    // var myChart1 = echarts.init(document.getElementById('echart1'));
     var option1 = {
         backgroundColor: 'rgba(1, 6, 10,0.6)',
         color: echartColor,
@@ -966,7 +983,7 @@ function planLandUse(year) {
 
     var v_dataSize = Enumerable.From(DistrictCurrentLandUseStruc).Where("x=>x.year==" + year).ToArray()[0];
     var seriesData2 = [{ value: v_dataSize.jzyd, name: "居住用地" }, { value: v_dataSize.cyyd, name: "产业用地" }, { value: v_dataSize.ptyd, name: "配套用地" }, { value: v_dataSize.ld, name: "绿地" }, { value: v_dataSize.dlyd, name: "道路用地" }, { value: v_dataSize.syyd, name: "商业用地" }];
-    var myChart2 = echarts.init(document.getElementById('echart2'));
+    // var myChart2 = echarts.init(document.getElementById('echart2'));
     var option2 = {
         backgroundColor: 'rgba(1, 6, 10,0.6)',
         color: echartColor,
@@ -1044,7 +1061,7 @@ function planLandUse(year) {
     };
     myChart2.setOption(option2);
 
-    var myChart3 = echarts.init(document.getElementById('echart3'));
+    // var myChart3 = echarts.init(document.getElementById('echart3'));
     var option3 = {
         backgroundColor: 'rgba(1, 6, 10,0.6)',
         color: echartColor,
@@ -1126,7 +1143,7 @@ function planLandUse(year) {
 //平原地区开发强度
 function PlainAreaDevstrength(year) {
 
-    var myChart1 = echarts.init(document.getElementById('echart1'));
+    // var myChart1 = echarts.init(document.getElementById('echart1'));
     var option1 = {
         backgroundColor: 'rgba(1, 6, 10,0.6)',
         series: [{
@@ -1218,7 +1235,7 @@ function PlainAreaDevstrength(year) {
     };
     myChart1.setOption(option1);
 
-    var myChart2 = echarts.init(document.getElementById('echart2'));
+    // var myChart2 = echarts.init(document.getElementById('echart2'));
     var option2 = {
         backgroundColor: 'rgba(1, 6, 10,0.6)',
         color: echartColor,
@@ -1299,7 +1316,7 @@ function PlainAreaDevstrength(year) {
     };
     myChart2.setOption(option2);
 
-    var myChart3 = echarts.init(document.getElementById('echart3'));
+    // var myChart3 = echarts.init(document.getElementById('echart3'));
     var option3 = {
         backgroundColor: 'rgba(1, 6, 10,0.6)',
         color: echartColor,
@@ -1354,7 +1371,7 @@ function PlainAreaDevstrength(year) {
     };
     myChart3.setOption(option3);
 
-    var myChart4 = echarts.init(document.getElementById('echart4'));
+    // var myChart4 = echarts.init(document.getElementById('echart4'));
     var option4 = {
         backgroundColor: 'rgba(1, 6, 10,0.6)',
         color: echartColor,
@@ -1410,7 +1427,7 @@ function PlainAreaDevstrength(year) {
     };
     myChart4.setOption(option4);
 
-    var myChart5 = echarts.init(document.getElementById('echart5'));
+    // var myChart5 = echarts.init(document.getElementById('echart5'));
     var option5 = {
         backgroundColor: 'rgba(1, 6, 10,0.6)',
         color: echartColor,
@@ -1482,7 +1499,7 @@ function PlainAreaDevstrength(year) {
     myChart5.setOption(option5);
 
     var data6 = Enumerable.From(DistrictCurrentLandUseSize).Where("x=>x.year==" + year).ToArray();
-    var myChart6 = echarts.init(document.getElementById('echart6'));
+    // var myChart6 = echarts.init(document.getElementById('echart6'));
     var option6 = {
         backgroundColor: 'rgba(1, 6, 10,0.6)',
         color: echartColor,
@@ -1551,7 +1568,7 @@ function PlainAreaDevstrength(year) {
         data72.push(data7[i].village);
         data73.push(data7[i].other);
     }
-    var myChart7 = echarts.init(document.getElementById('echart7'));
+    // var myChart7 = echarts.init(document.getElementById('echart7'));
     var option7 = {
         backgroundColor: 'rgba(1, 6, 10,0.6)',
         color: echartColor,
