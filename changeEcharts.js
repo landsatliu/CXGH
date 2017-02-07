@@ -1,4 +1,5 @@
-var myChart1,myChart2,myChart3,myChart4,myChart5,myChart6,myChart7;
+var myChart1, myChart2, myChart3, myChart4, myChart5, myChart6, myChart7;
+var echartCount = 0;
 // var myChart2 = echarts.init(document.getElementById('echart2'));
 // var myChart3 = echarts.init(document.getElementById('echart3'));
 // var myChart4 = echarts.init(document.getElementById('echart4'));
@@ -591,6 +592,14 @@ function currentLandUse(year) {
     };
     myChart2.setOption(option2);
 
+    echartCount++;
+    var seriesdata33;
+    console.log(echartCount % 2);
+    if (echartCount % 2 == 0) {
+        seriesdata33 = [4300, 10000, 28000, 35000, 50000, 19000];
+    } else {
+        seriesdata33 = [3800, 12000, 30000, 30000, 47000, 24000];
+    }
     // var myChart3 = echarts.init(document.getElementById('echart3'));
     var option3 = {
         backgroundColor: 'rgba(1, 6, 10,0.6)',
@@ -598,11 +607,10 @@ function currentLandUse(year) {
         legend: {
             left: 'right',
             top: 'middle',
-            data: [year + '年现状建设用地']
+            data: [year+'年现状建设用地']
         },
         grid: {
             tooltip: 20
-
         },
         radar: {
             indicator: [
@@ -617,12 +625,12 @@ function currentLandUse(year) {
             center: ['40%', '50%']
         },
         series: [{
-            name: year + '年现状建设用地',
+            name: '现状建设用地',
             type: 'radar',
             data: [
                 {
-                    value: [4300, 10000, 28000, 35000, 50000, 19000],
-                    name: year + "年"
+                    value: seriesdata33,
+                    name:year+'年现状建设用地'
                 }
             ]
         }]
