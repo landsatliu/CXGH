@@ -1,11 +1,5 @@
 var myChart1, myChart2, myChart3, myChart4, myChart5, myChart6, myChart7;
 var echartCount = 0;
-// var myChart2 = echarts.init(document.getElementById('echart2'));
-// var myChart3 = echarts.init(document.getElementById('echart3'));
-// var myChart4 = echarts.init(document.getElementById('echart4'));
-// var myChart5 = echarts.init(document.getElementById('echart5'));
-// var myChart6 = echarts.init(document.getElementById('echart6'));
-// var myChart7 = echarts.init(document.getElementById('echart7'));
 
 $(function () {
     myChart1 = echarts.init(document.getElementById('echart1'));
@@ -67,6 +61,7 @@ function householdPopulation(year) {
             }
         ]
     };
+    checkEchartState(myChart1, option1);
     myChart1.setOption(option1);
 
     // var myChart2 = echarts.init(document.getElementById('echart2'));
@@ -121,6 +116,7 @@ function householdPopulation(year) {
             }
         ]
     };
+    checkEchartState(myChart2, option2);
     myChart2.setOption(option2);
 
     // var myChart3 = echarts.init(document.getElementById('echart3'));
@@ -170,6 +166,7 @@ function householdPopulation(year) {
             }
         ]
     };
+    checkEchartState(myChart3, option3);
     myChart3.setOption(option3);
 
     // var myChart4 = echarts.init(document.getElementById('echart4'));
@@ -245,6 +242,7 @@ function householdPopulation(year) {
             }
         ]
     };
+    checkEchartState(myChart4, option4);
     myChart4.setOption(option4);
 
     // var myChart5 = echarts.init(document.getElementById('echart5'));
@@ -318,6 +316,7 @@ function householdPopulation(year) {
             }
         ]
     };
+    checkEchartState(myChart5, option5);
     myChart5.setOption(option5);
 
     // var myChart6 = echarts.init(document.getElementById('echart6'));
@@ -387,6 +386,7 @@ function householdPopulation(year) {
             ]
         }]
     };
+    checkEchartState(myChart6, option6);
     myChart6.setOption(option6);
 
     // var myChart7 = echarts.init(document.getElementById('echart7'));
@@ -456,6 +456,7 @@ function householdPopulation(year) {
             }
         ]
     };
+    checkEchartState(myChart7, option7);
     myChart7.setOption(option7);
 }
 
@@ -510,6 +511,7 @@ function currentLandUse(year) {
             }
         ]
     };
+    checkEchartState(myChart1, option1);
     myChart1.setOption(option1);
 
     var v_dataSize = Enumerable.From(DistrictCurrentLandUseStruc).Where("x=>x.year==" + year).ToArray()[0];
@@ -590,11 +592,11 @@ function currentLandUse(year) {
             }
         ]
     };
+    checkEchartState(myChart2, option2);
     myChart2.setOption(option2);
 
     echartCount++;
     var seriesdata33;
-    console.log(echartCount % 2);
     if (echartCount % 2 == 0) {
         seriesdata33 = [4300, 10000, 28000, 35000, 50000, 19000];
     } else {
@@ -607,7 +609,7 @@ function currentLandUse(year) {
         legend: {
             left: 'right',
             top: 'middle',
-            data: [year+'年现状建设用地']
+            data: [year + '年现状建设用地']
         },
         grid: {
             tooltip: 20
@@ -630,11 +632,12 @@ function currentLandUse(year) {
             data: [
                 {
                     value: seriesdata33,
-                    name:year+'年现状建设用地'
+                    name: year + '年现状建设用地'
                 }
             ]
         }]
     };
+    checkEchartState(myChart3, option3);
     myChart3.setOption(option3);
 
     var data4 = Enumerable.From(VillageCurrentLandUseSize).Where("x=>x.year==" + year).ToArray();
@@ -706,6 +709,7 @@ function currentLandUse(year) {
             }
         ]
     };
+    checkEchartState(myChart4, option4);
     myChart4.setOption(option4);
 
 
@@ -794,6 +798,7 @@ function currentLandUse(year) {
             }
         ]
     };
+    checkEchartState(myChart5, option5);
     myChart5.setOption(option5);
 
     var data6 = Enumerable.From(DistrictCurrentLandUseSize).Where("x=>x.year==" + year).ToArray();
@@ -853,6 +858,7 @@ function currentLandUse(year) {
             }
         ]
     };
+    checkEchartState(myChart6, option6);
     myChart6.setOption(option6);
 
     // var data7 = Enumerable.From(DistrictCurrentLandUseSize).Where("x=>x.year==" + year).ToArray();
@@ -933,6 +939,7 @@ function currentLandUse(year) {
             }
         ]
     };
+    checkEchartState(myChart7, option7);
     myChart7.setOption(option7);
 }
 
@@ -1639,4 +1646,12 @@ function PlainAreaDevstrength(year) {
         ]
     };
     myChart7.setOption(option7);
+}
+//查看是否清除echarts
+function checkEchartState(echart, option) {
+    if (echart.getOption()) {
+        if (echart.getOption().series[0].type != option.series[0].type) {
+            echart.clear();
+        }
+    }
 }
