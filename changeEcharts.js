@@ -15,13 +15,13 @@ $(function () {
 function householdPopulation(year) {
     //  var myChart1 = echarts.init(document.getElementById('echart1'));
     var option1 = {
+        title: {
+            text: '人口',
+            show: false
+        },
         backgroundColor: 'rgba(1, 6, 10,0.6)',
         color: echartColor,
-        title: {
-            text: '',
-            subtext: '',
-            x: 'center'
-        },
+
         grid: {
             left: "5px"
         },
@@ -66,14 +66,13 @@ function householdPopulation(year) {
 
     // var myChart2 = echarts.init(document.getElementById('echart2'));
     var option2 = {
+        title: {
+            text: '人口',
+            show: false
+        },
         backgroundColor: 'rgba(1, 6, 10,0.6)',
         animationDuration: 1,
         color: echartColor,
-        title: {
-            text: '',
-            subtext: '',
-            x: 'center'
-        },
         grid: {
             left: "5px"
         },
@@ -121,13 +120,12 @@ function householdPopulation(year) {
 
     // var myChart3 = echarts.init(document.getElementById('echart3'));
     var option3 = {
+        title: {
+            text: '人口',
+            show: false
+        },
         backgroundColor: 'rgba(1, 6, 10,0.6)',
         color: echartColor,
-        title: {
-            text: '',
-            subtext: '',
-            x: 'center'
-        },
         grid: {
             left: "5px"
         },
@@ -171,6 +169,10 @@ function householdPopulation(year) {
 
     // var myChart4 = echarts.init(document.getElementById('echart4'));
     var option4 = {
+        title: {
+            text: '人口',
+            show: false
+        },
         backgroundColor: 'rgba(1, 6, 10,0.6)',
         color: echartColor,
         tooltip: {
@@ -247,6 +249,10 @@ function householdPopulation(year) {
 
     // var myChart5 = echarts.init(document.getElementById('echart5'));
     var option5 = {
+        title: {
+            text: '人口',
+            show: false
+        },
         backgroundColor: 'rgba(1, 6, 10,0.6)',
         color: echartColor,
         tooltip: {
@@ -262,7 +268,7 @@ function householdPopulation(year) {
         },
         grid: {
             top: '15%',
-            left: 30,
+            left: 20,
             right: 40,
             bottom: 25
         },
@@ -321,6 +327,10 @@ function householdPopulation(year) {
 
     // var myChart6 = echarts.init(document.getElementById('echart6'));
     var option6 = {
+        title: {
+            text: '人口',
+            show: false
+        },
         backgroundColor: 'rgba(1, 6, 10,0.6)',
         tooltip: {},
         legend: {
@@ -391,6 +401,10 @@ function householdPopulation(year) {
 
     // var myChart7 = echarts.init(document.getElementById('echart7'));
     var option7 = {
+        title: {
+            text: '人口',
+            show: false
+        },
         backgroundColor: 'rgba(1, 6, 10,0.6)',
         color: echartColor,
         tooltip: {
@@ -466,13 +480,12 @@ function currentLandUse(year) {
     var d_seriesData = [{ value: d_dataSize.city, name: "城镇建设用地" }, { value: d_dataSize.village, name: "村庄建设用地" }, { value: d_dataSize.other, name: "其他建设用地" }];
     // var myChart1 = echarts.init(document.getElementById('echart1'));
     var option1 = {
+        title: {
+            text: '现状用地规模',
+            show: false
+        },
         backgroundColor: 'rgba(1, 6, 10,0.6)',
         color: echartColor,
-        title: {
-            text: '',
-            subtext: '',
-            x: 'center'
-        },
         grid: {
             left: "5px"
         },
@@ -518,6 +531,10 @@ function currentLandUse(year) {
     var seriesData2 = [{ value: v_dataSize.jzyd, name: "居住用地" }, { value: v_dataSize.cyyd, name: "产业用地" }, { value: v_dataSize.ptyd, name: "配套用地" }, { value: v_dataSize.ld, name: "绿地" }, { value: v_dataSize.dlyd, name: "道路用地" }, { value: v_dataSize.syyd, name: "商业用地" }];
     // var myChart2 = echarts.init(document.getElementById('echart2'));
     var option2 = {
+        title: {
+            text: '现状用地规模',
+            show: false
+        },
         backgroundColor: 'rgba(1, 6, 10,0.6)',
         color: echartColor,
         grid: {
@@ -604,11 +621,15 @@ function currentLandUse(year) {
     }
     // var myChart3 = echarts.init(document.getElementById('echart3'));
     var option3 = {
+        title: {
+            text: '现状用地规模',
+            show: false
+        },
         backgroundColor: 'rgba(1, 6, 10,0.6)',
         tooltip: {},
         legend: {
             left: 'right',
-            top: 'middle',
+            top: 'top',
             data: [year + '年现状建设用地']
         },
         grid: {
@@ -652,6 +673,10 @@ function currentLandUse(year) {
 
     // var myChart4 = echarts.init(document.getElementById('echart4'));
     var option4 = {
+        title: {
+            text: '现状用地规模',
+            show: false
+        },
         backgroundColor: 'rgba(1, 6, 10,0.6)',
         color: echartColor,
         tooltip: {
@@ -665,7 +690,7 @@ function currentLandUse(year) {
         grid: {
             top: '15%',
             left: '15%',
-            bottom: 25
+            bottom: 30
         },
         xAxis: [
             {
@@ -727,6 +752,10 @@ function currentLandUse(year) {
     }
     // var myChart5 = echarts.init(document.getElementById('echart5'));
     var option5 = {
+        title: {
+            text: '现状用地规模',
+            show: false
+        },
         backgroundColor: 'rgba(1, 6, 10,0.6)',
         color: echartColor,
         tooltip: {
@@ -741,9 +770,9 @@ function currentLandUse(year) {
         },
         grid: {
             top: '15%',
-            left: 30,
-            right: 40,
-            bottom: 25
+            left: 32,
+            right: 45,
+            bottom: 30
         },
         xAxis: [
             {
@@ -804,13 +833,12 @@ function currentLandUse(year) {
     var data6 = Enumerable.From(DistrictCurrentLandUseSize).Where("x=>x.year==" + year).ToArray();
     // var myChart6 = echarts.init(document.getElementById('echart6'));
     var option6 = {
+        title: {
+            text: '现状用地规模',
+            show: false
+        },
         backgroundColor: 'rgba(1, 6, 10,0.6)',
         color: echartColor,
-        title: {
-            text: '',
-            subtext: '',
-            x: 'center'
-        },
         grid: {
             left: "5px"
         },
@@ -874,6 +902,10 @@ function currentLandUse(year) {
     }
     // var myChart7 = echarts.init(document.getElementById('echart7'));
     var option7 = {
+        title: {
+            text: '现状用地规模',
+            show: false
+        },
         backgroundColor: 'rgba(1, 6, 10,0.6)',
         color: echartColor,
         tooltip: {
@@ -949,13 +981,12 @@ function planLandUse(year) {
     var d_seriesData = [{ value: d_dataSize.city, name: "城镇建设用地" }, { value: d_dataSize.village, name: "村庄建设用地" }, { value: d_dataSize.other, name: "其他建设用地" }];
     // var myChart1 = echarts.init(document.getElementById('echart1'));
     var option1 = {
+        title: {
+            text: '规划用地',
+            show: false
+        },
         backgroundColor: 'rgba(1, 6, 10,0.6)',
         color: echartColor,
-        title: {
-            text: '',
-            subtext: '',
-            x: 'center'
-        },
         grid: {
             left: "5px"
         },
@@ -994,12 +1025,17 @@ function planLandUse(year) {
             }
         ]
     };
+    checkEchartState(myChart1, option1);
     myChart1.setOption(option1);
 
     var v_dataSize = Enumerable.From(DistrictCurrentLandUseStruc).Where("x=>x.year==" + year).ToArray()[0];
     var seriesData2 = [{ value: v_dataSize.jzyd, name: "居住用地" }, { value: v_dataSize.cyyd, name: "产业用地" }, { value: v_dataSize.ptyd, name: "配套用地" }, { value: v_dataSize.ld, name: "绿地" }, { value: v_dataSize.dlyd, name: "道路用地" }, { value: v_dataSize.syyd, name: "商业用地" }];
     // var myChart2 = echarts.init(document.getElementById('echart2'));
     var option2 = {
+        title: {
+            text: '规划用地',
+            show: false
+        },
         backgroundColor: 'rgba(1, 6, 10,0.6)',
         color: echartColor,
         grid: {
@@ -1074,10 +1110,15 @@ function planLandUse(year) {
             }
         ]
     };
+    checkEchartState(myChart2, option2);
     myChart2.setOption(option2);
 
     // var myChart3 = echarts.init(document.getElementById('echart3'));
     var option3 = {
+        title: {
+            text: '规划用地',
+            show: false
+        },
         backgroundColor: 'rgba(1, 6, 10,0.6)',
         color: echartColor,
         grid: {
@@ -1152,6 +1193,7 @@ function planLandUse(year) {
             }
         ]
     };
+    checkEchartState(myChart3, option3);
     myChart3.setOption(option3);
 }
 
@@ -1160,6 +1202,10 @@ function PlainAreaDevstrength(year) {
 
     // var myChart1 = echarts.init(document.getElementById('echart1'));
     var option1 = {
+        title: {
+            text: '平原地区开发强度',
+            show: false
+        },
         backgroundColor: 'rgba(1, 6, 10,0.6)',
         series: [{
             name: '业务指标',
@@ -1248,16 +1294,21 @@ function PlainAreaDevstrength(year) {
                 }]
             }]
     };
+    checkEchartState(myChart1, option1);
     myChart1.setOption(option1);
 
     // var myChart2 = echarts.init(document.getElementById('echart2'));
     var option2 = {
+        title: {
+            text: '平原地区开发强度',
+            show: false
+        },
         backgroundColor: 'rgba(1, 6, 10,0.6)',
         color: echartColor,
         grid: {
-            left: 20,
+            left: 25,
             right: 30,
-            bottom: 25,
+            bottom: 30,
             top: 15
         },
         tooltip: {
@@ -1329,6 +1380,7 @@ function PlainAreaDevstrength(year) {
             }
         ]
     };
+    checkEchartState(myChart2, option2);
     myChart2.setOption(option2);
 
     // var myChart3 = echarts.init(document.getElementById('echart3'));
@@ -1336,9 +1388,8 @@ function PlainAreaDevstrength(year) {
         backgroundColor: 'rgba(1, 6, 10,0.6)',
         color: echartColor,
         title: {
-            text: '',
-            subtext: '',
-            x: 'center'
+            text: '平原地区开发强度',
+            show: false
         },
         grid: {
             left: "5px"
@@ -1384,10 +1435,15 @@ function PlainAreaDevstrength(year) {
             }
         ]
     };
+    checkEchartState(myChart3, option3);
     myChart3.setOption(option3);
 
     // var myChart4 = echarts.init(document.getElementById('echart4'));
     var option4 = {
+        title: {
+            text: '平原地区开发强度',
+            show: false
+        },
         backgroundColor: 'rgba(1, 6, 10,0.6)',
         color: echartColor,
         tooltip: {
@@ -1395,14 +1451,14 @@ function PlainAreaDevstrength(year) {
         },
 
         legend: {
-            show: false,
+            show: true,
             left: 'right',
             data: ['城镇建设用地']
         },
         grid: {
             top: '15%',
             left: '15%',
-            bottom: 25
+            bottom: 30
         },
         xAxis: [
             {
@@ -1440,10 +1496,15 @@ function PlainAreaDevstrength(year) {
             name: "城镇建设用地", type: 'bar', data: [30, 65, 35, 41, 65, 38, 43, 38, 38]
         }]
     };
+    checkEchartState(myChart4, option4);
     myChart4.setOption(option4);
 
     // var myChart5 = echarts.init(document.getElementById('echart5'));
     var option5 = {
+        title: {
+            text: '平原地区开发强度',
+            show: false
+        },
         backgroundColor: 'rgba(1, 6, 10,0.6)',
         color: echartColor,
         tooltip: {
@@ -1457,9 +1518,9 @@ function PlainAreaDevstrength(year) {
         },
         grid: {
             top: '15%',
-            left: 20,
+            left: 25,
             right: 20,
-            bottom: 25
+            bottom: 30
         },
         xAxis: [
             {
@@ -1511,18 +1572,18 @@ function PlainAreaDevstrength(year) {
             }
         ]
     };
+    checkEchartState(myChart5, option5);
     myChart5.setOption(option5);
 
     var data6 = Enumerable.From(DistrictCurrentLandUseSize).Where("x=>x.year==" + year).ToArray();
     // var myChart6 = echarts.init(document.getElementById('echart6'));
     var option6 = {
+        title: {
+            text: '平原地区开发强度',
+            show: false
+        },
         backgroundColor: 'rgba(1, 6, 10,0.6)',
         color: echartColor,
-        title: {
-            text: '',
-            subtext: '',
-            x: 'center'
-        },
         grid: {
             left: "5px"
         },
@@ -1533,7 +1594,7 @@ function PlainAreaDevstrength(year) {
         legend: {
             orient: 'vertical',
             right: 'right',
-            top: 'middle',
+            top: 'top',
             data: ['通州新城建设用地', '新城外建设用地'],
             formatter: function (name) {
                 var oa = option6.series[0].data;
@@ -1570,6 +1631,7 @@ function PlainAreaDevstrength(year) {
             }
         ]
     };
+    checkEchartState(myChart6, option6);
     myChart6.setOption(option6);
 
     // var data7 = Enumerable.From(DistrictCurrentLandUseSize).Where("x=>x.year==" + year).ToArray();
@@ -1585,18 +1647,21 @@ function PlainAreaDevstrength(year) {
     }
     // var myChart7 = echarts.init(document.getElementById('echart7'));
     var option7 = {
+        title: {
+            text: '平原地区开发强度',
+            show: false
+        },
         backgroundColor: 'rgba(1, 6, 10,0.6)',
         color: echartColor,
         tooltip: {
             trigger: 'axis'
         },
         legend: {
-
             left: 'right',
             data: ['通州新城', '新城外']
         },
         grid: {
-            left: '3%',
+            left: 20,
             right: '4%',
             bottom: '3%',
             top: 25,
@@ -1645,13 +1710,18 @@ function PlainAreaDevstrength(year) {
             }
         ]
     };
+    checkEchartState(myChart7, option7);
     myChart7.setOption(option7);
 }
 //查看是否清除echarts
 function checkEchartState(echart, option) {
     if (echart.getOption()) {
-        if (echart.getOption().series[0].type != option.series[0].type) {
+        if (echart.getOption().title[0].text != option.title.text) {
+            console.log(echart.getOption().title[0].text, option.title.text);
             echart.clear();
         }
+        // if (echart.getOption().series[0].type != option.series[0].type) {
+
+        // }
     }
 }

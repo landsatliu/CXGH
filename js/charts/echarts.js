@@ -5838,7 +5838,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	                // FIXME in node-canvas fontWeight is before fontStyle
 	                this.getShallow('fontStyle') || getShallow(gTextStyleModel, 'fontStyle'),
 	                this.getShallow('fontWeight') || getShallow(gTextStyleModel, 'fontWeight'),
-	                (this.getShallow('fontSize') || getShallow(gTextStyleModel, 'fontSize') || 6) + 'px',
+	                (this.getShallow('fontSize') || getShallow(gTextStyleModel, 'fontSize') || 7) + 'px',
 	                this.getShallow('fontFamily') || getShallow(gTextStyleModel, 'fontFamily') || 'sans-serif'
 	            ].join(' ');
 	        },
@@ -6780,7 +6780,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	            // PENDING
 	            fontFamily: platform.match(/^Win/) ? 'Microsoft YaHei' : 'sans-serif',
 	            // fontFamily: 'Arial, Verdana, sans-serif',
-	            fontSize: 6,
+	            fontSize: 7,
 	            fontStyle: 'normal',
 	            fontWeight: 'normal'
 	        },
@@ -27752,7 +27752,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	            // 其余属性默认使用全局文本样式，详见TEXTSTYLE
 	            textStyle: {
 					color:"#fff",
-	                fontSize: 6
+	                fontSize: 7
 	            }
 	        },
 	        // 分隔线
@@ -44565,7 +44565,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	                    position: 'right',
 	                    textStyle: {
 	                        color: '#000',
-	                        fontSize: 6
+	                        fontSize: 7
 	                    }
 	                },
 	                emphasis: {
@@ -65313,7 +65313,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	                style: style.fontStyle || DEFAULT_STYLE_NORMAL,
 	                variant: style.fontVariant || DEFAULT_STYLE_NORMAL,
 	                weight: style.fontWeight || DEFAULT_STYLE_NORMAL,
-	                size: parseFloat(style.fontSize || 6) | 0,
+	                size: parseFloat(style.fontSize || 7) | 0,
 	                family: fontFamily || 'Microsoft YaHei'
 	            };
 

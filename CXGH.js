@@ -988,19 +988,29 @@ var App = {
         $(".footplay").on("click", function () {
             switch (_self.currentMenuname) {
                 case "户籍人口":
-
+                    if (_self.autoPlay) {
+                        if (_self.heatMapAutoplay) {
+                            clearInterval(_self.heatMapAutoplay);
+                            $(".footplay").find("span").removeClass("glyphicon-pause");
+                            $(".footplay").find("span").addClass("glyphicon-play");
+                            _self.autoPlay = false;
+                        }
+                    } else {
+                        _self.heatMap();
+                    }
                     break;
                 case "现状用地规模":
-                    // if (_self.autoPlay) {
-                    //     if (_self.currentLandAutoplay) {
-                    //         clearInterval(_self.currentLandAutoplay);
-                    //         $(".footplay").find("span").removeClass("glyphicon-pause");
-                    //         $(".footplay").find("span").addClass("glyphicon-play");
-                    //         _self.autoPlay = false;
-                    //     }
-                    // } else {
-                    _self.currentLandAutoPlay();
-                    // }
+                    if (_self.autoPlay) {
+                        if (_self.currentLandAutoplay) {
+                            clearInterval(_self.currentLandAutoplay);
+                            $(".footplay").find("span").removeClass("glyphicon-pause");
+                            $(".footplay").find("span").addClass("glyphicon-play");
+                            _self.autoPlay = false;
+                        }
+                    } else {
+                        _self.clAutolayer = [];
+                        _self.currentLandAutoPlay();
+                    }
                     break;
                 default:
                     break;
@@ -1069,23 +1079,67 @@ var App = {
     },
 
     heatMap: function (year) {
-        require(["esri/layers/FeatureLayer", "esri/Color", "esri/renderers/HeatmapRenderer",], function (FeatureLayer, Color, HeatmapRenderer) {
-            _self.heatMapLayer.clear();
-            var heatmapRenderer = new HeatmapRenderer({
-                colorStops: [
-                    { ratio: 0, color: "rgba(102, 255, 0,0)" },
-                    { ratio: 0.3, color: "rgb(102, 255, 0)" },
-                    { ratio: 0.6, color: "rgb(255, 170, 0)" },
-                    { ratio: 1, color: "rgb(255, 0, 0)" }
-                ],
-                blurRadius: 6,
-                field: "Y" + year,
-                maxPixelIntensity: 35000,
-                minPixelIntensity: 2000
-            });
-            _self.heatMapLayer.setRenderer(heatmapRenderer);
-            _self.map.addLayer(_self.heatMapLayer);
-            _self.heatMapLayer.refresh();
+        require(["esri/layers/FeatureLayer", "esri/Color", "esri/renderers/HeatmapRenderer", "esri/symbols/SimpleFillSymbol", "esri/renderers/ClassBreaksRenderer"], function (FeatureLayer, Color, HeatmapRenderer, SimpleFillSymbol, ClassBreaksRenderer) {
+            var endyear = $("#sliderbar").slider("getAttribute", "max");
+            if (year) {
+                _self.heatMapLayer.clear();
+                var heatmapRenderer = new HeatmapRenderer({
+                    colorStops: [
+                        { ratio: 0, color: "rgba(102, 255, 0,0)" },
+                        { ratio: 0.3, color: "rgb(102, 255, 0)" },
+                        { ratio: 0.6, color: "rgb(255, 170, 0)" },
+                        { ratio: 1, color: "rgb(255, 0, 0)" }
+                    ],
+                    blurRadius: 6,
+                    field: "Y" + year,
+                    maxPixelIntensity: 35000,
+                    minPixelIntensity: 2000
+                });
+                _self.heatMapLayer.setRenderer(heatmapRenderer);
+                _self.map.addLayer(_self.heatMapLayer);
+            } else {
+                _self.heatMapAutoplay = setInterval(function () {
+                    var startyear = parseFloat($("#sliderbar").slider("getValue"));
+                    _self.heatMapLayer.clear();
+                    var heatlayer = new FeatureLayer(pointlayerURL, {
+                        mode: FeatureLayer.MODE_SNAPSHOT,
+                        outFields: ["*"]
+                    });
+                    var heatmapRenderer = new HeatmapRenderer({
+                        colorStops: [
+                            { ratio: 0, color: "rgba(102, 255, 0,0)" },
+                            { ratio: 0.3, color: "rgb(102, 255, 0)" },
+                            { ratio: 0.6, color: "rgb(255, 170, 0)" },
+                            { ratio: 1, color: "rgb(255, 0, 0)" }
+                        ],
+                        blurRadius: 6,
+                        field: "Y" + startyear,
+                        maxPixelIntensity: 35000,
+                        minPixelIntensity: 2000
+                    });
+                    _self.heatMapLayer.setRenderer(heatmapRenderer);
+                    _self.map.addLayer(_self.heatMapLayer);
+                    _self.heatMapLayer.refresh();
+                    if (startyear >= endyear) {
+                        clearInterval(_self.heatMapAutoplay);
+                        _self.map.removeLayer(_self.heatMapLayer);
+                        $(".footplay").find("span").removeClass("glyphicon-pause");
+                        $(".footplay").find("span").addClass("glyphicon-play");
+                        _self.autoPlay = false;
+                    }
+                    $("#sliderbar").slider('setValue', startyear + 1, false, true);
+                }, 2000);
+                if (_self.autoPlay) {
+                    $(".footplay").find("span").removeClass("glyphicon-pause");
+                    $(".footplay").find("span").addClass("glyphicon-play");
+                    _self.autoPlay = false;
+                } else {
+                    $(".footplay").find("span").removeClass("glyphicon-play");
+                    $(".footplay").find("span").addClass("glyphicon-pause");
+                    _self.autoPlay = true;
+                }
+            }
+
         });
     },
     //现状用地自动播放
@@ -1099,12 +1153,13 @@ var App = {
 
                 _self.currentLandAutoplay = setInterval(function () {
                     var startyear = parseFloat($("#sliderbar").slider("getValue"));
-
                     var featureLayer = new FeatureLayer(featurelayerURL, {
                         mode: FeatureLayer.MODE_SNAPSHOT,
                         outFields: ["*"],
                         id: "currentland" + startyear
                     });
+                    _self.clAutolayer.push("currentland" + startyear);
+
                     var renderer = new ClassBreaksRenderer(symbol, "Y" + startyear);
                     renderer.addBreak(0, 2300, new SimpleFillSymbol().setColor(new Color([56, 168, 0])));
                     renderer.addBreak(2300, 4000, new SimpleFillSymbol().setColor(new Color([139, 209, 0])));
@@ -1112,16 +1167,12 @@ var App = {
                     renderer.addBreak(6000, 10000, new SimpleFillSymbol().setColor(new Color([255, 128, 0])));
                     renderer.addBreak(10000, Infinity, new SimpleFillSymbol().setColor(new Color([255, 0, 0])));
                     featureLayer.setRenderer(renderer);
-                    // featureLayer.refresh();
                     _self.map.addLayer(featureLayer);
-                    var clayer = _self.map.getLayer("currentland"+(startyear-1));
-                    if (clayer) {
-                        _self.map.removeLayer(clayer);
-                    }
+
                     if (startyear >= endyear) {
-                        console.log("remove");
                         clearInterval(_self.currentLandAutoplay);
                         _self.map.removeLayer(featureLayer);
+                        _self.clearCUAutoLayer();
                         $(".footplay").find("span").removeClass("glyphicon-pause");
                         $(".footplay").find("span").addClass("glyphicon-play");
                         _self.autoPlay = false;
@@ -1138,6 +1189,16 @@ var App = {
                     _self.autoPlay = true;
                 }
             })
+    },
+    //清除现状用地自动播放产生的图层
+    clearCUAutoLayer: function () {
+        if (_self.clAutolayer.length > 0) {
+            for (var i = _self.clAutolayer.length - 1; i >= 0; i--) {
+                var layer = _self.map.getLayer(_self.clAutolayer[i]);
+                _self.map.removeLayer(layer);
+            }
+        }
+
     }
 
 }

@@ -6,7 +6,7 @@
     overflow: hidden;
     background-color: #021F31;
     font-family: 'Microsoft YaHei';
-    font-size: 6px;
+    font-size: 8px;
 }
 
 .main {
@@ -27,7 +27,7 @@
     position: absolute;
     left: 0px;
     top: 0px;
-    height: 25px;
+    height: 32px;
     width: 100%;
     border-bottom: 1px solid;
     border-bottom-color: #20818A;
@@ -44,7 +44,7 @@
 #body_header {
     position: absolute;
     left: 0px;
-    top: 25px;
+    top: 32px;
     width: 100%;
     height: 21px;
     line-height: 100%;
@@ -56,7 +56,7 @@
 #body_left {
     position: absolute;
     left: 0px;
-    top: 45px;
+    top: 53px;
     width: 150px;
 }
 
@@ -64,7 +64,7 @@
     position: absolute;
     width: 770px;
     height: 490px !important;
-    top: 50px;
+    top: 55px;
 }
 
 #main_footer {
@@ -72,7 +72,7 @@
     left: 0px;
     bottom: 0px;
     width: 100%;
-    height: 43px;
+    height: 47px;
     /*font-size: 6px;*/
 }
 
@@ -163,7 +163,7 @@
 
     .body_footer .foottime, .footview, .footquota {
         display: inline-block;
-        width: 70px;
+        width: 72px;
         margin-left: 5px;
         background-color: #474C52;
     }
@@ -249,7 +249,7 @@
     .left_region .region {
         margin: 1px 0px;
         /*background-color: #155B7D;*/
-        height: 15px;
+        height: 20px;
         background: -webkit-linear-gradient(left,#034464, #28739A);
         background: -moz-linear-gradient(left,#034464, #28739A);
         background: -o-linear-gradient(left,#034464, #28739A);
@@ -265,18 +265,20 @@
         float: right;
         margin-right: 10px;
         top: 6px;
+        cursor: pointer;
     }
 
 .regionName {
     display: inline-block;
-    margin: 1px 20px;
+    margin: 4px 20px;
 }
 
 .regionBJ {
     display: inline-block;
     margin-left: 40px;
-    margin-bottom: 3px;
-    margin-top: 3px;
+    /*margin-bottom: 3px;*/
+    margin-top: 7px;
+    font-size: 10px;
 }
 
 .jstree-default .jstree-clicked {
@@ -380,7 +382,7 @@
     border: 1px solid #0A82A4;
 }
 .div_echart canvas{
-    font-size: 6px;
+    /*font-size: 6px;*/
 }
 .div_echart_lg {
     margin-top: 5px;
@@ -394,7 +396,6 @@
         background-color: #151A1E;
         height: 15px;
         padding: 1px;
-        font-size: 7px;
         color: white;
     }
 
@@ -481,7 +482,7 @@
         height: 15px;
         cursor: pointer;
         position: absolute;
-        top: 5px;
+        top: 2px;
         left: 0px;
         border: 1px solid #717274;
         background: #3E3F41;
@@ -578,8 +579,9 @@
 }
 
     .inner_title .title {
-        font-size: 7px;
+        font-size: 9px;
         margin-left: 5px;
+        margin-top: 1px;
         cursor: pointer;
         display: inline-block;
     }
@@ -605,7 +607,7 @@
     margin: 1px 0px;
     background-color: #155B7D;
     width: 100%;
-    height: 15px;
+    height: 20px;
     display: inline-block;
 }
 
