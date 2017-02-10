@@ -476,56 +476,62 @@ function householdPopulation(year) {
 
 //现状用地规模
 function currentLandUse(year) {
+    if (year>2012) {
+        return;
+    }
     var d_dataSize = Enumerable.From(DistrictCurrentLandUseSize).Where("x=>x.year==" + year).ToArray()[0];
-    var d_seriesData = [{ value: d_dataSize.city, name: "城镇建设用地" }, { value: d_dataSize.village, name: "村庄建设用地" }, { value: d_dataSize.other, name: "其他建设用地" }];
     // var myChart1 = echarts.init(document.getElementById('echart1'));
-    var option1 = {
-        title: {
-            text: '现状用地规模',
-            show: false
-        },
-        backgroundColor: 'rgba(1, 6, 10,0.6)',
-        color: echartColor,
-        grid: {
-            left: "5px"
-        },
-        tooltip: {
-            trigger: 'item',
-            formatter: "{c} 公顷"
-        },
-        legend: {
-            orient: 'vertical',
-            right: 'right',
-            top: 'middle',
-            data: ['城镇建设用地', '村庄建设用地', '其他建设用地'],
-            formatter: function (name) {
-                var oa = option1.series[0].data;
-                for (var i = 0; i < oa.length; i++) {
-                    if (name == oa[i].name) {
-                        return oa[i].value + "    " + name;
+    if (d_dataSize) {
+        var d_seriesData = [{ value: d_dataSize.city, name: "城镇建设用地" }, { value: d_dataSize.village, name: "村庄建设用地" }, { value: d_dataSize.other, name: "其他建设用地" }];
+        var option1 = {
+            title: {
+                text: '现状用地规模',
+                show: false
+            },
+            backgroundColor: 'rgba(1, 6, 10,0.6)',
+            color: echartColor,
+            grid: {
+                left: "5px"
+            },
+            tooltip: {
+                trigger: 'item',
+                formatter: "{c} 公顷"
+            },
+            legend: {
+                orient: 'vertical',
+                right: 'right',
+                top: 'middle',
+                data: ['城镇建设用地', '村庄建设用地', '其他建设用地'],
+                formatter: function (name) {
+                    var oa = option1.series[0].data;
+                    for (var i = 0; i < oa.length; i++) {
+                        if (name == oa[i].name) {
+                            return oa[i].value + "    " + name;
+                        }
                     }
                 }
-            }
-        },
+            },
 
-        series: [
-            {
-                name: '公顷',
-                type: 'pie',
-                center: ['30%', '50%'],
-                label: {
-                    normal: {
-                        show: true,
-                        position: 'inside',
-                        formatter: "{d}%"
-                    }
-                },
-                data: d_seriesData
-            }
-        ]
-    };
-    checkEchartState(myChart1, option1);
-    myChart1.setOption(option1);
+            series: [
+                {
+                    name: '公顷',
+                    type: 'pie',
+                    center: ['30%', '50%'],
+                    label: {
+                        normal: {
+                            show: true,
+                            position: 'inside',
+                            formatter: "{d}%"
+                        }
+                    },
+                    data: d_seriesData
+                }
+            ]
+        };
+        checkEchartState(myChart1, option1);
+        myChart1.setOption(option1);
+    }
+
 
     var v_dataSize = Enumerable.From(DistrictCurrentLandUseStruc).Where("x=>x.year==" + year).ToArray()[0];
     var seriesData2 = [{ value: v_dataSize.jzyd, name: "居住用地" }, { value: v_dataSize.cyyd, name: "产业用地" }, { value: v_dataSize.ptyd, name: "配套用地" }, { value: v_dataSize.ld, name: "绿地" }, { value: v_dataSize.dlyd, name: "道路用地" }, { value: v_dataSize.syyd, name: "商业用地" }];
@@ -1717,11 +1723,7 @@ function PlainAreaDevstrength(year) {
 function checkEchartState(echart, option) {
     if (echart.getOption()) {
         if (echart.getOption().title[0].text != option.title.text) {
-            console.log(echart.getOption().title[0].text, option.title.text);
             echart.clear();
         }
-        // if (echart.getOption().series[0].type != option.series[0].type) {
-
-        // }
     }
 }
