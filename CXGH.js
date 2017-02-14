@@ -22,11 +22,16 @@ var App = {
                 });
                 map.addLayer(layer);
                 _self.map = map;
-                // _self.heatMapLayer = new FeatureLayer(pointlayerURL, {
-                //     mode: FeatureLayer.MODE_SNAPSHOT,
-                //     outFields: ["*"],
-                //     id: "heatmap"
-                // });
+                _self.heatMapLayer = new FeatureLayer(pointlayerURL, {
+                    mode: FeatureLayer.MODE_SNAPSHOT,
+                    outFields: ["*"],
+                    id: "heatmap"
+                });
+                _self.currentLandLayer = new FeatureLayer(featurelayerURL, {
+                    mode: FeatureLayer.MODE_SNAPSHOT,
+                    outFields: ["*"],
+                    id: "currentland"
+                });
                 _self.initSilderBar();
                 _self.initJSTree();
                 //社会人文
@@ -855,6 +860,8 @@ var App = {
         }).on("changed.jstree", function (e, data) {
             if (data.node) {
                 _self.currentMenuname = data.node.text;
+                _self.closeAutoPlay("现状用地规模");
+                _self.closeAutoPlay("户籍人口");
                 _self.changeEcharts(data.node.text);
             }
         });
@@ -990,24 +997,14 @@ var App = {
             switch (_self.currentMenuname) {
                 case "户籍人口":
                     if (_self.autoPlay) {
-                        if (_self.heatMapAutoplay) {
-                            clearInterval(_self.heatMapAutoplay);
-                            $(".footplay").find("span").removeClass("glyphicon-pause");
-                            $(".footplay").find("span").addClass("glyphicon-play");
-                            _self.autoPlay = false;
-                        }
+                        _self.closeAutoPlay("户籍人口");
                     } else {
                         _self.heatMap();
                     }
                     break;
                 case "现状用地规模":
                     if (_self.autoPlay) {
-                        if (_self.currentLandAutoplay) {
-                            clearInterval(_self.currentLandAutoplay);
-                            $(".footplay").find("span").removeClass("glyphicon-pause");
-                            $(".footplay").find("span").addClass("glyphicon-play");
-                            _self.autoPlay = false;
-                        }
+                        _self.closeAutoPlay("现状用地规模");
                     } else {
                         _self.currentLandAutoPlay();
                     }
@@ -1034,18 +1031,18 @@ var App = {
     silderbar_stop: function (event) {
         _self.changeEcharts(_self.currentMenuname);
         _self.count++;
-        // _self.refreshHeatMapData();
     },
     changeEcharts: function (menuname) {
         var year = $silderbar.slider("getValue");
+
         if (menuname != "现状用地规模") {
-            // _self.clearCUAutoLayer();
+            _self.currentLandLayer.setVisibility(false);
         }
-        // if (menuname != "户籍人口") {
-        //     if (_self.heatMapLayer) {
-        //         _self.map.removeLayer(_self.heatMapLayer);
-        //     }
-        // }
+        if (menuname != "户籍人口") {
+            if (_self.heatMapLayer) {
+                _self.heatMapLayer.setVisibility(false);
+            }
+        }
         switch (menuname) {
             case "户籍人口":
                 _self.setEchartsVisble(['市户籍人口占比', '区县户籍人口占比', '区县新城户籍人口', '区县户籍人口增减情况', '区县户籍人口变化情况', '区县户籍人口密度分布', '历年户籍人口变化趋势'], ['inline-table', 'inline-table', 'inline-table', 'inline-table', 'inline-table', 'inline-table', 'inline-table']);
@@ -1089,21 +1086,11 @@ var App = {
 
     heatMap: function (year) {
         require(["esri/layers/FeatureLayer", "esri/Color", "esri/renderers/HeatmapRenderer"], function (FeatureLayer, Color, HeatmapRenderer) {
+            if (typeof (_self.map.getLayer(_self.heatMapLayer.id)) == "undefined") {
+                _self.map.addLayer(_self.heatMapLayer);
+            }
+            _self.heatMapLayer.setVisibility(true);
             if (year) {
-                console.log(year);
-                var heatMapLayer = new FeatureLayer(pointlayerURL, {
-                    mode: FeatureLayer.MODE_SNAPSHOT,
-                    outFields: ["*"],
-                    id: "heatmap"
-                });
-                _self.map.addLayer(heatMapLayer);
-
-                // if (typeof (_self.map.getLayer(_self.heatMapLayer.id)) == "undefined") {
-                //     _self.map.addLayer(_self.heatMapLayer);
-                //     console.log(_self.heatMapLayer);
-                //     console.log("add");
-                // }
-
                 var heatmapRenderer = new HeatmapRenderer({
                     colorStops: [
                         { ratio: 0, color: "rgba(102, 255, 0,0)" },
@@ -1116,52 +1103,52 @@ var App = {
                     maxPixelIntensity: 35000,
                     minPixelIntensity: 2000
                 });
-                heatMapLayer.setRenderer(heatmapRenderer);
-                heatMapLayer.refresh();
+                _self.heatMapLayer.setRenderer(heatmapRenderer);
+                _self.heatMapLayer.redraw();
+            } else {
+                var endyear = $("#sliderbar").slider("getAttribute", "max");
+                _self.heatMapAutoplay = setInterval(function () {
+                    var startyear = parseFloat($("#sliderbar").slider("getValue"));
+                    var heatlayer = new FeatureLayer(pointlayerURL, {
+                        mode: FeatureLayer.MODE_SNAPSHOT,
+                        outFields: ["*"]
+                    });
+                    var heatmapRenderer = new HeatmapRenderer({
+                        colorStops: [
+                            { ratio: 0, color: "rgba(102, 255, 0,0)" },
+                            { ratio: 0.3, color: "rgb(102, 255, 0)" },
+                            { ratio: 0.6, color: "rgb(255, 170, 0)" },
+                            { ratio: 1, color: "rgb(255, 0, 0)" }
+                        ],
+                        blurRadius: 6,
+                        field: "Y" + startyear,
+                        maxPixelIntensity: 35000,
+                        minPixelIntensity: 2000
+                    });
+                    _self.heatMapLayer.setRenderer(heatmapRenderer);
+                    _self.heatMapLayer.redraw();
+
+                    if (startyear >= endyear) {
+                        clearInterval(_self.heatMapAutoplay);
+                        $(".footplay").find("span").removeClass("glyphicon-pause");
+                        $(".footplay").find("span").addClass("glyphicon-play");
+                        $(".footplay").removeClass("autoplay");
+                        _self.autoPlay = false;
+                    }
+                    $("#sliderbar").slider('setValue', startyear + 1, false, true);
+                }, 2000);
+                if (_self.autoPlay) {
+                    $(".footplay").find("span").removeClass("glyphicon-pause");
+                    $(".footplay").find("span").addClass("glyphicon-play");
+                    $(".footplay").removeClass("autoplay");
+                    _self.autoPlay = false;
+                } else {
+                    $(".footplay").find("span").removeClass("glyphicon-play");
+                    $(".footplay").find("span").addClass("glyphicon-pause");
+                    $(".footplay").addClass("autoplay");
+                    _self.autoPlay = true;
+                }
             }
-            // } else {
-            //     var endyear = $("#sliderbar").slider("getAttribute", "max");
-
-            //     _self.heatMapAutoplay = setInterval(function () {
-            //         var startyear = parseFloat($("#sliderbar").slider("getValue"));
-            //         var heatlayer = new FeatureLayer(pointlayerURL, {
-            //             mode: FeatureLayer.MODE_SNAPSHOT,
-            //             outFields: ["*"]
-            //         });
-            //         var heatmapRenderer = new HeatmapRenderer({
-            //             colorStops: [
-            //                 { ratio: 0, color: "rgba(102, 255, 0,0)" },
-            //                 { ratio: 0.3, color: "rgb(102, 255, 0)" },
-            //                 { ratio: 0.6, color: "rgb(255, 170, 0)" },
-            //                 { ratio: 1, color: "rgb(255, 0, 0)" }
-            //             ],
-            //             blurRadius: 6,
-            //             field: "Y" + startyear,
-            //             maxPixelIntensity: 35000,
-            //             minPixelIntensity: 2000
-            //         });
-            //         _self.heatMapLayer.setRenderer(heatmapRenderer);
-            //         _self.map.addLayer(_self.heatMapLayer);
-            //         _self.heatMapLayer.refresh();
-
-            //         if (startyear >= endyear) {
-            //             clearInterval(_self.heatMapAutoplay);
-            //             $(".footplay").find("span").removeClass("glyphicon-pause");
-            //             $(".footplay").find("span").addClass("glyphicon-play");
-            //             _self.autoPlay = false;
-            //         }
-            //         $("#sliderbar").slider('setValue', startyear + 1, false, true);
-            //     }, 2000);
-            //     if (_self.autoPlay) {
-            //         $(".footplay").find("span").removeClass("glyphicon-pause");
-            //         $(".footplay").find("span").addClass("glyphicon-play");
-            //         _self.autoPlay = false;
-            //     } else {
-            //         $(".footplay").find("span").removeClass("glyphicon-play");
-            //         $(".footplay").find("span").addClass("glyphicon-pause");
-            //         _self.autoPlay = true;
-            //     }
-            // }
 
         });
     },
@@ -1172,44 +1159,37 @@ var App = {
                 var endyear = $("#sliderbar").slider("getAttribute", "max");
                 var symbol = new SimpleFillSymbol();
                 symbol.setColor(new Color("red"));
-                _self.featureLayer = new FeatureLayer(featurelayerURL, {
-                    mode: FeatureLayer.MODE_SNAPSHOT,
-                    outFields: ["*"],
-                    id: "currentland"
-                });
-                if (typeof (_self.map.getLayer(_self.featureLayer.id)) == "undefined") {
-                    // _self.map.addLayer(_self.featureLayer);
-                }
 
+                if (typeof (_self.map.getLayer(_self.currentLandLayer.id)) == "undefined") {
+                    _self.map.addLayer(_self.currentLandLayer);
+                }
+                _self.currentLandLayer.setVisibility(true);
                 if (year) {
-                    // _self.clAutolayer.push("currentland" + year);
-                    // var renderer = new ClassBreaksRenderer(symbol, "Y" + year);
-                    // renderer.addBreak(0, 2300, new SimpleFillSymbol().setColor(new Color([56, 168, 0])));
-                    // renderer.addBreak(2300, 4000, new SimpleFillSymbol().setColor(new Color([139, 209, 0])));
-                    // renderer.addBreak(4000, 6000, new SimpleFillSymbol().setColor(new Color([255, 255, 0])));
-                    // renderer.addBreak(6000, 10000, new SimpleFillSymbol().setColor(new Color([255, 128, 0])));
-                    // renderer.addBreak(10000, Infinity, new SimpleFillSymbol().setColor(new Color([255, 0, 0])));
-                    // _self.featureLayer.setRenderer(renderer);
-                    // _self.featureLayer.redraw();
+                    var renderer = new ClassBreaksRenderer(symbol, "Y" + year);
+                    renderer.addBreak(0, 2300, new SimpleFillSymbol().setColor(new Color([56, 168, 0])));
+                    renderer.addBreak(2300, 4000, new SimpleFillSymbol().setColor(new Color([139, 209, 0])));
+                    renderer.addBreak(4000, 6000, new SimpleFillSymbol().setColor(new Color([255, 255, 0])));
+                    renderer.addBreak(6000, 10000, new SimpleFillSymbol().setColor(new Color([255, 128, 0])));
+                    renderer.addBreak(10000, Infinity, new SimpleFillSymbol().setColor(new Color([255, 0, 0])));
+                    _self.currentLandLayer.setRenderer(renderer);
+                    _self.currentLandLayer.redraw();
                 } else {
-                    // _self.clearCUAutoLayer();
                     _self.currentLandAutoplay = setInterval(function () {
                         var startyear = parseFloat($("#sliderbar").slider("getValue"));
-                        // _self.clAutolayer.push("currentland" + startyear);
                         var renderer = new ClassBreaksRenderer(symbol, "Y" + startyear);
                         renderer.addBreak(0, 2300, new SimpleFillSymbol().setColor(new Color([56, 168, 0])));
                         renderer.addBreak(2300, 4000, new SimpleFillSymbol().setColor(new Color([139, 209, 0])));
                         renderer.addBreak(4000, 6000, new SimpleFillSymbol().setColor(new Color([255, 255, 0])));
                         renderer.addBreak(6000, 10000, new SimpleFillSymbol().setColor(new Color([255, 128, 0])));
                         renderer.addBreak(10000, Infinity, new SimpleFillSymbol().setColor(new Color([255, 0, 0])));
-                        _self.featureLayer.setRenderer(renderer);
-                        _self.featureLayer.redraw();
+                        _self.currentLandLayer.setRenderer(renderer);
+                        _self.currentLandLayer.redraw();
 
                         if (startyear >= endyear) {
                             clearInterval(_self.currentLandAutoplay);
-                            _self.map.removeLayer(_self.featureLayer);
                             $(".footplay").find("span").removeClass("glyphicon-pause");
                             $(".footplay").find("span").addClass("glyphicon-play");
+                            $(".footplay").removeClass("autoplay");
                             _self.autoPlay = false;
                         }
                         $("#sliderbar").slider('setValue', startyear + 1, false, true);
@@ -1217,36 +1197,41 @@ var App = {
                     if (_self.autoPlay) {
                         $(".footplay").find("span").removeClass("glyphicon-pause");
                         $(".footplay").find("span").addClass("glyphicon-play");
+                        $(".footplay").removeClass("autoplay");
                         _self.autoPlay = false;
                     } else {
                         $(".footplay").find("span").removeClass("glyphicon-play");
                         $(".footplay").find("span").addClass("glyphicon-pause");
+                        $(".footplay").addClass("autoplay");
                         _self.autoPlay = true;
                     }
                 }
 
             })
     },
-    //清除现状用地自动播放产生的图层
-    clearCUAutoLayer: function () {
-        // var array=_self.map.getLayersVisibleAtScale();
-        // if (array&&array.length>0) {
-        //    for (var j = 0; j < array.length; j++) {
-        //       if (array[j].id!='agsDynclayer'&&array[j].id!='heatmap') {
-        //         _self.map.removeLayer(array[j]);
-        //       }
-        //    }
-        // }
-        console.log("clear");
-        console.log(_self.clAutolayer);
-        if (_self.clAutolayer && _self.clAutolayer.length > 0) {
-            for (var i = _self.clAutolayer.length - 1; i >= 0; i--) {
-                var layer = _self.map.getLayer(_self.clAutolayer[i]);
-                if (layer) {
-                    _self.map.removeLayer(layer);
+    //关闭自动播放
+    closeAutoPlay: function (name) {
+        switch (name) {
+            case "户籍人口":
+                if (_self.heatMapAutoplay) {
+                    clearInterval(_self.heatMapAutoplay);
+                    $(".footplay").find("span").removeClass("glyphicon-pause");
+                    $(".footplay").find("span").addClass("glyphicon-play");
+                    $(".footplay").removeClass("autoplay");
+                    _self.autoPlay = false;
                 }
-            }
-            _self.clAutolayer = [];
+                break;
+            case "现状用地规模":
+                if (_self.currentLandAutoplay) {
+                    clearInterval(_self.currentLandAutoplay);
+                    $(".footplay").find("span").removeClass("glyphicon-pause");
+                    $(".footplay").find("span").addClass("glyphicon-play");
+                    $(".footplay").removeClass("autoplay");
+                    _self.autoPlay = false;
+                }
+                break;
+            default:
+                break;
         }
     }
 }

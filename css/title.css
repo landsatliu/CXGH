@@ -156,10 +156,14 @@
     opacity: 0.9;
 }
 
+    .autoplay{
+        background-color: #FE8301 !important;
+    }
     .body_footer .foottime:hover, .body_footer .footview:hover, .body_footer .footquota:hover,.footplay:hover {
         background-color: #FE8301;
         cursor: pointer;
     }
+    
 
     .body_footer .foottime, .footview, .footquota {
         display: inline-block;
