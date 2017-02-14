@@ -14,6 +14,8 @@ var App = {
     initMap: function () {
         require(["esri/map", "esri/geometry/Point", "esri/SpatialReference", "esri/layers/FeatureLayer", "esri/layers/ArcGISDynamicMapServiceLayer", "esri/symbols/SimpleFillSymbol",
             "esri/renderers/ClassBreaksRenderer", "esri/Color", "dojo/domReady!"], function (Map, Point, SpatialReference, FeatureLayer, ArcGISDynamicMapServiceLayer, SimpleFillSymbol, ClassBreaksRenderer, Color) {
+                //解决跨域请求
+                esriConfig.defaults.io.corsDetection = false;
                 var layer = new ArcGISDynamicMapServiceLayer(DynamicLayerURL, {
                     id: 'agsDynclayer'
                 });
@@ -57,7 +59,7 @@ var App = {
                 $(".h_social:eq(1)").click();
             });
     },
-    
+
     initSize: function () {
         // $(".left_region").mCustomScrollbar({ setLeft: "10px" });
         // $(".region").css("width", $(".region").width());
