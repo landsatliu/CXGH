@@ -1,3 +1,8 @@
+var ipPath = location.host + "";
+var arcgisapiPath = ipPath + "/api317/3.17";
+
+var initExtent_ = { "xmax": 597877.037000, "xmin": 420071.425000, "ymax": 432525.048000, "ymin": 252940.060000, "spatialReference": { "wkid": 3857 } };
+
 var DynamicLayerURL="http://localhost:6080/arcgis/rest/services/CXGH/beijing/MapServer";
 var featurelayerURL="http://localhost:6080/arcgis/rest/services/CXGH/beijing/MapServer/2";//A13_镇街界 
 var pointlayerURL="http://localhost:6080/arcgis/rest/services/CXGH/beijing/MapServer/0";//A13_镇街界 
