@@ -656,7 +656,7 @@ var App = {
             case "现状用地规模":
                 _self.setEchartsVisble(['区县现状用地规模占比', '区县现状城市建设用地结构', '区县现状建设用地扩张雷达分析', '乡镇现状用地规模', '乡镇现状用地结构', '乡镇居住产业用地分布', '区县历年现状用地规模变化趋势',], ['inline-table', 'inline-table', 'inline-table', 'inline-table', 'inline-table', 'inline-table', 'inline-table']);
                 currentLandUse(year);
-                _self.currentLandAutoPlay(year);
+                // _self.currentLandAutoPlay(year);
                 break;
             case "规划用地规模":
                 _self.setEchartsVisble(['土地使用规划平衡表', '建设用地规划平衡表', '新城规划建设用地平衡表'], ['inline-table', 'inline-table', 'inline-table', 'none', 'none', 'none', 'none']);
@@ -693,21 +693,28 @@ var App = {
             }
             _self.heatMapLayer.setVisibility(true);
             if (year) {
-                var heatmapRenderer = new HeatmapRenderer({
-                    colorStops: [
-                        { ratio: 0, color: "rgba(102, 255, 0,0)" },
-                        { ratio: 0.3, color: "rgb(102, 255, 0)" },
-                        { ratio: 0.6, color: "rgb(255, 170, 0)" },
-                        { ratio: 1, color: "rgb(255, 0, 0)" }
-                    ],
-                    blurRadius: 6,
-                    field: "Y" + year,
-                    maxPixelIntensity: 35000,
-                    minPixelIntensity: 2000
-                });
-                _self.heatMapLayer.setRenderer(heatmapRenderer);
-                _self.heatMapLayer.redraw();
+                try {
+                    var heatmapRenderer = new HeatmapRenderer({
+                        colorStops: [
+                            { ratio: 0, color: "rgba(102, 255, 0,0)" },
+                            { ratio: 0.3, color: "rgb(102, 255, 0)" },
+                            { ratio: 0.6, color: "rgb(255, 170, 0)" },
+                            { ratio: 1, color: "rgb(255, 0, 0)" }
+                        ],
+                        blurRadius: 6,
+                        field: "Y" + year,
+                        maxPixelIntensity: 35000,
+                        minPixelIntensity: 2000
+                    });
+                    _self.heatMapLayer.setRenderer(heatmapRenderer);
+                    _self.heatMapLayer.refresh();
+                } catch (error) {
+                    debugger
+                    console.log(error);
+                }
+
             } else {
+                console.log("autoplay");
                 var endyear = $("#sliderbar").slider("getAttribute", "max");
                 _self.heatMapAutoplay = setInterval(function () {
                     var startyear = parseFloat($("#sliderbar").slider("getValue"));
